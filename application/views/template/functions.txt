@@ -1,0 +1,28 @@
+
+    <!-- var $menuAtual = "#chat";
+    $(document).ready(function(){
+        // alert("jquery working");
+        $('#chat').load('Model_Messages/selectMessages');
+        $("button").click(function(){
+            $clickedBtn =  $(this).attr('class')
+            if ($clickedBtn == "chat" || $clickedBtn == "sheets" || $clickedBtn == "sounds" || $clickedBtn == "configs") {
+                $($menuAtual).hide();
+                $menuAtual = '#'+$(this).attr('class');
+                $($menuAtual).show();
+            }
+        });
+        $('#btnMessage').click(function(){
+            var message = $("#txtMessage").val();
+            $.post("///?php echo base_url(); ?>rpg/index.php/home/adicionarMensagem",{msgAdd:message});
+            $("#txtMessage").val('');
+            location.reload();
+        });
+        $('.delMsg').click(function(){
+            var idMsg = this.id.replace("msg", "");
+            $.post("///?php echo base_url(); ?>rpg/index.php/home/deleteMessage",{msgDel:idMsg});
+            location.reload();
+        });
+        $('.colorScheme').click(function(){
+            $(document.body).toggleClass("darkMode");
+        });
+    }); -->

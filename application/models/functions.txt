@@ -1,0 +1,42 @@
+    public function selectMessages()
+    {
+        $query = $this->db->get('messages');
+        return $query->result();
+    }
+
+    public function inserir($textoMsg){
+        // $this->message_text = $textoMsg;
+        $this->db->insert('messages',$this);
+    }
+
+    public function delete($msgDel){
+        $this->db->where('message_id',$msgDel);
+        $this->db->delete('messages');
+    }
+    
+    public function register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp){
+        // $this->usuario_nome = $name_signUp;
+        // $this->usuario_email = $email_SignUp;
+        // $this->usuario_cpf = $cpf_signUp;
+        // $this->usuario_apelido = $nickname_SignUp;
+        // $this->usuario_senha = $pass_SignUp;
+        // $this->usuario_tipo = "CLIENTE";
+        // $this->usuario_telefone = $phoneNumber_SignUp;
+        // $this->db->insert('usuarios',$this);
+    }
+        // public function loginCredentials2(){
+    //     $query = $this->db->get('users');
+    //     return $query->result();
+    // }
+
+    // public function loginCredentials($userName = "testeUser",$userPass = "testePass")
+    // public function loginCredentials($userName = "teste")
+    // {
+    //     $this->db->where('user_name',$userName);  
+    //     // $this->db->where('user_pass',$userPass);  
+    //     $query = $this->db->get('users');  
+  
+    //     // return $userPass;
+    //     if ($query->num_rows() == 1) return true; 
+    //     else return false;  
+    // }

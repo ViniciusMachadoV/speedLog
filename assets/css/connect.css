@@ -1,0 +1,12 @@
+body{
+    background: whitesmoke;
+}
+.signUpClient, .signUpDeliverymangit {
+    width: 100px;
+}
+.btnSignIn{
+    cursor: pointer;
+}
+.btnSignUp{
+    cursor: pointer;
+}

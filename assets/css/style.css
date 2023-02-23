@@ -1,0 +1,14 @@
+/* ESTILOS GERAIS: */
+.flex{
+    display: flex;
+}
+.row-wrap{
+    flex-flow: row wrap;
+}
+.column{
+    flex-direction: column;
+}
+.darkMode{
+    background: black;
+    color: white;
+}
