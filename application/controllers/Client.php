@@ -13,4 +13,18 @@ class Client extends CI_Controller {
 		$this->load->view('pages/view_client');
 		$this->load->view('template/footer');
 	}
+	public function trocartela($tela)
+	{
+		$this->load->helper('url');
+
+		
+			$i=$tela;
+			$this->load->view('view_topo');
+			$this->load->view('view_home');
+			$this->load->view(''. $i .'');
+			$this->load->view('view_rodape');
+		
+		
+	}
+	
 }
