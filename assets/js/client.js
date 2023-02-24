@@ -1,20 +1,32 @@
 $(document).ready(function(){
+    $("#form_client").hide();
+    $("#acompanhar").hide();
+    $("#historico").hide();
 
-console.log("inicializado....")
 $("#botaotrocatela").click(function () {
-    window.location.href ="http://localhost:8080/projeto_final/index.php/home/trocartela/view_clientes";
-    ;
+    $("#form_client").show();
+      $("#acompanhar").hide();
+    $("#historico").hide();
+
+  
 });
 $("#botaoacompanhar").click(function () {
-    window.location.href ="http://localhost:8080/projeto_final/index.php/home/trocartela/view_acompanha";
-    ;
+    $("#acompanhar").show();
+    $("#historico").hide();
+    $("#form_client").hide();
+
+
+    
 });
 $("#botaohistorico").click(function () {
-    window.location.href ="http://localhost:8080/projeto_final/index.php/home/trocartela/view_historico";
-    ;
+    $("#historico").show();
+      $("#form_client").hide();
+    $("#acompanhar").hide();
+
+    
+});
 });
 
-});
 function teste() {
 
         var cep=$("#cepentrega").val();
