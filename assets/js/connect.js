@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    alert("teste ajax");
+    // alert("teste ajax");
     $(".signUpType").hide();
     $(".signUp").hide();
 });
@@ -37,9 +37,12 @@ $("#signIn").click(function(){
         var userName_signIn = $("#user_SignIn").val();
         var userPass_signIn = $("#pass_SignIn").val();
 
-        // if ($("#keepLogged").is(':checked')){
-        //     alert("lembrar login marcado!")
-        // }
+        if ($("#keepLogged").is(':checked')){
+            alert("lembrar login marcado!")
+        }
+        $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn});
+        // $("#user_SignIn").val('');
+        // $("#pass_SignIn").val('');
     }
     else alert("um ou mais campos vazios");
     });
