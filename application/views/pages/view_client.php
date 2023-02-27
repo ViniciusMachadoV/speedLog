@@ -23,31 +23,34 @@
 
     <div class="row">
         <div class="col" id="form_client">
-            <form>
+            <form  action="http://localhost/SpeedLog/index.php/client/fazer_pedido" method="post">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Peso da Mercadoria(Kg)</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1"placeholder="Digite o peso da sua mercadoria" aria-describedby="emailHelp">
+                    <label for="exampleInputText1" class="form-label">Peso da Mercadoria(Kg)</label>
+                    <input type="Text" class="form-control"name="peso" id="exampleInputText1"placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Largura</label>
-                    <input type="email" class="form-control" name="largura" id="largura"placeholder="Digite a largura da sua mercadoria" aria-describedby="emailHelp">
+                    <label for="exampleInputText1" class="form-label">Largura</label>
+                    <input type="Text" class="form-control" name="largura" id="largura"placeholder="Digite a largura da sua mercadoria" aria-describedby="TextHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Altura</label>
-                    <input type="email" class="form-control" name="altura" id="altura"placeholder="Digite a altura da sua mercadoria" aria-describedby="emailHelp">
+                    <label for="exampleInputText1" class="form-label">Altura</label>
+                    <input type="Text" class="form-control" name="altura" id="altura"placeholder="Digite a altura da sua mercadoria" aria-describedby="TextHelp">
                 </div>
+                
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">comprimento</label>
-                    <input type="email" class="form-control" name="comprimento" id="comprimento"placeholder="Digite o comprimento da sua mercadoria" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">cep(retirada)</label>
-                    <input type="email" class="form-control" name="cepretirada" id="cepretirada" placeholder="Digite o cep de retirada da sua mercadoria" aria-describedby="emailHelp">
+                    <label for="exampleInputText1" class="form-label">cep(retirada)</label>
+                    <input type="Text" class="form-control" name="cepretirada" id="cepretirada" placeholder="Digite o cep de retirada da sua mercadoria" aria-describedby="TextHelp">
                     <div id="divcep1"></div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">cep(entrega)</label>
-                    <input type="email" class="form-control"onblur="teste()" name="cepentrega" id="cepentrega"placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="emailHelp">
+                    <label for="exampleInputText1" class="form-label">cep(entrega)</label>
+                    <input type="Text" class="form-control"onblur="teste()" name="cepentrega" id="cepentrega"placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="TextHelp">
+                    <div id="divcep2"></div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputText1" class="form-label">Observações</label>
+                    <input type="Text" class="form-control"name="cepentrega" id="observacao"placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="TextHelp">
                     <div id="divcep2"></div>
 
                 </div>
@@ -109,9 +112,11 @@
                     <tr>
                     <th scope="row"><?php echo $p->entrega_id?></th>
 
-                        <td><?php echo $p->entrega_endereco?></td>
+                        <td><?php echo $p->entrega_endereco?></td>  
                         <td><?php echo $p->entrega_cep?></td>
                         <td><?php echo $p->entrega_peso?></td>
+                        <td><a id="btn_ex" href="http://localhost/SpeedLog/index.php/client/deletar_pedido/<?php echo $p->entrega_id?>"class="btn btn-danger">CANCELAR PEDIDO! </a></td>
+
                     </tr>
                        
                     
