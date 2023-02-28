@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 22-Fev-2023 às 17:39
+-- Tempo de geração: 28-Fev-2023 às 14:38
 -- Versão do servidor: 5.6.34
 -- versão do PHP: 8.1.7
 
@@ -29,13 +29,20 @@ USE `speedlog`;
 -- Estrutura da tabela `denuncias`
 --
 
-DROP TABLE IF EXISTS `denuncias`;
 CREATE TABLE `denuncias` (
   `denuncia_id` int(11) NOT NULL,
-  `denuncia_apelidoUsuario` varchar(15) NOT NULL,
+  `denuncia_Denunciante` varchar(15) NOT NULL,
+  `denuncia_entrega` int(11) NOT NULL,
   `denuncia_descricao` varchar(254) NOT NULL,
   `denuncia_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `denuncias`
+--
+
+INSERT INTO `denuncias` (`denuncia_id`, `denuncia_Denunciante`, `denuncia_entrega`, `denuncia_descricao`, `denuncia_status`) VALUES
+(1, 'carlinha', 1, 'entrega veio quebrada', 'TERMINADA');
 
 -- --------------------------------------------------------
 
@@ -43,13 +50,19 @@ CREATE TABLE `denuncias` (
 -- Estrutura da tabela `entregadores`
 --
 
-DROP TABLE IF EXISTS `entregadores`;
 CREATE TABLE `entregadores` (
   `entregador_id` int(11) NOT NULL,
-  `entregador_cpf` varchar(14) NOT NULL,
   `entregador_placaMoto` varchar(7) NOT NULL,
   `entregador_foto` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `entregadores`
+--
+
+INSERT INTO `entregadores` (`entregador_id`, `entregador_placaMoto`, `entregador_foto`) VALUES
+(2, 'AAA1111', 'rogerinho.png'),
+(3, 'BBB2222', 'klebinho.jpg');
 
 -- --------------------------------------------------------
 
@@ -57,12 +70,11 @@ CREATE TABLE `entregadores` (
 -- Estrutura da tabela `entregas`
 --
 
-DROP TABLE IF EXISTS `entregas`;
 CREATE TABLE `entregas` (
   `entrega_id` int(11) NOT NULL,
   `entrega_enderecoOrigem` varchar(254) NOT NULL,
   `entrega_enderecoDestino` varchar(254) NOT NULL,
-  `entrega_cpfOrigem` varchar(8) NOT NULL,
+  `entrega_cepOrigem` varchar(8) NOT NULL,
   `entrega_cepDestino` int(8) NOT NULL,
   `entrega_peso` float NOT NULL,
   `entrega_status` varchar(9) NOT NULL,
@@ -70,6 +82,7 @@ CREATE TABLE `entregas` (
   `entrega_dataTransporte` datetime DEFAULT CURRENT_TIMESTAMP,
   `entrega_dataEntrega` datetime DEFAULT CURRENT_TIMESTAMP,
   `entrega_responsavel` varchar(50) DEFAULT NULL,
+  `entrega_valor` decimal(10,0) NOT NULL,
   `entrega_observacao` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,8 +90,8 @@ CREATE TABLE `entregas` (
 -- Extraindo dados da tabela `entregas`
 --
 
-INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cpfOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_responsavel`, `entrega_observacao`) VALUES
-(1, 'r. alfineiros n4', '', '', 36035210, 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, NULL, NULL);
+INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_responsavel`, `entrega_valor`, `entrega_observacao`) VALUES
+(1, 'r. alfineiros n4', '', '', 36035210, 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, NULL, '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -86,7 +99,6 @@ INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderec
 -- Estrutura da tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `usuario_id` int(11) NOT NULL,
   `usuario_nome` varchar(50) NOT NULL,
@@ -105,16 +117,9 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_cpf`, `usuario_apelido`, `usuario_senha`, `usuario_tipo`, `usuario_telefone`, `usuario_status`) VALUES
 (1, 'ADMINISTRADOR', 'admin@gmail.com', '000.000.000-00', 'admin', '123', 'ADMINISTRADOR', NULL, ''),
-(2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', ''),
-(3, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(4, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(5, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(6, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(7, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(8, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(9, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(10, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', ''),
-(11, 'a', 'a', 'a', 'a', 'a', 'CLIENTE', 'a', '');
+(2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', 'SUSPENSO'),
+(3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '789', 'ENTREGADOR', '9 9999-9998', 'ATIVO'),
+(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO');
 
 --
 -- Índices para tabelas despejadas
@@ -152,7 +157,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `denuncias`
 --
 ALTER TABLE `denuncias`
-  MODIFY `denuncia_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `denuncia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `entregas`
@@ -164,7 +169,7 @@ ALTER TABLE `entregas`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
