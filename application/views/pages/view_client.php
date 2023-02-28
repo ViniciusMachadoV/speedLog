@@ -115,7 +115,7 @@
                         <td><?php echo $p->entrega_endereco?></td>  
                         <td><?php echo $p->entrega_cep?></td>
                         <td><?php echo $p->entrega_peso?></td>
-                        <td><a id="btn_ex" href="http://localhost/SpeedLog/index.php/client/deletar_pedido/<?php echo $p->entrega_id?>"class="btn btn-danger">CANCELAR PEDIDO! </a></td>
+                        <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" href="http://localhost/SpeedLog/index.php/client/deletar_pedido/<?php echo $p->entrega_id?>">CANCELAR PEDIDO! </a></button></td>
 
                     </tr>
                        
