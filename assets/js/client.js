@@ -1,13 +1,22 @@
 $(document).ready(function(){
+
+
+  function desabilitarbotao() {
+    // $("#btn_ex").disabled = true;
+    $('#btn_ex').prop('disabled', true);
+
+  
+  }
+  function timeout_desabilitar_botao() {
+    timeout = setTimeout(desabilitarbotao, 3000);
+  }
+  timeout_desabilitar_botao();
+ 
     $("#form_client").hide();
     $("#acompanhar").hide();
     $("#historico").hide();
-    let timeout;
 
-    function timeout_desabilitar_botao() {
-      timeout = setTimeout(desabilitarbotao, 3000);
-    }
-    timeout_desabilitar_botao();
+  
     
    
 
@@ -35,10 +44,7 @@ $("#botaohistorico").click(function () {
 });
 });
 //Desabilita o botao de excluir
-function desabilitarbotao() {
-  $("#btn_ex").disabled = true;
 
-}
 
 function teste() {
 
