@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+  
   function desabilitarbotao() {
     // $("#btn_ex").disabled = true;
     $('#btn_ex').prop('disabled', true);
@@ -57,23 +57,27 @@ function teste() {
       if (cep!="") {
         //USO DE API DE DISTANCIA
 
-           $.get( "https://api.distancematrix.ai/maps/api/distancematrix/json?origins="+cep2+"&destinations="+cep+"&key=bO1hA46Uj3fWyoqArNhwRvZbQ6hZv", function( data ) {
+           $.get( "https://api.distancematrix.ai/maps/api/distancematrix/json?origins="+cep2+"&destinations="+cep+"&key=c40WtSqfR8we6DH4qToJKMvtfbCDE", function( data ) {
             if (data!= "") {
-                var distancia =data;
+                var distancia =data['rows'][0]['elements'][0]['distance']['text'];
+                var tempo =data['rows'][0]['elements'][0]['duration']['text'];
                 //['rows'][0]['elements'][0]['distance']['text']
+                //['rows'][0]['elements'][0]['duration']['text']
           console.log(distancia);
-            $("#divcep2").html("distancia entre os pontos: "+ distancia);
+          console.log(tempo);
+            $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+"");
                 
             }
       
         });
         //USO DE API DE LOCALIZAÇÃO
+        var cepmeu="36108000"
         
-        // $.get( "https://viacep.com.br/ws/"+ cep +"/json/?data=?", function( data2 ) {
-        //     console.log(data2);
+        $.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
+            console.log(data2);
 
-        //     $("#divcep2").html(cep);
-        // });
+            // $("#divcep2").html(cep);
+        });
       } 
       if(cep2||cep == ""){
             $("#divcep").html("digite um cep valido!");

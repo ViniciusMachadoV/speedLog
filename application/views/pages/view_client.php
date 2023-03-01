@@ -60,6 +60,7 @@
                             <th scope="col">Endereço de entrega</th>
                             <th scope="col">Cep de entrega</th>
                             <th scope="col">Peso produto</th>
+                            <th scope="col">Situação</th>
                             </tr>
                         </thead>
                         <?php foreach ($historico as $p) { ?>
@@ -69,6 +70,8 @@
                             <td><?php echo $p->entrega_endereco?></td>
                             <td><?php echo $p->entrega_cep?></td>
                             <td><?php echo $p->entrega_peso?></td>
+                            <td><?php echo $p->entrega_status?></td>
+
                         </tr>
                     <?php } ?>
                         </table>
@@ -94,7 +97,7 @@
                                 <td><?php echo $p->entrega_endereco?></td>  
                                 <td><?php echo $p->entrega_cep?></td>
                                 <td><?php echo $p->entrega_peso?></td>
-                                <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" href="http://localhost/SpeedLog/index.php/client/deletar_pedido/<?php echo $p->entrega_id?>">CANCELAR PEDIDO! </a></button></td>
+                                <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" href="http://localhost/SpeedLog/index.php/client/cancelar_pedido/<?php echo $p->entrega_id?>">CANCELAR PEDIDO! </a></button></td>
                             </tr>
                         <?php } ?>
                             </tbody>
