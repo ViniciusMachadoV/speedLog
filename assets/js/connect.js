@@ -23,7 +23,6 @@ $(".signUpClient").click(function(){
     $(".signUp").show();
     $(".clientCheck").show();
     $(".deliverymanCheck").hide();
-    
 });
 $(".signUpDeliveryman").click(function(){
     $(".deliverymanForm").show();
@@ -36,7 +35,6 @@ $("#signIn").click(function(){
     if ($("#user_SignIn").val() != "" && $("#pass_SignIn").val() != "") {
         var userName_signIn = $("#user_SignIn").val();
         var userPass_signIn = $("#pass_SignIn").val();
-
         if ($("#keepLogged").is(':checked')){
             alert("lembrar login marcado!")
         }
@@ -47,9 +45,7 @@ $("#signIn").click(function(){
     else alert("um ou mais campos vazios");
     });
 $("#signUp").click(function(){
-
     // FIRST DO A SELECT TO VERIFY IF USERNAME ALREADY EXISTS
-    
     if ($("#name_SignUp").val() != "" && 
     $("#email_SignUp").val() != "" && 
     $("#CPF_SignUp").val() != "" && 
@@ -67,11 +63,9 @@ $("#signUp").click(function(){
         $.post("<?php echo base_url(); ?>speedlog/index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp});
         $("#txtMessage").val('');
         // location.reload();
-
         // if ($("#clientEmailCheck").is(':checked')){
         //     alert("receber email marcado!")
         // }
-        
     }
     else alert("um ou mais campos vazios");
 });
