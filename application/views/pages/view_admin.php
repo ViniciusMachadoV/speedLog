@@ -2,7 +2,64 @@
 <title>Admin - SpeedLog</title>
 <div class="container">
     <a href='connect/logout'>Logout</a>
-    <form>
+    <button type="button" class="btn btn-primary btnListDeliveryman">entregadores</button>
+    <button type="button" class="btn btn-primary btnListDeliveries">entregas</button>
+    <button type="button" class="btn btn-primary btnRegisterAdmins">cadastro de adms</button>
+
+    <table class="table listDeliveryman">
+        <thead>
+            <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Apelido</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($entregadores as $colunaDB) {
+                    echo '
+                        <tr>
+                        <td scope="row">'.$colunaDB->usuario_nome.'</td>
+                        <td>'.$colunaDB->usuario_email.'</td>
+                        <td>'.$colunaDB->usuario_cpf.'</td>
+                        <td>'.$colunaDB->usuario_apelido.'</td>
+                        <td>'.$colunaDB->usuario_tipo.'</td>
+                        <td>'.$colunaDB->usuario_status.'</td>
+                        </tr>';
+            }?>
+        </tbody>
+    </table>
+    <table class="table listDeliveries">
+        <thead>
+            <tr>
+            <th scope="col">Origem</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Status</th>
+            <th scope="col">Data</th>
+            <th scope="col">Responsável</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Observações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($entregas as $colunaDB) {
+                    echo '
+                        <tr>
+                        <td scope="row">'.$colunaDB->entrega_enderecoOrigem.$colunaDB->entrega_cepOrigem.'</td>
+                        <td scope="row">'.$colunaDB->entrega_enderecoDestino.$colunaDB->entrega_cepDestino.'</td>
+                        <td>'.$colunaDB->entrega_peso.'</td>
+                        <td>'.$colunaDB->entrega_status.'</td>
+                        <td>'.$colunaDB->entrega_dataPedido.'</td>
+                        <td>'.$colunaDB->entrega_responsavel.'</td>
+                        <td>'.$colunaDB->entrega_observacao.'</td>
+                        </tr>';
+            }?>
+        </tbody>
+    </table>
+    <form class="registerAdmins">
         <div class="mb-3">
             <label for="nomeCompleto" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="nomeCompleto" >
