@@ -27,14 +27,24 @@ class Client extends CI_Controller {
 		
         $this->Model_Client->inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao);
 	}
-	public function deletar_pedido($id_deletar)
+	public function cancelar_pedido($id_deletar)
 
 	{
 		$this->load->model('Model_Client');
 
 		$id_pedido=$id_deletar;
-		$this->Model_Client->deletar_pedido($id_pedido);
+		$this->Model_Client->cancelar_pedido($id_pedido);
+		
 
+	}
+	public function calculo($peso,$distancia,$tempo)
+	{
+		echo $peso,$distancia,$tempo;
+		$this->load->model('Model_Client');
+		$this->Model_Client->calcular_valor($peso,$distancia,$tempo);
+
+
+	// 	calcular_valor
 	}
 	
 	

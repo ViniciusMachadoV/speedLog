@@ -40,3 +40,10 @@
     //     if ($query->num_rows() == 1) return true; 
     //     else return false;  
     // }
+     // 
+     public function cancelar_pedido()
+        // {
+        //     $this -> banco de dados -> set ( 'nome' ,  $nome ); 
+        //     $this -> db -> insert ( 'minhatabela' );  
+        // }
+      

@@ -40,6 +40,48 @@
             $this->db->where('entrega_id',$entregaDel);
             $this->db->delete('entregas');
         }
+
+        public function cancelar_pedido($id_deletado)
+        {
+            $this->db->where('entrega_id', $id_deletado);
+            $this->db->update('entregas', array('entrega_status' => "CANCELADO"));
+        }
+        public function calcular_valor($peso,$distancia,$tempo)
+        {
+            $valor=0;
+            $valorp=0;
+            $valord=0;
+            $valort=0;
+            
+            $pesor=$peso;
+            $distanciar=$distancia;
+            $tempor=$tempo;
+            switch ($pesor) {
+                case $pesor < 1:
+                        $valorp="3,00";
+                    break;
+                case $peso > 1 and $peso <= 3:
+                    $valorp="3,00";
+                    break;
+                case $peso >3 and $peso <= 8:
+                    $valorp="9,00";
+                    
+                    break;
+                case $peso >8 and $peso <= 12:
+                    $valorp="12,00";
+                    
+                    break;
+                default:
+                $valorp="Transporte não autorizado pelo peso.";
+            }
+            echo $valorp;
+
+            $valord=$distanciar*0.50;
+
+            $valort=$tempor*0.30;
+            $valor= $valorp+$valord+$valort;
+
+         }
       
 
 
