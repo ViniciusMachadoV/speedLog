@@ -1,4 +1,3 @@
-<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>speedlog/assets/css/client.css"> 
 <title>Cliente - SpeedLog</title>
 <div class="container">
     <div class="container">

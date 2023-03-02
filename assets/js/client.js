@@ -1,6 +1,5 @@
 $(document).ready(function(){
   function desabilitarbotao() {
-    // $("#btn_ex").disabled = true;
     $('#btn_ex').prop('disabled', true);
   }
   function timeout_desabilitar_botao() {

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    // alert("teste ajax");
     $(".listDeliveryman").hide();
     $(".listDeliveries").hide();
     $(".registerAdmins").hide();

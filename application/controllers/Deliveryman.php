@@ -9,7 +9,9 @@ class Deliveryman extends CI_Controller {
 		$dados['entregas']=$this->model_Deliveryman->visualizarPedidos();
 		$this->load->helper('url');
 		$this->load->view('template/header');
+		$this->load->view('template/view_header');
 		$this->load->view('pages/view_deliveryman',$dados);
+		$this->load->view('template/view_footer');
 		$this->load->view('template/footer');
 	}
 	

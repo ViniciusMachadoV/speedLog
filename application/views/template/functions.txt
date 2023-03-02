@@ -1,7 +1,5 @@
-
     <!-- var $menuAtual = "#chat";
     $(document).ready(function(){
-        // alert("jquery working");
         $('#chat').load('Model_Messages/selectMessages');
         $("button").click(function(){
             $clickedBtn =  $(this).attr('class')
