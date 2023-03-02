@@ -1,4 +1,6 @@
+<!-- ESSA PÁGINA USA UMA FOLHA DE ESTILO ESPECÍFICA UMA VEZ QUE VEM DA INTERNET // THIS PAGE HAVE A SPECIFIC STYLESHEET SINCE IT'S FROM INTERNET -->
 <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>speedlog/assets/css/connect.css">
+
 <title>Conectar - SpeedLog</title>
 <!-- Background Video-->
 <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?php echo base_url();?>speedlog/assets/mp4/bg.mp4" type="video/mp4" /></video>
