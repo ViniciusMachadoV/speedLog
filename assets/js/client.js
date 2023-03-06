@@ -1,7 +1,6 @@
 $(document).ready(function(){
-  function desabilitarbotao() {
-    $('#btn_ex').prop('disabled', true);
-  }
+  $("#valor_entrega").hide();
+  
   function timeout_desabilitar_botao() {
     timeout = setTimeout(desabilitarbotao, 3000);
   }
@@ -25,33 +24,42 @@ $("#botaohistorico").click(function () {
     $("#acompanhar").hide();
 });
 });
-//Desabilita o botao de excluir
+function desabilitarbotao() {
+  $('#btn_ex').click(alert("Impossivel cancelar compra!"));
+}
+
+// calculo de valor do pedido
 function teste() {
       var cep=$("#cepentrega").val();
       var cep2=$("#cepretirada").val();
-      console.log(cep);   
+      var peso=$("#peso").val();
       if (cep!="") {
         //USO DE API DE DISTANCIA
            $.get( "https://api.distancematrix.ai/maps/api/distancematrix/json?origins="+cep2+"&destinations="+cep+"&key=c40WtSqfR8we6DH4qToJKMvtfbCDE", function( data ) {
             if (data!= "") {
                 var distancia =data['rows'][0]['elements'][0]['distance']['text'];
                 var tempo =data['rows'][0]['elements'][0]['duration']['text'];
-                //['rows'][0]['elements'][0]['distance']['text']
-                //['rows'][0]['elements'][0]['duration']['text']
+                var numsStr = tempo.replace(/[^0-9]/g,'');
+                console.log(parseInt(numsStr));
+                $.post("client/calculo",{distancia_cal:distancia,tempo_cal:numsStr,peso_cal:peso},function(resposta) {
+                  $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+" Valor estimado de frete: "+resposta+"")
+                  $("#valor_entrega").val(resposta);
+                  ;
+                });
           console.log(distancia);
           console.log(tempo);
-            $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+"")
-            $("#divcep2").html("distancia entre os pontos: "+ distancia);
+            // $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+"")
+            // $("#divcep2").html("distancia entre os pontos: "+ distancia);
             }
         });
         //USO DE API DE LOCALIZAÇÃO
-        var cepmeu="36108000"
+        // var cepmeu="36108000"
         
-        $.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
-            console.log(data2);
+        // $.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
+        //     console.log(data2);
 
             // $("#divcep2").html(cep);
-        });
+        // });
       } 
       if(cep2||cep == ""){
             $("#divcep").html("digite um cep valido!");
