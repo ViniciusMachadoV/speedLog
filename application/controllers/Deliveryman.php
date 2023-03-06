@@ -1,8 +1,5 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 class Deliveryman extends CI_Controller {
-
 	public function index()
 	{
 		$this->load->model('model_Deliveryman');
@@ -14,10 +11,9 @@ class Deliveryman extends CI_Controller {
 		$this->load->view('template/view_footer');
 		$this->load->view('template/footer');
 	}
-	
 	public function confirmarPedido(){
 		$idConfirmarPedido = $_POST['idPedido'];
 		$this->load->model('model_Deliveryman');
         $this->model_Deliveryman->updatePedido($idConfirmarPedido);
 	}
-}
+}?>
