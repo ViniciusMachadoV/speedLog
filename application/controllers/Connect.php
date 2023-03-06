@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php 
+ob_start(); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
 	{
@@ -13,7 +15,6 @@ class Connect extends CI_Controller {
 	{
 		if ($this->session->user_status('logged')) 
 		{
-			$this->load->view('view_client');
 		}
 		else
 		{
@@ -24,10 +25,21 @@ class Connect extends CI_Controller {
 	{
 		$userName = $_POST['user'];
 		$userPass = $_POST['pass'];
+		// $this->load->helper('url');
+
 		$this->load->model('model_Connect');
-        $this->model_Connect->loginCredentials($userName, $userPass);
+        $logged = $this->model_Connect->loginCredentials($userName, $userPass);
+
+		// return redirect('/admin');
+		if($logged){
+			header('Location: '.base_url('index.php/admin'));
+		}
+		else {
+			header('Location: '.base_url('index.php/client'));
+			// header('Location: registerUser');
+		}
 	}
-	public function registertUser()
+	public function registerUser()
 	{
 		$name_signUp = $_POST['name'];
 		$email_SignUp = $_POST['email'];

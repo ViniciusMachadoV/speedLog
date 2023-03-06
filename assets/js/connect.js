@@ -59,7 +59,7 @@ $("#signUp").click(function(){
         var phoneNumber_SignUp = $("#phoneNumber_SignUp").val();
         var pass_SignUp = $("#pass1_SignUp").val();
         // alert(name_signUp + email_SignUp + cpf_signUp + nickname_SignUp + phoneNumber_SignUp + pass_SignUp);
-        $.post("<?php echo base_url(); ?>speedlog/index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp});
+        $.post("<?php echo base_url('index.php/connect/registerUser'); ?>",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp});
         $("#txtMessage").val('');
         // location.reload();
         // if ($("#clientEmailCheck").is(':checked')){
