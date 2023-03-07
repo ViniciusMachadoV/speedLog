@@ -25,7 +25,13 @@ $("#botaohistorico").click(function () {
 });
 });
 function desabilitarbotao() {
-  $('#btn_ex').click(alert("Impossivel cancelar compra!"));
+  // jQuery("#btn_ex").attr("disabled", true);
+  // $("deletlkn").val("asdas")
+  ele = document.querySelectorAll('[id="btn_ex"]');
+  for (let i = 0; i < ele.length; i++) {
+    ele[i].disabled=true;
+    
+  }
 }
 
 // calculo de valor do pedido
@@ -40,14 +46,11 @@ function teste() {
                 var distancia =data['rows'][0]['elements'][0]['distance']['text'];
                 var tempo =data['rows'][0]['elements'][0]['duration']['text'];
                 var numsStr = tempo.replace(/[^0-9]/g,'');
-                console.log(parseInt(numsStr));
                 $.post("client/calculo",{distancia_cal:distancia,tempo_cal:numsStr,peso_cal:peso},function(resposta) {
                   $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+" Valor estimado de frete: "+resposta+"")
                   $("#valor_entrega").val(resposta);
                   ;
                 });
-          console.log(distancia);
-          console.log(tempo);
             // $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+"")
             // $("#divcep2").html("distancia entre os pontos: "+ distancia);
             }
