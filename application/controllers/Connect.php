@@ -11,33 +11,12 @@ class Connect extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('pages/view_connect');
 	}
-	public function logged()
-	{
-		if ($this->session->user_status('logged')) 
-		{
-		}
-		else
-		{
-			redirect('index.php/connect/view_connect');
-		}
-	}
 	public function connectUser()
 	{
 		$userName = $_POST['user'];
 		$userPass = $_POST['pass'];
-		// $this->load->helper('url');
-
 		$this->load->model('model_Connect');
         $logged = $this->model_Connect->loginCredentials($userName, $userPass);
-
-		// return redirect('/admin');
-		if($logged){
-			header('Location: '.base_url('index.php/admin'));
-		}
-		else {
-			header('Location: '.base_url('index.php/client'));
-			// header('Location: registerUser');
-		}
 	}
 	public function registerUser()
 	{
