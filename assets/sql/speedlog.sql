@@ -3,15 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
-<<<<<<< HEAD
--- Generation Time: 06-Mar-2023 às 14:31
-=======
-<<<<<<< Updated upstream
--- Tempo de geração: 03-Mar-2023 às 14:41
-=======
--- Tempo de geração: 06-Mar-2023 às 11:24
->>>>>>> Stashed changes
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
+-- Generation Time: 07-Mar-2023 às 11:46
 -- Versão do servidor: 5.6.34
 -- PHP Version: 5.6.32
 
@@ -29,134 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `speedlog`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `avaliacoes`
---
-
-CREATE TABLE `avaliacoes` (
-  `avaliacao_id` int(11) NOT NULL,
-  `avaliacao_entrega` int(11) NOT NULL,
-  `avaliacao_total` int(1) NOT NULL,
-  `avaliacao_desc` varchar(150) DEFAULT NULL,
-  `avaliacao_tempoOK` tinyint(1) NOT NULL DEFAULT '1',
-  `avaliacao_entregaOK` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `configs`
---
-
-CREATE TABLE `configs` (
-  `config_id` int(11) NOT NULL,
-  `config_tipo` varchar(9) NOT NULL,
-  `valor_km` decimal(10,2) NOT NULL,
-  `valor_minuto` decimal(10,2) NOT NULL,
-  `valor_kg<1` decimal(10,2) NOT NULL,
-  `valor_kg1-3` decimal(10,2) NOT NULL,
-  `valor_kg3-8` decimal(10,2) NOT NULL,
-  `valor_kg8-12` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `configs`
---
-
-INSERT INTO `configs` (`config_id`, `config_tipo`, `valor_km`, `valor_minuto`, `valor_kg<1`, `valor_kg1-3`, `valor_kg3-8`, `valor_kg8-12`) VALUES
-(1, 'PADRAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(2, 'SÁBADO', '0.40', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(3, 'DOMINGO', '0.50', '0.70', '3.00', '5.00', '9.00', '12.00'),
-(4, 'FERIADO', '0.60', '0.40', '3.00', '5.00', '9.00', '12.00'),
-(5, 'PROMOÇÃO', '0.30', '0.20', '3.00', '5.00', '9.00', '12.00');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cupons`
---
-
-CREATE TABLE `cupons` (
-  `cupom_id` int(11) NOT NULL,
-  `cupom_desconto` decimal(10,2) NOT NULL,
-  `cupom_termino` date NOT NULL,
-  `cupom_qtde` int(11) NOT NULL,
-  `cupom_desc` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `cupons`
---
-
-INSERT INTO `cupons` (`cupom_id`, `cupom_desconto`, `cupom_termino`, `cupom_qtde`, `cupom_desc`) VALUES
-(1, '5.00', '2023-04-01', 3, 'Promoção de lançamento');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `avaliacoes`
---
-
-CREATE TABLE `avaliacoes` (
-  `avaliacao_id` int(11) NOT NULL,
-  `avaliacao_entrega` int(11) NOT NULL,
-  `avaliacao_total` int(1) NOT NULL,
-  `avaliacao_desc` varchar(150) DEFAULT NULL,
-  `avaliacao_tempoOK` tinyint(1) NOT NULL DEFAULT '1',
-  `avaliacao_entregaOK` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `configs`
---
-
-CREATE TABLE `configs` (
-  `config_id` int(11) NOT NULL,
-  `config_tipo` varchar(9) NOT NULL,
-  `valor_km` decimal(10,2) NOT NULL,
-  `valor_minuto` decimal(10,2) NOT NULL,
-  `valor_kg<1` decimal(10,2) NOT NULL,
-  `valor_kg1-3` decimal(10,2) NOT NULL,
-  `valor_kg3-8` decimal(10,2) NOT NULL,
-  `valor_kg8-12` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `configs`
---
-
-INSERT INTO `configs` (`config_id`, `config_tipo`, `valor_km`, `valor_minuto`, `valor_kg<1`, `valor_kg1-3`, `valor_kg3-8`, `valor_kg8-12`) VALUES
-(1, 'PADRAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(2, 'SÁBADO', '0.40', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(3, 'DOMINGO', '0.50', '0.70', '3.00', '5.00', '9.00', '12.00'),
-(4, 'FERIADO', '0.60', '0.40', '3.00', '5.00', '9.00', '12.00'),
-(5, 'PROMOÇÃO', '0.30', '0.20', '3.00', '5.00', '9.00', '12.00');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cupons`
---
-
-CREATE TABLE `cupons` (
-  `cupom_id` int(11) NOT NULL,
-  `cupom_desconto` decimal(10,2) NOT NULL,
-  `cupom_termino` date NOT NULL,
-  `cupom_qtde` int(11) NOT NULL,
-  `cupom_desc` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `cupons`
---
-
-INSERT INTO `cupons` (`cupom_id`, `cupom_desconto`, `cupom_termino`, `cupom_qtde`, `cupom_desc`) VALUES
-(1, '5.00', '2023-04-01', 3, 'Promoção de lançamento');
+CREATE DATABASE IF NOT EXISTS `speedlog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `speedlog`;
 
 -- --------------------------------------------------------
 
@@ -291,13 +157,9 @@ CREATE TABLE `entregas` (
 --
 
 INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_cliente`, `entrega_responsavel`, `entrega_valor`, `entrega_observacao`) VALUES
-<<<<<<< HEAD
 (1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 0, NULL, '0', NULL),
 (2, '', '', '36050-00', '0', 12, 'ABERTO', '2023-03-06 11:13:50', '2023-03-06 11:13:50', '2023-03-06 11:13:50', 0, NULL, '0', NULL),
 (3, '', '', '36050-00', 'aasdasd', 12, 'ABERTO', '2023-03-06 11:17:02', '2023-03-06 11:17:02', '2023-03-06 11:17:02', 0, NULL, '0', NULL);
-=======
-(1, 'r. alfineiros n4', '', '', 36035210, 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 0, NULL, '0', NULL);
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 
 -- --------------------------------------------------------
 
@@ -332,41 +194,25 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_
 --
 
 --
-<<<<<<< HEAD
 -- Indexes for table `avaliacoes`
-=======
--- Índices para tabela `avaliacoes`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`avaliacao_id`);
 
 --
-<<<<<<< HEAD
 -- Indexes for table `configs`
-=======
--- Índices para tabela `configs`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `configs`
   ADD PRIMARY KEY (`config_id`);
 
 --
-<<<<<<< HEAD
 -- Indexes for table `cupons`
-=======
--- Índices para tabela `cupons`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `cupons`
   ADD PRIMARY KEY (`cupom_id`);
 
 --
-<<<<<<< HEAD
 -- Indexes for table `denuncias`
-=======
--- Índices para tabela `denuncias`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `denuncias`
   ADD PRIMARY KEY (`denuncia_id`);
@@ -394,41 +240,25 @@ ALTER TABLE `usuarios`
 --
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT for table `avaliacoes`
-=======
--- AUTO_INCREMENT de tabela `avaliacoes`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `avaliacoes`
   MODIFY `avaliacao_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT for table `configs`
-=======
--- AUTO_INCREMENT de tabela `configs`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `configs`
   MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT for table `cupons`
-=======
--- AUTO_INCREMENT de tabela `cupons`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `cupons`
   MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT for table `denuncias`
-=======
--- AUTO_INCREMENT de tabela `denuncias`
->>>>>>> d3d0cda665eef71779a8f728f43b576d8b0738e5
 --
 ALTER TABLE `denuncias`
   MODIFY `denuncia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
