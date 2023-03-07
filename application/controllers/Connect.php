@@ -1,33 +1,42 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php 
+ob_start(); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
 	{
-		// $this->load->model('model_Messages');
-		// $dados['mensagens']=$this->model_Messages->selectMessages();
 		$this->load->helper('url');
-		$this->load->model('model_Connect');
 		$this->load->view('template/header');
 		$this->load->view('pages/view_connect');
-	}
-	public function logged()
-	{
-		if ($this->session->user_status('logged')) 
-		{
-			$this->load->view('view_client');
-		}
-		else
-		{
-			redirect('index.php/connect/view_connect');
-		}
 	}
 	public function connectUser()
 	{
 		$userName = $_POST['user'];
 		$userPass = $_POST['pass'];
 		$this->load->model('model_Connect');
-        $this->model_Connect->loginCredentials($userName, $userPass);
+        $dados['logged'] = $this->model_Connect->loginCredentials($userName,$userPass);
+
+		if ($dados['logged'] == true) {
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+		$this->load->view('pages/view_connect',$dados);
+
+		// if($userName == 'admin' && $userPass == '123'){
+			// $this->session->set_userdata(array('user'=>$userName));
+			// $this->load->view('pages/view_admin');
+			
+            // $data['loginError'] = 'Your Account is valid';  
+            // $this->load->view('pages/view_admin', $data); 
+		// }
+		// else {
+        //     $data['loginError'] = 'Your Account is Invalid';  
+        //     $this->load->view('pages/view_client', $data);  
+		// }
 	}
-	public function registertUser()
+	public function registerUser()
 	{
 		$name_signUp = $_POST['name'];
 		$email_SignUp = $_POST['email'];
@@ -40,7 +49,7 @@ class Connect extends CI_Controller {
 	}
 	public function logout()  
     {  
-        // $this->session->sess_destroy();  
-        redirect(base_url().'speedlog/index.php/connect');  
+        // $this->session->unset_userdata('userName');  
+        redirect("pages/view_connect");  
     }  
 }?>

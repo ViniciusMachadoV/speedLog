@@ -1,9 +1,7 @@
-<!-- ESSA PÁGINA USA UMA FOLHA DE ESTILO ESPECÍFICA UMA VEZ QUE VEM DA INTERNET // THIS PAGE HAVE A SPECIFIC STYLESHEET SINCE IT'S FROM INTERNET -->
-<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>speedlog/assets/css/connect.css">
-
+<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url('assets/css/connect.css'); ?>">
 <title>Conectar - SpeedLog</title>
 <!-- Background Video-->
-<video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?php echo base_url();?>speedlog/assets/mp4/bg.mp4" type="video/mp4" /></video>
+<video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?php echo base_url('assets/mp4/bg.mp4');?>" type="video/mp4" /></video>
 <!-- Masthead-->
 <div class="masthead">
     <div class="masthead-content text-white">
@@ -35,9 +33,12 @@
                 </div>
                 <button id="signIn" class="btn btn-success" >ENTRAR</button>
                 <a href="https://www.javatpoint.com/codeigniter-database-login-form">site login</a>
-                <a href="<?php echo base_url(); ?>speedlog/index.php/admin">admin</a>
-                <a href="<?php echo base_url(); ?>speedlog/index.php/client">client</a>
-                <a href="<?php echo base_url(); ?>speedlog/index.php/deliveryman">deliveryman</a>
+                <a href="<?php echo base_url('index.php/admin'); ?>">admin</a>
+                <a href="<?php echo base_url('index.php/client'); ?>">client</a>
+                <a href="<?php echo base_url('index.php/deliveryman'); ?>">deliveryman</a>
+                <br>
+                <!-- ?php if (isset($logged)) echo $logged ?> -->
+                <!-- ?php var_dump($logged); ?> -->
             </div>
             <!-- SIGN UP TYPE BUTTONS -->
             <div class="signUpType flex column">
@@ -117,4 +118,4 @@
         <a class="btn btn-dark m-3" href="#!"><i class="fab fa-instagram"></i></a>
     </div>
 </div>
-<script type = 'text/javascript' src = "<?php echo base_url();?>speedlog/assets/js/connect.js"></script>
+<script type = 'text/javascript' src = "<?php echo base_url('assets/js/connect.js');?>"></script>

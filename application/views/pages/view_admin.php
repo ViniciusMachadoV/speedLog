@@ -90,4 +90,4 @@
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
-<script type = 'text/javascript' src = "<?php echo base_url();?>speedlog/assets/js/admin.js"></script>
+<script type = 'text/javascript' src = "<?php echo base_url('assets/js/admin.js');?>"></script>

@@ -17,15 +17,15 @@
 	<!-- DESKTOP ICON -->
 	<link rel="shortcut icon" href="" type="image/x-icon">
 	<!-- ANDROID ICON -->
-	<link rel="icon" type="image/png" href="/path/to/icons/favicon-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="" sizes="192x192">
 	<!-- APPLE ICON -->
-	<link rel="apple-touch-icon" sizes="180x180" href="/path/to/icons/apple-touch-icon-180x180.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="">
 	<!-- FOLHA DE ESTILO GERAL // GENERAL STYLESHEET -->
-	<link rel ="stylesheet" type = "text/css" href = "<?php echo base_url(); ?>speedlog/assets/css/style.css">
+	<link rel ="stylesheet" type = "text/css" href = "<?php echo base_url('assets/css/style.css'); ?>">
 	<!-- GOOGLE FONTS -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
 	<!-- SCRIPT JQUERY -->
-	<script type = 'text/javascript' src = "<?php echo base_url();?>speedlog/assets/js/jquery.js"></script>
+	<script type = 'text/javascript' src = "<?php echo base_url('assets/js/jquery.js');?>"></script>
 	<style>
 		@font-face{
 			/* font-family: "Audiowide", sans-serif; */

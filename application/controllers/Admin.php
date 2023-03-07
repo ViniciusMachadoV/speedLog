@@ -13,6 +13,7 @@ class Admin extends CI_Controller {
 	}
 	public function registerUser()
 	{
+		header('Location: '.base_url().'speedlog/index.php/connect');
 		// $name_signUp = $_POST['name'];
 		// $email_SignUp = $_POST['email'];
 		// $cpf_signUp = $_POST['cpf'];

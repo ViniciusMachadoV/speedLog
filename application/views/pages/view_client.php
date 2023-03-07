@@ -17,7 +17,7 @@
                 </ul>
             <div class="row">
                 <div class="col" id="form_client">
-                    <form  action="http://localhost/SpeedLog/index.php/client/fazer_pedido" method="post">
+                    <form  action="<?php echo base_url()?>index.php/client/fazer_pedido" method="post">
                         <div class="mb-3">
                             <label for="exampleInputText1" class="form-label">Peso da Mercadoria(Kg)</label>
                             <input type="Text" value="12" class="form-control"name="peso" id="peso"placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
@@ -98,7 +98,8 @@
                                 <td><?php echo $p->entrega_enderecoDestino?></td>  
                                 <td><?php echo $p->entrega_cepDestino?></td>
                                 <td><?php echo $p->entrega_peso?></td>
-                                <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" href="http://localhost/SpeedLog/index.php/client/cancelar_pedido/<?php echo $p->entrega_id?>">CANCELAR PEDIDO! </a></button></td>
+                                <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" 
+                                href="<?php echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id)?>">CANCELAR PEDIDO! </a></button></td>
                             </tr>
                         <?php } ?>
                             </tbody>
@@ -109,4 +110,4 @@
         </div>
     </div>
 </div>
-<script type = 'text/javascript' src = "<?php echo base_url();?>speedlog/assets/js/client.js"></script>
+<script type = 'text/javascript' src = "<?php echo base_url('assets/js/client.js');?>"></script>

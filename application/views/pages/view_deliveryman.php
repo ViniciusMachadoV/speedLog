@@ -71,5 +71,4 @@
           <button class="btn btn-default">Enviar nova imagem</button>
           </a></div>';
  } ?>
-
-<script type = 'text/javascript' src = "<?php echo base_url();?>speedlog/assets/js/deliveryman.js"></script>
+<script type = 'text/javascript' src = "<?php echo base_url('assets/js/deliveryman.js');?>"></script>
