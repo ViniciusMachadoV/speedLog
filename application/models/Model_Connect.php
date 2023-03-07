@@ -1,15 +1,13 @@
 <?php class Model_Connect extends CI_Model {
-    public function loginCredentials($userName , $userPass)
+    public function loginCredentials($userLogin , $userPass)
     {
-        $this->db->where('usuario_nome',$userName);  
-        $this->db->where('usuario_senha',$userPass);  
-        $query = $this->db->get('usuarios');  
+        // $this->db->where('usuario_nome',$userName);  
+        // $this->db->where('usuario_senha',$userPass); 
+        $sql = "SELECT * FROM usuarios WHERE usuario_apelido = '$userLogin' OR usuario_email = '$userLogin' AND usuario_senha = '$userPass'"; 
+        $query = $this->db->query($sql);  
 
-        if($query->num_rows() == 1) {
-            return $query->row();
-        } else {
-            return false;
-        }
+        if($query->num_rows() > 0) echo base_url('index.php/admin');
+        else echo base_url('index.php/client');
     }
     public function register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp){
         $this->usuario_nome = $name_signUp;
