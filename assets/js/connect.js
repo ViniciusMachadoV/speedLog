@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    // alert('ajax');
     $(".signUpType").hide();
     $(".signUp").hide();
 });
@@ -31,6 +32,7 @@ $(".signUpDeliveryman").click(function(){
     $(".deliverymanCheck").show();
 });
 $("#signIn").click(function(){
+    
     if ($("#user_SignIn").val() != "" && $("#pass_SignIn").val() != "") {
         var userName_signIn = $("#user_SignIn").val();
         var userPass_signIn = $("#pass_SignIn").val();
@@ -40,6 +42,7 @@ $("#signIn").click(function(){
         $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn});
         // $("#user_SignIn").val('');
         // $("#pass_SignIn").val('');
+        // location.reload();
     }
     else alert("um ou mais campos vazios");
     });
