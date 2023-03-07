@@ -20,7 +20,7 @@
                     <form  action="<?php echo base_url()?>index.php/client/fazer_pedido" method="post">
                         <div class="mb-3">
                             <label for="exampleInputText1" class="form-label">Peso da Mercadoria(Kg)</label>
-                            <input type="Text" class="form-control"name="peso" id="exampleInputText1"placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
+                            <input type="Text" value="12" class="form-control"name="peso" id="peso"placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputText1" class="form-label">Largura</label>
@@ -33,12 +33,12 @@
                         
                         <div class="mb-3">
                             <label for="exampleInputText1" class="form-label">cep(retirada)</label>
-                            <input type="Text" class="form-control" name="cepretirada" id="cepretirada" placeholder="Digite o cep de retirada da sua mercadoria" aria-describedby="TextHelp">
+                            <input type="Text"value="36050-000" class="form-control" name="cepretirada" id="cepretirada" placeholder="Digite o cep de retirada da sua mercadoria" aria-describedby="TextHelp">
                             <div id="divcep1"></div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputText1" class="form-label">cep(entrega)</label>
-                            <input type="Text" class="form-control"onblur="teste()" name="cepentrega" id="cepentrega"placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="TextHelp">
+                            <input type="Text" value="36010-071" class="form-control"onblur="teste()" name="cepentrega" id="cepentrega"placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="TextHelp">
                             <div id="divcep2"></div>
                         </div>
                         <div class="mb-3">
@@ -46,6 +46,8 @@
                             <input type="Text" class="form-control"name="cepentrega" id="observacao"placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="TextHelp">
                             <div id="divcep2"></div>
                         </div>
+                        <input type="Text" class="form-control"name="valor" id="valor_entrega"placeholder="Valor da entrega" aria-describedby="TextHelp">
+
                         <button type="submit" class="btn btn-primary">Fazer pedido</button>
                     </form>
                 </div>
@@ -66,8 +68,8 @@
                         <tr>
                         <th scope="row"><?php echo $p->entrega_id?></th>
 
-                            <td><?php echo $p->entrega_endereco?></td>
-                            <td><?php echo $p->entrega_cep?></td>
+                            <td><?php echo $p->entrega_enderecoDestino?></td>
+                            <td><?php echo $p->entrega_cepDestino?></td>
                             <td><?php echo $p->entrega_peso?></td>
                             <td><?php echo $p->entrega_status?></td>
 
@@ -93,8 +95,8 @@
                         <?php foreach ($acompanhar as $p) { ?>
                             <tr>
                             <th scope="row"><?php echo $p->entrega_id?></th>
-                                <td><?php echo $p->entrega_endereco?></td>  
-                                <td><?php echo $p->entrega_cep?></td>
+                                <td><?php echo $p->entrega_enderecoDestino?></td>  
+                                <td><?php echo $p->entrega_cepDestino?></td>
                                 <td><?php echo $p->entrega_peso?></td>
                                 <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" 
                                 href="<?php echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id)?>">CANCELAR PEDIDO! </a></button></td>

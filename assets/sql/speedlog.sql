@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 28-Fev-2023 às 14:38
+-- Tempo de geração: 03-Mar-2023 às 14:41
 -- Versão do servidor: 5.6.34
 -- versão do PHP: 8.1.7
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `configs` (
   `valor_kg3-8` decimal(10,2) NOT NULL,
   `valor_kg8-12` decimal(10,2) NOT NULL,
   PRIMARY KEY (`config_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `configs`
@@ -97,7 +97,7 @@ INSERT INTO `cupons` (`cupom_id`, `cupom_desconto`, `cupom_termino`, `cupom_qtde
 CREATE TABLE IF NOT EXISTS `denuncias` (
   `denuncia_id` int(11) NOT NULL AUTO_INCREMENT,
   `denuncia_Denunciante` varchar(15) NOT NULL,
-  `denuncia_entrega` int(11) NOT NULL,
+  `denuncia_entrega` int(11) DEFAULT NULL,
   `denuncia_descricao` varchar(254) NOT NULL,
   `denuncia_status` varchar(10) NOT NULL,
   PRIMARY KEY (`denuncia_id`)
@@ -148,7 +148,8 @@ CREATE TABLE IF NOT EXISTS `entregas` (
   `entrega_dataPedido` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `entrega_dataTransporte` datetime DEFAULT CURRENT_TIMESTAMP,
   `entrega_dataEntrega` datetime DEFAULT CURRENT_TIMESTAMP,
-  `entrega_responsavel` varchar(50) DEFAULT NULL,
+  `entrega_cliente` int(11) NOT NULL,
+  `entrega_responsavel` int(11) DEFAULT NULL,
   `entrega_valor` decimal(10,0) NOT NULL,
   `entrega_observacao` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`entrega_id`)
@@ -158,8 +159,8 @@ CREATE TABLE IF NOT EXISTS `entregas` (
 -- Extraindo dados da tabela `entregas`
 --
 
-INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_responsavel`, `entrega_valor`, `entrega_observacao`) VALUES
-(1, 'r. alfineiros n4', '', '', 36035210, 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, NULL, '0', NULL);
+INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_cliente`, `entrega_responsavel`, `entrega_valor`, `entrega_observacao`) VALUES
+(1, 'r. alfineiros n4', '', '', 36035210, 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 0, NULL, '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -195,6 +196,24 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_
 --
 
 --
+-- Índices para tabela `avaliacoes`
+--
+ALTER TABLE `avaliacoes`
+  ADD PRIMARY KEY (`avaliacao_id`);
+
+--
+-- Índices para tabela `configs`
+--
+ALTER TABLE `configs`
+  ADD PRIMARY KEY (`config_id`);
+
+--
+-- Índices para tabela `cupons`
+--
+ALTER TABLE `cupons`
+  ADD PRIMARY KEY (`cupom_id`);
+
+--
 -- Índices para tabela `denuncias`
 --
 ALTER TABLE `denuncias`
@@ -221,6 +240,24 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `avaliacoes`
+--
+ALTER TABLE `avaliacoes`
+  MODIFY `avaliacao_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `configs`
+--
+ALTER TABLE `configs`
+  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `cupons`
+--
+ALTER TABLE `cupons`
+  MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `denuncias`
