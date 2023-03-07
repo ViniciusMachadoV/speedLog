@@ -4,37 +4,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
 	{
+		// $this->load->model('model_Messages');
+		// $dados['mensagens']=$this->model_Messages->selectMessages();
 		$this->load->helper('url');
+		$this->load->model('model_Connect');
 		$this->load->view('template/header');
 		$this->load->view('pages/view_connect');
+	}
+	public function logged()
+	{
+		if ($this->session->user_status('logged')) 
+		{
+		}
+		else
+		{
+			redirect('index.php/connect/view_connect');
+		}
 	}
 	public function connectUser()
 	{
 		$userName = $_POST['user'];
 		$userPass = $_POST['pass'];
+		// $this->load->helper('url');
+
 		$this->load->model('model_Connect');
-        $dados['logged'] = $this->model_Connect->loginCredentials($userName,$userPass);
+        $logged = $this->model_Connect->loginCredentials($userName, $userPass);
 
-		if ($dados['logged'] == true) {
-			return true;
+		// return redirect('/admin');
+		if($logged){
+			header('Location: '.base_url('index.php/admin'));
 		}
-		else{
-			return false;
+		else {
+			header('Location: '.base_url('index.php/client'));
+			// header('Location: registerUser');
 		}
-		
-		$this->load->view('pages/view_connect',$dados);
-
-		// if($userName == 'admin' && $userPass == '123'){
-			// $this->session->set_userdata(array('user'=>$userName));
-			// $this->load->view('pages/view_admin');
-			
-            // $data['loginError'] = 'Your Account is valid';  
-            // $this->load->view('pages/view_admin', $data); 
-		// }
-		// else {
-        //     $data['loginError'] = 'Your Account is Invalid';  
-        //     $this->load->view('pages/view_client', $data);  
-		// }
 	}
 	public function registerUser()
 	{
@@ -49,7 +52,7 @@ class Connect extends CI_Controller {
 	}
 	public function logout()  
     {  
-        // $this->session->unset_userdata('userName');  
-        redirect("pages/view_connect");  
+        // $this->session->sess_destroy();  
+        redirect(base_url().'speedlog/index.php/connect');  
     }  
 }?>
