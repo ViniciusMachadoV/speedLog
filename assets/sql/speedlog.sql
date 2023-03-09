@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
+<<<<<<< Updated upstream
 -- Tempo de geração: 28-Fev-2023 às 14:38
+=======
+-- Tempo de geração: 09-Mar-2023 às 13:46
+>>>>>>> Stashed changes
 -- Versão do servidor: 5.6.34
 -- versão do PHP: 8.1.7
 
@@ -22,7 +26,78 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `speedlog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `speedlog`;
+<<<<<<< Updated upstream
 
+=======
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `avaliacoes`
+--
+
+CREATE TABLE IF NOT EXISTS `avaliacoes` (
+  `avaliacao_id` int(11) NOT NULL AUTO_INCREMENT,
+  `avaliacao_entrega` int(11) NOT NULL,
+  `avaliacao_total` int(1) NOT NULL,
+  `avaliacao_desc` varchar(150) DEFAULT NULL,
+  `avaliacao_tempoOK` tinyint(1) NOT NULL DEFAULT '1',
+  `avaliacao_entregaOK` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`avaliacao_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `configs`
+--
+
+CREATE TABLE IF NOT EXISTS `configs` (
+  `config_id` int(11) NOT NULL AUTO_INCREMENT,
+  `config_tipo` varchar(9) NOT NULL,
+  `valor_km` decimal(10,2) NOT NULL,
+  `valor_minuto` decimal(10,2) NOT NULL,
+  `valor_kg<1` decimal(10,2) NOT NULL,
+  `valor_kg1-3` decimal(10,2) NOT NULL,
+  `valor_kg3-8` decimal(10,2) NOT NULL,
+  `valor_kg8-12` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`config_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `configs`
+--
+
+INSERT INTO `configs` (`config_id`, `config_tipo`, `valor_km`, `valor_minuto`, `valor_kg<1`, `valor_kg1-3`, `valor_kg3-8`, `valor_kg8-12`) VALUES
+(1, 'PADRAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(2, 'SÁBADO', '0.40', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(3, 'DOMINGO', '0.50', '0.70', '3.00', '5.00', '9.00', '12.00'),
+(4, 'FERIADO', '0.60', '0.40', '3.00', '5.00', '9.00', '12.00'),
+(5, 'PROMOÇÃO', '0.30', '0.20', '3.00', '5.00', '9.00', '12.00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cupons`
+--
+
+CREATE TABLE IF NOT EXISTS `cupons` (
+  `cupom_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cupom_desconto` decimal(10,2) NOT NULL,
+  `cupom_termino` date NOT NULL,
+  `cupom_qtde` int(11) NOT NULL,
+  `cupom_desc` varchar(150) NOT NULL,
+  PRIMARY KEY (`cupom_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cupons`
+--
+
+INSERT INTO `cupons` (`cupom_id`, `cupom_desconto`, `cupom_termino`, `cupom_qtde`, `cupom_desc`) VALUES
+(1, '5.00', '2023-04-01', 3, 'Promoção de lançamento');
+
+>>>>>>> Stashed changes
 -- --------------------------------------------------------
 
 --
@@ -53,16 +128,22 @@ INSERT INTO `denuncias` (`denuncia_id`, `denuncia_Denunciante`, `denuncia_entreg
 CREATE TABLE `entregadores` (
   `entregador_id` int(11) NOT NULL,
   `entregador_placaMoto` varchar(7) NOT NULL,
+<<<<<<< Updated upstream
   `entregador_foto` varchar(70) NOT NULL
+=======
+  `entregador_foto` varchar(70) NOT NULL,
+  `entregador_status` varchar(8) NOT NULL,
+  PRIMARY KEY (`entregador_id`)
+>>>>>>> Stashed changes
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `entregadores`
 --
 
-INSERT INTO `entregadores` (`entregador_id`, `entregador_placaMoto`, `entregador_foto`) VALUES
-(2, 'AAA1111', 'rogerinho.png'),
-(3, 'BBB2222', 'klebinho.jpg');
+INSERT INTO `entregadores` (`entregador_id`, `entregador_placaMoto`, `entregador_foto`, `entregador_status`) VALUES
+(2, 'AAA1111', 'rogerinho.png', ''),
+(3, 'BBB2222', 'klebinho.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -108,8 +189,14 @@ CREATE TABLE `usuarios` (
   `usuario_senha` varchar(30) NOT NULL,
   `usuario_tipo` varchar(13) NOT NULL,
   `usuario_telefone` varchar(16) DEFAULT NULL,
+<<<<<<< Updated upstream
   `usuario_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+=======
+  `usuario_status` varchar(10) NOT NULL,
+  PRIMARY KEY (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+>>>>>>> Stashed changes
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -119,6 +206,7 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_
 (1, 'ADMINISTRADOR', 'admin@gmail.com', '000.000.000-00', 'admin', '123', 'ADMINISTRADOR', NULL, ''),
 (2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', 'SUSPENSO'),
 (3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '789', 'ENTREGADOR', '9 9999-9998', 'ATIVO'),
+<<<<<<< Updated upstream
 (4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO');
 
 --
@@ -170,6 +258,10 @@ ALTER TABLE `entregas`
 --
 ALTER TABLE `usuarios`
   MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO'),
+(5, 'a', 'a@a', '1', '1', '1', 'CLIENTE', '1', '');
+>>>>>>> Stashed changes
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
