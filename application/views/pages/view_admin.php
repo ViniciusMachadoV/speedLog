@@ -1,11 +1,12 @@
 <title>Admin - SpeedLog</title>
 <div class="container">
     <a href='connect/logout'>Logout</a>
-    <button type="button" class="btn btn-primary btnListDeliveryman">entregadores</button>
-    <button type="button" class="btn btn-primary btnListDeliveries">entregas</button>
-    <button type="button" class="btn btn-primary btnRegisterAdmins">cadastro de adms</button>
+    <button type="button" class="btn btn-primary tabBtn btnListDeliveryman">entregadores</button>
+    <button type="button" class="btn btn-primary tabBtn btnListDeliveries">entregas</button>
+    <button type="button" class="btn btn-primary tabBtn btnRegisterAdmins">cadastro de adms</button>
+    <button type="button" class="btn btn-primary tabBtn btnAdjustServicesVariables">Ajustar frete</button>
 
-    <table class="table listDeliveryman">
+    <table class="table tabAdmin listDeliveryman">
         <thead>
             <tr>
             <th scope="col">Nome</th>
@@ -25,12 +26,12 @@
                         <td>'.$colunaDB->usuario_cpf.'</td>
                         <td>'.$colunaDB->usuario_apelido.'</td>
                         <td>'.$colunaDB->usuario_tipo.'</td>
-                        <td>'.$colunaDB->usuario_status.'</td>
+                        <td>'.$colunaDB->entregador_status.'</td>
                         </tr>';
             }?>
         </tbody>
     </table>
-    <table class="table listDeliveries">
+    <table class="table tabAdmin listDeliveries">
         <thead>
             <tr>
             <th scope="col">Origem</th>
@@ -58,7 +59,7 @@
             }?>
         </tbody>
     </table>
-    <form class="registerAdmins">
+    <form class="tabAdmin registerAdmins">
         <div class="mb-3">
             <label for="nomeCompleto" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="nomeCompleto" >
@@ -72,7 +73,7 @@
             <input type="text" class="form-control" id="cpfAdmin">
         </div>
         <div class="mb-3">
-            <label for="telefoneAdimin" class="form-label">Telefone</label>
+            <label for="telefoneAdmin" class="form-label">Telefone</label>
             <input type="text" class="form-control" id="telefoneAdmin">
         </div>
         <div class="mb-3">
@@ -97,4 +98,13 @@
         </div>
     </form>
 </div>
+    <!-- MONTAR FORMULÁRIO PARA MUDAR VARIÁVEIS DE CÁLCULO DO VALOR FINAL -->
+    <form class="tabAdmin adjustServicesVariables">
+        <div class="mb-3">
+            <!-- <label for="nomeCompleto" class="form-label">Nome Completo</label>
+            <input type="text" class="form-control" id="nomeCompleto" > -->
+        </div>
+    </form>
+</div>
 <script type = 'text/javascript' src = "<?php echo base_url('assets/js/admin.js');?>"></script>
+<script type = 'text/javascript' src = "<?php echo base_url('assets/js/jquery.mask.min.js');?>"></script>
