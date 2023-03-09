@@ -1,10 +1,14 @@
 $(document).ready(function(){
+ 
+  
+
+
   $("#valor_entrega").hide();
   
-  function timeout_desabilitar_botao() {
-    timeout = setTimeout(desabilitarbotao, 3000);
-  }
-  timeout_desabilitar_botao();
+  // function timeout_desabilitar_botao() {
+  //   timeout = setTimeout(desabilitarbotao, 3000);
+  // }
+  // timeout_desabilitar_botao();
     $("#form_client").hide();
     $("#acompanhar").hide();
     $("#historico").hide();
@@ -24,14 +28,26 @@ $("#botaohistorico").click(function () {
     $("#acompanhar").hide();
 });
 });
-function desabilitarbotao() {
-  // jQuery("#btn_ex").attr("disabled", true);
-  // $("deletlkn").val("asdas")
-  ele = document.querySelectorAll('[id="btn_ex"]');
-  for (let i = 0; i < ele.length; i++) {
-    ele[i].disabled=true;
+// function desabilitarbotao() {
+//   // jQuery("#btn_ex").attr("disabled", true);
+//   // $("deletlkn").val("asdas")
+//   ele = document.querySelectorAll('[id="btn_ex"]');
+//   for (let i = 0; i < ele.length; i++) {
+//     ele[i].disabled=true;
     
-  }
+//   }
+// }
+function pegarid(aq) {
+  $.post("client/cancelar_pedido",{id:aq},function(resposta) {
+    if (resposta=="0") {
+    alert("impossivel excluir");
+      
+    }
+    if(resposta=="2"){
+      alert("excluido");
+    }
+
+  });
 }
 
 // calculo de valor do pedido

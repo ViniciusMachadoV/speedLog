@@ -64,7 +64,11 @@
                             <th scope="col">Situação</th>
                             </tr>
                         </thead>
-                        <?php foreach ($historico as $p) { ?>
+                        <?php
+                         date_default_timezone_set('America/Sao_Paulo');
+                         // CRIA UMA VARIAVEL E ARMAZENA A HORA ATUAL DO FUSO-HORÀRIO DEFINIDO (BRASÍLIA)
+                             
+                              foreach ($historico as $p) { ?>
                         <tr>
                         <th scope="row"><?php echo $p->entrega_id?></th>
 
@@ -72,6 +76,7 @@
                             <td><?php echo $p->entrega_cepDestino?></td>
                             <td><?php echo $p->entrega_peso?></td>
                             <td><?php echo $p->entrega_status?></td>
+                            <?php ?>
 
                         </tr>
                     <?php } ?>
@@ -98,8 +103,10 @@
                                 <td><?php echo $p->entrega_enderecoDestino?></td>  
                                 <td><?php echo $p->entrega_cepDestino?></td>
                                 <td><?php echo $p->entrega_peso?></td>
-                                <td><button id="btn_ex"  class="btn btn-danger" ><a id="deletlkn"style="text-decoration:none color:red" 
-                                href="<?php echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id)?>">CANCELAR PEDIDO! </a></button></td>
+                                <td><button id="btn_ex"  class="btn btn-danger" >
+                                    <a class="link_excluir"onclick="pegarid(<?php echo $p->entrega_id?>)" id="<?php echo $p->entrega_id?>"style="text-decoration:none " 
+                                >CANCELAR PEDIDO! </a></button></td>
+                                <!--  echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id) -->
                             </tr>
                         <?php } ?>
                             </tbody>

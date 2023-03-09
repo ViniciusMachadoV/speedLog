@@ -11,6 +11,7 @@ class Client extends CI_Controller {
 			$this->load->view('template/header');
 			$this->load->view('pages/view_client',$dados);
 			$this->load->view('template/footer');
+			
 		// }
 		// else{
 		// $this->load->view('pages/view_connect');
@@ -30,12 +31,14 @@ class Client extends CI_Controller {
         $this->Model_Client->inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor);
        
 	}
-	public function cancelar_pedido($id_deletar)
+	public function cancelar_pedido()
 
 	{
+		
+		$id_pedido=$_POST['id'];
 		$this->load->model('Model_Client');
 
-		$id_pedido=$id_deletar;
+		
 		$this->Model_Client->cancelar_pedido($id_pedido);
 	}
 	public function calculo()
