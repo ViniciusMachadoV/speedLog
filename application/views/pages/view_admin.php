@@ -89,5 +89,12 @@
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
+    <!-- MONTAR FORMULÁRIO PARA MUDAR VARIÁVEIS DE CÁLCULO DO VALOR FINAL -->
+    <form class="adjustServicesVariables">
+        <div class="mb-3">
+            <!-- <label for="nomeCompleto" class="form-label">Nome Completo</label>
+            <input type="text" class="form-control" id="nomeCompleto" > -->
+        </div>
+    </form>
 </div>
 <script type = 'text/javascript' src = "<?php echo base_url('assets/js/admin.js');?>"></script>
