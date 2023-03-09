@@ -24,9 +24,42 @@
         $this->db->delete('entregas');
     }
     public function cancelar_pedido($id_deletado)
+    //DATA PEDIDO PARA CALCULO
     {
-        $this->db->where('entrega_id', $id_deletado);
-        $this->db->update('entregas', array('entrega_status' => "CANCELADO"));
+        $this->db->where('entrega_id',$id_deletado); 	
+        $query = $this->db->get('entregas');
+        $resultados=$query->result();
+        foreach ($resultados as $key => $value) {
+           
+            $bob=$value->entrega_dataPedido;
+        }
+       $m = substr("$bob", 14, 8);
+       $h = substr("$bob", 11, 8);
+       // DATA LOCAL
+       date_default_timezone_set('America/Sao_Paulo');
+       $dataLocal = date(' i:s', time());
+       $dataLocalh = date(' h:i:s', time());
+       //RETURN
+       $verificador=$dataLocal-$m;
+       $verificador2=$dataLocalh-$m;
+       
+       if ($verificador<0 && $verificador2==0) {
+        $verificador=intval($verificador)*(-1);
+        
+       }
+       if ($verificador<5) {
+       //query
+         $this->db->where('entrega_id', $id_deletado);
+         $this->db->update('entregas', array('entrega_status' => "CANCELADO"));
+        echo "2";
+
+       } else {
+        echo "0";
+       }
+       
+        
+
+        
     }
     public function calcular_valor($peso,$distancia,$tempo)
     {
