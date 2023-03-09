@@ -11,5 +11,4 @@ $(".btnListDeliveries").click(function(){
 });
 $(".btnRegisterAdmins").click(function(){
     $(".registerAdmins").show();
-    $.post("<?php echo base_url(); ?>speedlog/index.php/admin/registerUser");
 });

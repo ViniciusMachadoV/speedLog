@@ -17,6 +17,9 @@ body {
 .btnSignUp{
   cursor: pointer;
 }
+#warning{
+  color: red;
+}
 
 /* DEMO STYLES: */
 hr {

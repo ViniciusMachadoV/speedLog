@@ -5,9 +5,23 @@
         // $this->db->where('usuario_senha',$userPass); 
         $sql = "SELECT * FROM usuarios WHERE usuario_apelido = '$userLogin' OR usuario_email = '$userLogin' AND usuario_senha = '$userPass'"; 
         $query = $this->db->query($sql);  
+        $userType = $query->row_array();
+        if($query->num_rows() > 0){
+            switch ($userType['usuario_tipo']) {
+                case 'ADMINISTRADOR':
+                    echo base_url('index.php/admin');
+                    break;
+                case 'CLIENTE':
+                    echo base_url('index.php/client');
+                    break;
+                case 'ENTREGADOR':
+                    echo base_url('index.php/deliveryman');
+                    break;
+            }
+            // $this->load->library('session');
+            // $this->session->set_userdata('user',$userLogin);
 
-        if($query->num_rows() > 0) echo base_url('index.php/admin');
-        else echo base_url('index.php/client');
+        }
     }
     public function register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp){
         $this->usuario_nome = $name_signUp;

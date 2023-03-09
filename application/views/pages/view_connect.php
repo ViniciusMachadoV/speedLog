@@ -36,6 +36,7 @@
                 <a href="<?php echo base_url('index.php/admin'); ?>">admin</a>
                 <a href="<?php echo base_url('index.php/client'); ?>">client</a>
                 <a href="<?php echo base_url('index.php/deliveryman'); ?>">deliveryman</a>
+                <p id="warning"> </p>
             </div>
             <!-- SIGN UP TYPE BUTTONS -->
             <div class="signUpType flex column">

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    alert('ajax');
     $(".signUpType").hide();
     $(".signUp").hide();
 });
@@ -40,7 +39,7 @@ $("#signIn").click(function(){
         }
         $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
             if (result) location.assign(result);
-            else alert("Credenciais incorretas")
+            else $('#warning').html('Credenciais incorretas');
         });
         // $("#user_SignIn").val('');
         // $("#pass_SignIn").val('');
@@ -65,7 +64,6 @@ $("#signUp").click(function(){
         // alert(name_signUp + email_SignUp + cpf_signUp + nickname_SignUp + phoneNumber_SignUp + pass_SignUp);
         $.post("index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp}, function(result){
             if (result) location.assign(result);
-            else alert("Credenciais incorretas")
         });
         $("#txtMessage").val('');
         // location.reload();
@@ -74,4 +72,8 @@ $("#signUp").click(function(){
         // }
     }
     else alert("um ou mais campos vazios");
+});
+
+$(".form-control").click(function(){
+    $('#warning').html('');
 });
