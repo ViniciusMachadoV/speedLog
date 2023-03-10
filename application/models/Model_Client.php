@@ -61,6 +61,20 @@
 
         
     }
+    public function selectMessages()
+    {
+        $query = $this->db->get('messages');
+        return $query->result();
+    }
+    public function inserir_msg($textoMsg){
+        $this->message_text = $textoMsg;
+        $this->db->insert('messages',$this);
+    }
+
+    public function delete_msg($msgDel){
+        $this->db->where('message_id',$msgDel);
+        $this->db->delete('messages');
+    }
     public function calcular_valor($peso,$distancia,$tempo)
     {
         // QUERY PARA DEFINIR VALORES DE CALCULO

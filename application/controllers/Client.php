@@ -4,8 +4,10 @@ class Client extends CI_Controller {
 	{
 		// if($this->session->userdata('user')){
 			// $this->session->start();
+			
 			$this->load->helper('url');
 			$this->load->model('Model_Client');
+		$dados['mensagens']=$this->Model_Client->selectMessages();
 			$dados['acompanhar']=$this->Model_Client->get_acompanhamento();
 			$dados['historico']=$this->Model_Client->get_entregas();
 			$this->load->view('template/header');
@@ -52,5 +54,17 @@ class Client extends CI_Controller {
 
 
 	// 	calcular_valor
+	}
+	public function adicionarMensagem(){
+		$textoMsg = $_POST['msgAdd'];
+		$this->load->model('Model_Client');
+        $this->Model_Client->inserir_msg($textoMsg);
+
+	}
+    public function deleteMessage(){
+		$msgDel = $_POST['msgDel'];
+		$this->load->model('Model_Client');
+        $this->Model_Client->delete_msg($msgDel);
+
 	}	
 }?>
