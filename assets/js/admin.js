@@ -9,8 +9,9 @@ $(".btnListDeliveryman").click(function(){  $(".listDeliveryman").show();});
 $(".btnListDeliveries").click(function(){   $(".listDeliveries").show();});
 $(".btnListClients").click(function(){      $(".listClients").show();});
 $(".btnRegisterAdmins").click(function(){   $(".registerAdmins").show();});
-$(".btnAdjustVariables").click(function(){$(".adjustVariables").show();});
-$("#btnCadastrarAdmin").click(function () {
+$(".btnAdjustVariables").click(function(){  $(".adjustVariables").show();});
+$(".btnReports").click(function(){          $(".listReports").show();});
+$("#btnCadastrarAdmin").click(function (){
     if ($("#nomeCompleto").val() != "" && 
     $("#emailAdmin").val() != "" && 
     $("#cpfAdmin").val() != "" && 
@@ -25,7 +26,7 @@ $("#btnCadastrarAdmin").click(function () {
         var post_telefoneAdmin = $("#telefoneAdmin").val();
         var post_senhaAdmin = $("#senhaAdmin").val();
 
-        $.post("admin/cadastrarAdmin", {
+        $.post("admin/registerAdmin", {
             nome: post_nomeAdmin,
             email: post_emailAdmin,
             cpf: post_cpfAdmin,
@@ -34,4 +35,10 @@ $("#btnCadastrarAdmin").click(function () {
             senha: post_senhaAdmin,
         });
     }
+});
+$(".btnTimeOut").click(function (){
+    var userTimedOut = this.id;
+    alert(this.id);
+    $.post("admin/timeoutAccount",{user: userTimedOut});
+    // location.reload();
 });
