@@ -13,16 +13,15 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/view_admin',$dados);
 		$this->load->view('template/footer');
 	}
-	public function registerUser()
+	public function cadastrarAdmin()
 	{
-		header('Location: '.base_url().'speedlog/index.php/connect');
-		// $name_signUp = $_POST['name'];
-		// $email_SignUp = $_POST['email'];
-		// $cpf_signUp = $_POST['cpf'];
-		// $nickname_SignUp = $_POST['nick'];
-		// $phoneNumber_SignUp = $_POST['phone'];
-		// $pass_SignUp = $_POST['pass'];
-		// $this->load->model('model_Connect');
-        // $this->model_Connect->register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp);
+		$this->load->model('Model_Admin');
+		$nomeAdmin = $_POST['nome'];
+		$emailAdmin = $_POST['email'];
+		$cpfAdmin = $_POST['cpf'];
+		$apelidoAdmin = $_POST['apelido'];
+		$telefoneAdmin = $_POST['telefone'];
+		$senhaAdmin = $_POST['senha'];
+		$this->Model_Admin->cadastrarAdmin($nomeAdmin, $emailAdmin, $cpfAdmin,$apelidoAdmin, $telefoneAdmin, $senhaAdmin);
 	}
 }?>
