@@ -64,18 +64,18 @@
     public function calcular_valor($peso,$distancia,$tempo)
     {
         // QUERY PARA DEFINIR VALORES DE CALCULO
-        $this->db->where('config_tipo','PADRAO'); 	
-        $query = $this->db->get('configs');
+        $this->db->where('frete_tipo','PADRAO'); 	
+        $query = $this->db->get('frete');
         $resultados=$query->result();
         // ALIMENTANDO VARIAVEIS COM VALORES PARA CALCULO
         foreach ($resultados as $key => $value) {
             $calculo_distancia = $value->valor_km;
             $calculo_tempo = $value->valor_minuto;
             //peso
-            $peso1 = $value->valor_kg;
-            $peso2 = $value->valor_kg1;
-            $peso3 = $value->valor_kg3;
-            $peso4 = $value->valor_kg8;
+            $peso1 = $value->valor_kgAte1;
+            $peso2 = $value->valor_kg1a3;
+            $peso3 = $value->valor_kg3a8;
+            $peso4 = $value->valor_kg8a12;
         } 
         $valor=0;
         $valorp=0;
