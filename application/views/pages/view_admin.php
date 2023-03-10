@@ -7,8 +7,13 @@
     <button type="button" class="btn btn-primary tabBtn btnListClients">clientes</button>
     <button type="button" class="btn btn-primary tabBtn btnRegisterAdmins">cadastro de adms</button>
     <button type="button" class="btn btn-primary tabBtn btnAdjustVariables">Valores de frete</button>
+    <button type="button" class="btn btn-primary tabBtn btnReports">Denuncias</button>
 
     <table class="table tabAdmin listDeliveryman">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar entregadores</button>
+        </form>
         <thead>
             <tr>
             <th scope="col">Nome</th>
@@ -17,23 +22,29 @@
             <th scope="col">Apelido</th>
             <th scope="col">Tipo</th>
             <th scope="col">Status</th>
+            <th scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($entregadores as $colunaDB) {
+            <?php foreach ($entregadores as $colunaEntregador) {
                     echo '
                         <tr>
-                        <td scope="row">'.$colunaDB->usuario_nome.'</td>
-                        <td>'.$colunaDB->usuario_email.'</td>
-                        <td>'.$colunaDB->usuario_cpf.'</td>
-                        <td>'.$colunaDB->usuario_apelido.'</td>
-                        <td>'.$colunaDB->usuario_tipo.'</td>
-                        <td>'.$colunaDB->entregador_status.'</td>
+                        <td scope="row">'.$colunaEntregador->usuario_nome.'</td>
+                        <td>'.$colunaEntregador->usuario_email.'</td>
+                        <td>'.$colunaEntregador->usuario_cpf.'</td>
+                        <td>'.$colunaEntregador->usuario_apelido.'</td>
+                        <td>'.$colunaEntregador->usuario_tipo.'</td>
+                        <td>'.$colunaEntregador->entregador_status.'</td>
+                        <td><button type="button" id="'.$colunaEntregador->usuario_id.'" class="btn btn-primary btnTimeOut">SUSPENDER</button><button type="button" id="'.$colunaEntregador->usuario_id.'" class="btn btn-primary btnBan">BANIR</button></td>
                         </tr>';
             }?>
         </tbody>
     </table>
     <table class="table tabAdmin listClients">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar clientes</button>
+        </form>
         <thead>
             <tr>
             <th scope="col">Nome</th>
@@ -42,6 +53,7 @@
             <th scope="col">Apelido</th>
             <th scope="col">Tipo</th>
             <th scope="col">Status</th>
+            <th scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
@@ -54,11 +66,16 @@
                         <td>'.$colunaCliente->usuario_apelido.'</td>
                         <td>'.$colunaCliente->usuario_tipo.'</td>
                         <td>'.$colunaCliente->usuario_status.'</td>
+                        <td><button type="button" id="'.$colunaCliente->usuario_id.'" class="btn btn-primary btnTimeOut">SUSPENDER</button><button type="button" id="'.$colunaCliente->usuario_id.'" class="btn btn-primary btnBan">BANIR</button></td>
                         </tr>';
             }?>
         </tbody>
     </table>
     <table class="table tabAdmin listDeliveries">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar pedidos</button>
+        </form>
         <thead>
             <tr>
             <th scope="col">Origem</th>
@@ -143,6 +160,40 @@
                             <td>'.$colConfig->valor_kg3a8.'</td>
                             <td>'.$colConfig->valor_kg8a12.'</td>
                             </tr>';
+                }?>
+            </tbody>
+        </table>
+    </form>
+    <form class="tabAdmin listReports">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Usuário</th>
+                <th scope="col">N° entrega</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Entregador</th>
+                <th scope="col">Data do pedido</th>
+                <th scope="col">Data da denúncia</th>
+                <th scope="col">Status</th>
+                <th scope="col">ACÃO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($denuncias as $colDenuncia) {
+                        echo '
+                            <tr>
+                            <td scope="row">'.$colDenuncia->denuncia_id.'</td>
+                            <td>'.$colDenuncia->denuncia_idDenunciante.'</td>
+                            <td>'.$colDenuncia->denuncia_entrega.'</td>
+                            <td>'.$colDenuncia->denuncia_descricao.'</td>
+                            <td>'.$colDenuncia->entrega_responsavel.'</td>
+                            <td>'.$colDenuncia->entrega_dataPedido.'</td>
+                            <td>'.$colDenuncia->denuncia_data.'</td>
+                            <td>'.$colDenuncia->denuncia_status.'</td>
+                            <td><button type="button" class="btn btn-primary">ANÁLISE</button></td>
+                            </tr>
+                            ';
                 }?>
             </tbody>
         </table>
