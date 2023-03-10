@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 07-Mar-2023 às 11:46
+-- Tempo de geração: 10-Mar-2023 às 02:20
 -- Versão do servidor: 5.6.34
--- PHP Version: 5.6.32
+-- versão do PHP: 8.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,10 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `speedlog`
+-- Banco de dados: `speedlog`
 --
-CREATE DATABASE IF NOT EXISTS `speedlog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `speedlog`;
 
 -- --------------------------------------------------------
 
@@ -42,42 +39,17 @@ CREATE TABLE `avaliacoes` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `configs`
---
-
-CREATE TABLE `configs` (
-  `config_id` int(11) NOT NULL,
-  `config_tipo` varchar(9) NOT NULL,
-  `valor_km` decimal(10,2) NOT NULL,
-  `valor_minuto` decimal(10,2) NOT NULL,
-  `valor_kg` decimal(10,2) NOT NULL,
-  `valor_kg1` decimal(10,2) NOT NULL,
-  `valor_kg3` decimal(10,2) NOT NULL,
-  `valor_kg8` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `configs`
---
-
-INSERT INTO `configs` (`config_id`, `config_tipo`, `valor_km`, `valor_minuto`, `valor_kg`, `valor_kg1`, `valor_kg3`, `valor_kg8`) VALUES
-(1, 'PADRAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(2, 'SÁBADO', '0.40', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(3, 'DOMINGO', '0.50', '0.70', '3.00', '5.00', '9.00', '12.00'),
-(4, 'FERIADO', '0.60', '0.40', '3.00', '5.00', '9.00', '12.00'),
-(5, 'PROMOÇÃO', '0.30', '0.20', '3.00', '5.00', '9.00', '12.00');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `cupons`
 --
 
 CREATE TABLE `cupons` (
   `cupom_id` int(11) NOT NULL,
+  `cupom_cod` varchar(15) NOT NULL,
   `cupom_desconto` decimal(10,2) NOT NULL,
-  `cupom_termino` date NOT NULL,
-  `cupom_qtde` int(11) NOT NULL,
+  `cupom_tipoPorcento` varchar(1) NOT NULL,
+  `cupom_inicio` datetime DEFAULT NULL,
+  `cupom_termino` datetime DEFAULT NULL,
+  `cupom_qtde` int(11) DEFAULT NULL,
   `cupom_desc` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -85,8 +57,10 @@ CREATE TABLE `cupons` (
 -- Extraindo dados da tabela `cupons`
 --
 
-INSERT INTO `cupons` (`cupom_id`, `cupom_desconto`, `cupom_termino`, `cupom_qtde`, `cupom_desc`) VALUES
-(1, '5.00', '2023-04-01', 3, 'Promoção de lançamento');
+INSERT INTO `cupons` (`cupom_id`, `cupom_cod`, `cupom_desconto`, `cupom_tipoPorcento`, `cupom_inicio`, `cupom_termino`, `cupom_qtde`, `cupom_desc`) VALUES
+(1, 'LANCAMENTO', '5.00', 'N', '2023-02-16 20:00:00', '2023-04-01 00:00:00', 3, 'Promoção de lançamento'),
+(2, 'PRIMEIRA', '2.00', 'N', '2023-03-01 20:00:00', '2023-04-01 00:00:00', 20, 'Desconto de primeiro pedido da conta'),
+(3, '1ABRIL', '1.00', 'N', '2023-03-01 19:00:00', '2023-03-09 19:10:00', 1, 'Dia da mentira');
 
 -- --------------------------------------------------------
 
@@ -118,16 +92,17 @@ INSERT INTO `denuncias` (`denuncia_id`, `denuncia_Denunciante`, `denuncia_entreg
 CREATE TABLE `entregadores` (
   `entregador_id` int(11) NOT NULL,
   `entregador_placaMoto` varchar(7) NOT NULL,
-  `entregador_foto` varchar(70) NOT NULL
+  `entregador_foto` varchar(70) NOT NULL,
+  `entregador_status` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `entregadores`
 --
 
-INSERT INTO `entregadores` (`entregador_id`, `entregador_placaMoto`, `entregador_foto`) VALUES
-(2, 'AAA1111', 'rogerinho.png'),
-(3, 'BBB2222', 'klebinho.jpg');
+INSERT INTO `entregadores` (`entregador_id`, `entregador_placaMoto`, `entregador_foto`, `entregador_status`) VALUES
+(2, 'AAA1111', 'rogerinho.png', 'LIVRE'),
+(3, 'BBB2222', 'klebinho.jpg', 'LIVRE');
 
 -- --------------------------------------------------------
 
@@ -149,6 +124,7 @@ CREATE TABLE `entregas` (
   `entrega_cliente` int(11) NOT NULL,
   `entrega_responsavel` int(11) DEFAULT NULL,
   `entrega_valor` decimal(10,0) NOT NULL,
+  `entrega_cupom` int(11) DEFAULT NULL,
   `entrega_observacao` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -156,10 +132,54 @@ CREATE TABLE `entregas` (
 -- Extraindo dados da tabela `entregas`
 --
 
-INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_cliente`, `entrega_responsavel`, `entrega_valor`, `entrega_observacao`) VALUES
-(1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 0, NULL, '0', NULL),
-(2, '', '', '36050-00', '0', 12, 'ABERTO', '2023-03-06 11:13:50', '2023-03-06 11:13:50', '2023-03-06 11:13:50', 0, NULL, '0', NULL),
-(3, '', '', '36050-00', 'aasdasd', 12, 'ABERTO', '2023-03-06 11:17:02', '2023-03-06 11:17:02', '2023-03-06 11:17:02', 0, NULL, '0', NULL);
+INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_cliente`, `entrega_responsavel`, `entrega_valor`, `entrega_cupom`, `entrega_observacao`) VALUES
+(1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 0, NULL, '0', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `frete`
+--
+
+CREATE TABLE `frete` (
+  `frete_id` int(11) NOT NULL,
+  `frete_tipo` varchar(9) NOT NULL,
+  `valor_km` decimal(10,2) NOT NULL,
+  `valor_minuto` decimal(10,2) NOT NULL,
+  `valor_kgAte1` decimal(10,2) NOT NULL,
+  `valor_kg1a3` decimal(10,2) NOT NULL,
+  `valor_kg3a8` decimal(10,2) NOT NULL,
+  `valor_kg8a12` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `frete`
+--
+
+INSERT INTO `frete` (`frete_id`, `frete_tipo`, `valor_km`, `valor_minuto`, `valor_kgAte1`, `valor_kg1a3`, `valor_kg3a8`, `valor_kg8a12`) VALUES
+(1, 'DOMINGO', '0.50', '0.70', '3.00', '5.00', '9.00', '12.00'),
+(2, 'SEGUNDA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(3, 'TERCA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(4, 'QUARTA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(5, 'QUINTA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(6, 'SEXTA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(7, 'SÁBADO', '0.40', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(8, 'PADRAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(9, 'FERIADO', '0.60', '0.40', '3.00', '5.00', '9.00', '12.00'),
+(10, 'PROMOÇÃO', '0.30', '0.20', '3.00', '5.00', '9.00', '12.00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `log`
+--
+
+CREATE TABLE `log` (
+  `log_id` int(11) NOT NULL,
+  `log_usuario` int(11) NOT NULL,
+  `log_desc` varchar(254) NOT NULL,
+  `log_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -187,93 +207,106 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_
 (1, 'ADMINISTRADOR', 'admin@gmail.com', '000.000.000-00', 'admin', '123', 'ADMINISTRADOR', NULL, ''),
 (2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', 'SUSPENSO'),
 (3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '789', 'ENTREGADOR', '9 9999-9998', 'ATIVO'),
-(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO');
+(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO'),
+(5, 'a', 'a@a', '1', '1', '1', 'CLIENTE', '1', '');
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `avaliacoes`
+-- Índices para tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`avaliacao_id`);
 
 --
--- Indexes for table `configs`
---
-ALTER TABLE `configs`
-  ADD PRIMARY KEY (`config_id`);
-
---
--- Indexes for table `cupons`
+-- Índices para tabela `cupons`
 --
 ALTER TABLE `cupons`
   ADD PRIMARY KEY (`cupom_id`);
 
 --
--- Indexes for table `denuncias`
+-- Índices para tabela `denuncias`
 --
 ALTER TABLE `denuncias`
   ADD PRIMARY KEY (`denuncia_id`);
 
 --
--- Indexes for table `entregadores`
+-- Índices para tabela `entregadores`
 --
 ALTER TABLE `entregadores`
   ADD PRIMARY KEY (`entregador_id`);
 
 --
--- Indexes for table `entregas`
+-- Índices para tabela `entregas`
 --
 ALTER TABLE `entregas`
   ADD PRIMARY KEY (`entrega_id`);
 
 --
--- Indexes for table `usuarios`
+-- Índices para tabela `frete`
+--
+ALTER TABLE `frete`
+  ADD PRIMARY KEY (`frete_id`);
+
+--
+-- Índices para tabela `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`log_id`);
+
+--
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usuario_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `avaliacoes`
+-- AUTO_INCREMENT de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   MODIFY `avaliacao_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `configs`
---
-ALTER TABLE `configs`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `cupons`
+-- AUTO_INCREMENT de tabela `cupons`
 --
 ALTER TABLE `cupons`
-  MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cupom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `denuncias`
+-- AUTO_INCREMENT de tabela `denuncias`
 --
 ALTER TABLE `denuncias`
   MODIFY `denuncia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `entregas`
+-- AUTO_INCREMENT de tabela `entregas`
 --
 ALTER TABLE `entregas`
-  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `frete`
+--
+ALTER TABLE `frete`
+  MODIFY `frete_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `log`
+--
+ALTER TABLE `log`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
