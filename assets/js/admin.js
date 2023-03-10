@@ -13,9 +13,12 @@ $(".btnListDeliveryman").click(function(){
 $(".btnListDeliveries").click(function(){
     $(".listDeliveries").show();
 });
+$(".btnListClients").click(function(){
+    $(".listClients").show();
+});
 $(".btnRegisterAdmins").click(function(){
     $(".registerAdmins").show();
 });
-$(".adjustServicesVariables").click(function(){
+$(".btnAdjustServicesVariables").click(function(){
     $(".adjustServicesVariables").show();
 });

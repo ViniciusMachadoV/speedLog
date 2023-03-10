@@ -5,6 +5,8 @@ class Admin extends CI_Controller {
 		$this->load->model('model_Admin');
 		$dados['entregadores']=$this->model_Admin->listDeliverymen();
 		$dados['entregas']=$this->model_Admin->listDeliveries();
+		$dados['clientes']=$this->model_Admin->listClients();
+		$dados['frete']=$this->model_Admin->deliveryValues();
 		$this->load->helper('url');
 		$this->load->model('model_Admin');
 		$this->load->view('template/header');
