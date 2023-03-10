@@ -32,7 +32,6 @@
                 <a href="">Esqueci minha senha</a>
                 </div>
                 <button id="signIn" class="btn btn-success" >ENTRAR</button>
-                <a href="https://www.javatpoint.com/codeigniter-database-login-form">site login</a>
                 <a href="<?php echo base_url('index.php/admin'); ?>">admin</a>
                 <a href="<?php echo base_url('index.php/client'); ?>">client</a>
                 <a href="<?php echo base_url('index.php/deliveryman'); ?>">deliveryman</a>
