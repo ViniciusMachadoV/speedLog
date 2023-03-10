@@ -6,7 +6,7 @@
     <button type="button" class="btn btn-primary tabBtn btnListDeliveries">entregas</button>
     <button type="button" class="btn btn-primary tabBtn btnListClients">clientes</button>
     <button type="button" class="btn btn-primary tabBtn btnRegisterAdmins">cadastro de adms</button>
-    <button type="button" class="btn btn-primary tabBtn btnAdjustServicesVariables">Valores de frete</button>
+    <button type="button" class="btn btn-primary tabBtn btnAdjustVariables">Valores de frete</button>
 
     <table class="table tabAdmin listDeliveryman">
         <thead>
@@ -86,7 +86,7 @@
             }?>
         </tbody>
     </table>
-    <form class="tabAdmin registerAdmins">
+    <div class="tabAdmin registerAdmins">
         <div class="mb-3">
             <label for="nomeCompleto" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="nomeCompleto" >
@@ -100,12 +100,12 @@
             <input type="text" class="form-control" id="cpfAdmin">
         </div>
         <div class="mb-3">
-            <label for="telefoneAdmin" class="form-label">Telefone</label>
-            <input type="text" class="form-control" id="telefoneAdmin">
-        </div>
-        <div class="mb-3">
             <label for="apelidoAdmin" class="form-label">Apelido</label>
             <input type="text" class="form-control" id="apelidoAdmin">
+        </div>
+        <div class="mb-3">
+            <label for="telefoneAdmin" class="form-label">Telefone</label>
+            <input type="text" class="form-control" id="telefoneAdmin">
         </div>
         <div class="mb-3">
             <label for="senhaAdmin" class="form-label">Senha</label>
@@ -115,10 +115,10 @@
             <label for="ConfSenhaAdmin" class="form-label">Confirmação de senha</label>
             <input type="password" class="form-control" id="ConfSenhaAdmin">
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-    </form>
+        <button type="submit" id="btnCadastrarAdmin" class="btn btn-primary">Cadastrar</button>
+    </div>
     <!-- MONTAR FORMULÁRIO PARA MUDAR VARIÁVEIS DE CÁLCULO DO VALOR FINAL -->
-    <form class="tabAdmin adjustServicesVariables">
+    <form class="tabAdmin adjustVariables">
         <table class="table">
             <thead>
                 <tr>

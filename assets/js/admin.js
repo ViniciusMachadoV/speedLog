@@ -4,21 +4,34 @@ $(document).ready(function () {
     $(".tabAdmin").hide();
     $(".listDeliveryman").show();
 });
-$(".tabBtn").click(function(){
-    $(".tabAdmin").hide();
-});
-$(".btnListDeliveryman").click(function(){
-    $(".listDeliveryman").show();
-});
-$(".btnListDeliveries").click(function(){
-    $(".listDeliveries").show();
-});
-$(".btnListClients").click(function(){
-    $(".listClients").show();
-});
-$(".btnRegisterAdmins").click(function(){
-    $(".registerAdmins").show();
-});
-$(".btnAdjustServicesVariables").click(function(){
-    $(".adjustServicesVariables").show();
+$(".tabBtn").click(function(){              $(".tabAdmin").hide()});
+$(".btnListDeliveryman").click(function(){  $(".listDeliveryman").show();});
+$(".btnListDeliveries").click(function(){   $(".listDeliveries").show();});
+$(".btnListClients").click(function(){      $(".listClients").show();});
+$(".btnRegisterAdmins").click(function(){   $(".registerAdmins").show();});
+$(".btnAdjustVariables").click(function(){$(".adjustVariables").show();});
+$("#btnCadastrarAdmin").click(function () {
+    if ($("#nomeCompleto").val() != "" && 
+    $("#emailAdmin").val() != "" && 
+    $("#cpfAdmin").val() != "" && 
+    $("#apelidoAdmin").val() != "" &&
+    $("#telefoneAdmin").val() != "" && 
+    $("#senhaAdmin").val() != "" && 
+    $("#senhaAdmin").val() == $("#ConfSenhaAdmin").val()) {
+        var post_nomeAdmin = $("#nomeCompleto").val();
+        var post_emailAdmin = $("#emailAdmin").val();
+        var post_cpfAdmin = $("#cpfAdmin").val();
+        var post_apelidoAdmin = $("#apelidoAdmin").val();
+        var post_telefoneAdmin = $("#telefoneAdmin").val();
+        var post_senhaAdmin = $("#senhaAdmin").val();
+
+        $.post("admin/cadastrarAdmin", {
+            nome: post_nomeAdmin,
+            email: post_emailAdmin,
+            cpf: post_cpfAdmin,
+            apelido: post_apelidoAdmin,
+            telefone: post_telefoneAdmin,
+            senha: post_senhaAdmin,
+        });
+    }
 });

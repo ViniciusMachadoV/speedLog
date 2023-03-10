@@ -18,11 +18,23 @@
         $query = $this->db->get('usuarios');  
         return $query->result();
     }
-    //list clients
     
     public function deliveryValues()
     {
         $query = $this->db->get('frete');  
         return $query->result();
     }
+    public function cadastrarAdmin($nomeAdmin, $emailAdmin, $cpfAdmin,$apelidoAdmin, $telefoneAdmin, $senhaAdmin)
+        {
+            $this->usuario_nome = $nomeAdmin;
+            $this->usuario_email = $emailAdmin;
+            $this->usuario_cpf = $cpfAdmin;
+            $this->usuario_apelido = $apelidoAdmin;
+            $this->usuario_senha = $senhaAdmin;
+            $this->usuario_tipo = "ADMINISTRADOR";
+            $this->usuario_telefone = $telefoneAdmin;
+            $this->usuario_status = "ATIVO";
+            $this->db->insert('usuarios',$this);
+
+        }
 }?>
