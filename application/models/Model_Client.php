@@ -63,17 +63,17 @@
     }
     public function selectMessages()
     {
-        $query = $this->db->get('messages');
+        $query = $this->db->get('denuncias');
         return $query->result();
     }
     public function inserir_msg($textoMsg){
         $this->message_text = $textoMsg;
-        $this->db->insert('messages',$this);
+        $this->db->insert('denuncias',$this);
     }
 
     public function delete_msg($msgDel){
         $this->db->where('message_id',$msgDel);
-        $this->db->delete('messages');
+        $this->db->delete('elogios');
     }
     public function calcular_valor($peso,$distancia,$tempo)
     {
