@@ -1,3 +1,4 @@
+<!-- ?php print_r($this->session->userdata('usuario');) ?> -->
 <title>Admin - SpeedLog</title>
 <div class="container">
     <!-- CONFIGURAR BOTAO LOGOUT -->
@@ -10,10 +11,10 @@
     <button type="button" class="btn btn-primary tabBtn btnReports">Denuncias</button>
 
     <table class="table tabAdmin listDeliveryman">
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar entregadores</button>
-        </form>
+        </form> -->
         <thead>
             <tr>
             <th scope="col">Nome</th>
@@ -41,10 +42,10 @@
         </tbody>
     </table>
     <table class="table tabAdmin listClients">
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar clientes</button>
-        </form>
+        </form> -->
         <thead>
             <tr>
             <th scope="col">Nome</th>
@@ -72,10 +73,10 @@
         </tbody>
     </table>
     <table class="table tabAdmin listDeliveries">
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar pedidos</button>
-        </form>
+        </form> -->
         <thead>
             <tr>
             <th scope="col">Origem</th>
