@@ -1,7 +1,10 @@
 $(document).ready(function () {
 
-
-
+	$('#cepretirada').mask('00000-000');
+	$('#cepentrega').mask('00000-000');
+	$('#altura').mask('0.00');
+	$('#largura').mask('0.00');
+	
 
 	$("#valor_entrega").hide();
 
