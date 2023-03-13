@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 10-Mar-2023 às 02:20
+-- Tempo de geração: 13-Mar-2023 às 01:59
 -- Versão do servidor: 5.6.34
 -- versão do PHP: 8.1.7
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `speedlog`
 --
+CREATE DATABASE IF NOT EXISTS `speedlog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `speedlog`;
 
 -- --------------------------------------------------------
 
@@ -30,11 +32,41 @@ SET time_zone = "+00:00";
 CREATE TABLE `avaliacoes` (
   `avaliacao_id` int(11) NOT NULL,
   `avaliacao_entrega` int(11) NOT NULL,
-  `avaliacao_total` int(1) NOT NULL,
+  `avaliacao_total` tinyint(1) NOT NULL,
   `avaliacao_desc` varchar(150) DEFAULT NULL,
   `avaliacao_tempoOK` tinyint(1) NOT NULL DEFAULT '1',
   `avaliacao_entregaOK` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `conquistas`
+--
+
+CREATE TABLE `conquistas` (
+  `conquista_id` int(11) NOT NULL,
+  `conquista_nome` varchar(20) NOT NULL,
+  `conquista_desc` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `conquistas`
+--
+
+INSERT INTO `conquistas` (`conquista_id`, `conquista_nome`, `conquista_desc`) VALUES
+(1, 'Imparável', 'Concluiu pelo menos 5 viagens no mesmo dia'),
+(2, 'O início de tudo', 'Concluiu sua primeira entrega'),
+(3, 'Pela longa estrada', 'Fez uma entrega com 10km ou mais de distância'),
+(4, 'Eu sou a velocidade', 'Terminou uma entrega em 10 minutos ou menos'),
+(5, 'Bem falado', 'Recebeu um elogio'),
+(6, 'Criatura noturna', 'Fez uma entrega durante a noite'),
+(7, 'Coração de mãe', 'Aceitou outra entrega antes de concluir a atual'),
+(8, 'Ligeiro', 'Realizou uma entrega urgente'),
+(9, 'Presentinho', 'Ganhou gorjeta de uma entrega'),
+(10, 'Comunicativo', 'Respondeu uma mensagem de conversa'),
+(11, 'Foco', 'Realizou ao menos 1 entrega por cinco dias seguidos'),
+(12, 'O respeito das ruas', 'Recebeu uma avaliação de nota máxima');
 
 -- --------------------------------------------------------
 
@@ -46,7 +78,7 @@ CREATE TABLE `cupons` (
   `cupom_id` int(11) NOT NULL,
   `cupom_cod` varchar(15) NOT NULL,
   `cupom_desconto` decimal(10,2) NOT NULL,
-  `cupom_tipoPorcento` varchar(1) NOT NULL,
+  `cupom_tipoPorcento` tinyint(1) NOT NULL,
   `cupom_inicio` datetime DEFAULT NULL,
   `cupom_termino` datetime DEFAULT NULL,
   `cupom_qtde` int(11) DEFAULT NULL,
@@ -58,9 +90,9 @@ CREATE TABLE `cupons` (
 --
 
 INSERT INTO `cupons` (`cupom_id`, `cupom_cod`, `cupom_desconto`, `cupom_tipoPorcento`, `cupom_inicio`, `cupom_termino`, `cupom_qtde`, `cupom_desc`) VALUES
-(1, 'LANCAMENTO', '5.00', 'N', '2023-02-16 20:00:00', '2023-04-01 00:00:00', 3, 'Promoção de lançamento'),
-(2, 'PRIMEIRA', '2.00', 'N', '2023-03-01 20:00:00', '2023-04-01 00:00:00', 20, 'Desconto de primeiro pedido da conta'),
-(3, '1ABRIL', '1.00', 'N', '2023-03-01 19:00:00', '2023-03-09 19:10:00', 1, 'Dia da mentira');
+(1, 'LANCAMENTO', '5.00', 0, '2023-02-16 20:00:00', '2023-04-01 00:00:00', 3, 'Promoção de lançamento'),
+(2, 'PRIMEIRA', '2.00', 0, '2023-03-01 20:00:00', '2023-04-01 00:00:00', 20, 'Desconto de primeiro pedido da conta'),
+(3, '1ABRIL', '1.00', 0, '2023-03-01 19:00:00', '2023-03-09 19:10:00', 1, 'Dia da mentira');
 
 -- --------------------------------------------------------
 
@@ -70,9 +102,10 @@ INSERT INTO `cupons` (`cupom_id`, `cupom_cod`, `cupom_desconto`, `cupom_tipoPorc
 
 CREATE TABLE `denuncias` (
   `denuncia_id` int(11) NOT NULL,
-  `denuncia_Denunciante` varchar(15) NOT NULL,
+  `denuncia_idDenunciante` int(11) NOT NULL,
   `denuncia_entrega` int(11) DEFAULT NULL,
   `denuncia_descricao` varchar(254) NOT NULL,
+  `denuncia_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `denuncia_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -80,8 +113,21 @@ CREATE TABLE `denuncias` (
 -- Extraindo dados da tabela `denuncias`
 --
 
-INSERT INTO `denuncias` (`denuncia_id`, `denuncia_Denunciante`, `denuncia_entrega`, `denuncia_descricao`, `denuncia_status`) VALUES
-(1, 'carlinha', 1, 'entrega veio quebrada', 'TERMINADA');
+INSERT INTO `denuncias` (`denuncia_id`, `denuncia_idDenunciante`, `denuncia_entrega`, `denuncia_descricao`, `denuncia_data`, `denuncia_status`) VALUES
+(1, 4, 1, 'entrega veio quebrada', '2023-03-10 14:18:09', 'TERMINADA');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `elogios`
+--
+
+CREATE TABLE `elogios` (
+  `elogio_id` int(11) NOT NULL,
+  `elogio_usuario` int(11) NOT NULL,
+  `elogio_entregador` int(11) NOT NULL,
+  `elogio_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -133,7 +179,7 @@ CREATE TABLE `entregas` (
 --
 
 INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_cliente`, `entrega_responsavel`, `entrega_valor`, `entrega_cupom`, `entrega_observacao`) VALUES
-(1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 0, NULL, '0', NULL, NULL);
+(1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 4, 2, '0', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,10 +222,46 @@ INSERT INTO `frete` (`frete_id`, `frete_tipo`, `valor_km`, `valor_minuto`, `valo
 
 CREATE TABLE `log` (
   `log_id` int(11) NOT NULL,
+  `log_tipo` varchar(15) NOT NULL,
   `log_usuario` int(11) NOT NULL,
   `log_desc` varchar(254) NOT NULL,
   `log_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mensagens`
+--
+
+CREATE TABLE `mensagens` (
+  `mensagem_id` int(11) NOT NULL,
+  `mensagem_codEntrega` int(11) NOT NULL,
+  `mensagem_usuario` int(11) NOT NULL,
+  `mensagem_texto` varchar(254) NOT NULL,
+  `mensagem_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `notificacoes`
+--
+
+CREATE TABLE `notificacoes` (
+  `notificacao_id` int(11) NOT NULL,
+  `notificacao_titulo` varchar(30) NOT NULL,
+  `notificacao_desc` varchar(254) NOT NULL,
+  `notificacao_usuario` int(11) NOT NULL,
+  `notificacao_visualizado` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `notificacoes`
+--
+
+INSERT INTO `notificacoes` (`notificacao_id`, `notificacao_titulo`, `notificacao_desc`, `notificacao_usuario`, `notificacao_visualizado`) VALUES
+(1, 'testando titulo de notificação', 'aqui vai a descrição da notificação', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -196,19 +278,19 @@ CREATE TABLE `usuarios` (
   `usuario_senha` varchar(30) NOT NULL,
   `usuario_tipo` varchar(13) NOT NULL,
   `usuario_telefone` varchar(16) DEFAULT NULL,
-  `usuario_status` varchar(10) NOT NULL
+  `usuario_status` varchar(10) NOT NULL,
+  `usuario_dataConta` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_cpf`, `usuario_apelido`, `usuario_senha`, `usuario_tipo`, `usuario_telefone`, `usuario_status`) VALUES
-(1, 'ADMINISTRADOR', 'admin@gmail.com', '000.000.000-00', 'admin', '123', 'ADMINISTRADOR', NULL, ''),
-(2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', 'SUSPENSO'),
-(3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '789', 'ENTREGADOR', '9 9999-9998', 'ATIVO'),
-(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO'),
-(5, 'a', 'a@a', '1', '1', '1', 'CLIENTE', '1', '');
+INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_cpf`, `usuario_apelido`, `usuario_senha`, `usuario_tipo`, `usuario_telefone`, `usuario_status`, `usuario_dataConta`) VALUES
+(1, 'ADMINISTRADOR', 'admin@mail.com', '000.000.000-00', 'admin', '123', 'ADMINISTRADOR', NULL, '', '2020-01-10 09:00:00'),
+(2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', 'SUSPENSO', '2016-04-07 10:20:00'),
+(3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '789', 'ENTREGADOR', '9 9999-9998', 'SUSPENSO', '2022-06-10 18:33:00'),
+(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO', '2020-12-23 17:03:00');
 
 --
 -- Índices para tabelas despejadas
@@ -221,6 +303,12 @@ ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`avaliacao_id`);
 
 --
+-- Índices para tabela `conquistas`
+--
+ALTER TABLE `conquistas`
+  ADD PRIMARY KEY (`conquista_id`);
+
+--
 -- Índices para tabela `cupons`
 --
 ALTER TABLE `cupons`
@@ -231,6 +319,12 @@ ALTER TABLE `cupons`
 --
 ALTER TABLE `denuncias`
   ADD PRIMARY KEY (`denuncia_id`);
+
+--
+-- Índices para tabela `elogios`
+--
+ALTER TABLE `elogios`
+  ADD PRIMARY KEY (`elogio_id`);
 
 --
 -- Índices para tabela `entregadores`
@@ -257,6 +351,18 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`log_id`);
 
 --
+-- Índices para tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  ADD PRIMARY KEY (`mensagem_id`);
+
+--
+-- Índices para tabela `notificacoes`
+--
+ALTER TABLE `notificacoes`
+  ADD PRIMARY KEY (`notificacao_id`);
+
+--
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -273,6 +379,12 @@ ALTER TABLE `avaliacoes`
   MODIFY `avaliacao_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `conquistas`
+--
+ALTER TABLE `conquistas`
+  MODIFY `conquista_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT de tabela `cupons`
 --
 ALTER TABLE `cupons`
@@ -283,6 +395,12 @@ ALTER TABLE `cupons`
 --
 ALTER TABLE `denuncias`
   MODIFY `denuncia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `elogios`
+--
+ALTER TABLE `elogios`
+  MODIFY `elogio_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `entregas`
@@ -303,10 +421,22 @@ ALTER TABLE `log`
   MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  MODIFY `mensagem_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `notificacoes`
+--
+ALTER TABLE `notificacoes`
+  MODIFY `notificacao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
