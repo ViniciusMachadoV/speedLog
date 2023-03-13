@@ -2,22 +2,20 @@
 class Client extends CI_Controller {
 	public function index()
 	{
-		// if($this->session->userdata('user')){
-			// $this->session->start();
-			
-			$this->load->helper('url');
+		if($this->session->userdata('usuario') != NULL){
+			$dados['sessao']=$this->session->userdata('usuario');
 			$this->load->model('Model_Client');
-		$dados['mensagens']=$this->Model_Client->selectMessages();
+			$dados['mensagens']=$this->Model_Client->selectMessages();
 			$dados['acompanhar']=$this->Model_Client->get_acompanhamento();
 			$dados['historico']=$this->Model_Client->get_entregas();
+			$this->load->helper('url');
 			$this->load->view('template/header');
+			$this->load->view('template/view_header');
 			$this->load->view('pages/view_client',$dados);
+			$this->load->view('template/view_footer');
 			$this->load->view('template/footer');
-			
-		// }
-		// else{
-		// $this->load->view('pages/view_connect');
-		// }
+		}
+		else redirect('connect');
 	}
 	public function fazer_pedido()
 	{

@@ -37,7 +37,7 @@ $("#signIn").click(function(){
         if ($("#keepLogged").is(':checked')){
             alert("lembrar login marcado!")
         }
-        $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
+        $.post("connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
             if (result) location.assign(result);
             else $('#warning').html('Credenciais incorretas');
         });

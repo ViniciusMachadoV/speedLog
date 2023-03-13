@@ -15,6 +15,10 @@ class Connect extends CI_Controller {
 		$userPass = $_POST['pass'];
 		$this->load->model('model_Connect');
         $logged = $this->model_Connect->loginCredentials($userName, $userPass);
+		if($logged){
+			$this->session->set_userdata('apelido','testando');
+			echo $this->session->userdata('apelido');
+		}
 	}
 	public function registerUser()
 	{
