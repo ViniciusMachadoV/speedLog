@@ -2,7 +2,7 @@
 class Deliveryman extends CI_Controller {
 	public function index()
 	{
-		if($this->session->userdata('usuario') != NULL){
+		if($this->session->userdata('tipo') == 'ENTREGADOR'){
 			$dados['sessao']=$this->session->userdata('usuario');
 			$this->load->model('model_Deliveryman');
 			$dados['entregas']=$this->model_Deliveryman->visualizarPedidos();
@@ -15,9 +15,22 @@ class Deliveryman extends CI_Controller {
 		}
 		else redirect('connect');
 	}
-	public function confirmarPedido(){
+	public function confirmarPedido()
+	{
 		$idConfirmarPedido = $_POST['idPedido'];
 		$this->load->model('model_Deliveryman');
         $this->model_Deliveryman->updatePedido($idConfirmarPedido);
+	}
+	public function cancelarPedido()
+	{
+		$idCancelarPedido = $_POST['entregaId'];
+		$this->load->model('model_Deliveryman');
+        $this->model_Deliveryman->mudarPedido($idCancelarPedido);
+	}
+	public function concluirPedido()
+	{
+		$idConcluirPedido = $_POST['entregaId'];
+		$this->load->model('model_Deliveryman');
+        $this->model_Deliveryman->fecharPedido($idConcluirPedido);
 	}
 }?>

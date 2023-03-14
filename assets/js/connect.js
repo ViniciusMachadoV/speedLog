@@ -44,7 +44,7 @@ $("#signIn").click(function(){
         // $("#user_SignIn").val('');
         // $("#pass_SignIn").val('');
     }
-    else alert("um ou mais campos vazios");
+    else $('#warning').html('Preencha todos os campos');
     });
 $("#signUp").click(function(){
     // FIRST DO A SELECT TO VERIFY IF USERNAME ALREADY EXISTS
@@ -71,7 +71,7 @@ $("#signUp").click(function(){
         //     alert("receber email marcado!")
         // }
     }
-    else alert("um ou mais campos vazios");
+    else $('#warning').html('Preencha todos os campos');
 });
 
 $(".form-control").click(function(){

@@ -2,7 +2,7 @@
 class Client extends CI_Controller {
 	public function index()
 	{
-		if($this->session->userdata('usuario') != NULL){
+		if($this->session->userdata('tipo') == 'CLIENTE'){
 			$dados['sessao']=$this->session->userdata('usuario');
 			$this->load->model('Model_Client');
 			$dados['mensagens']=$this->Model_Client->selectMessages();

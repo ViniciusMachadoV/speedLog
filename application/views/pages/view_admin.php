@@ -1,8 +1,9 @@
-<!-- ?php print_r($this->session->userdata('usuario');) ?> -->
 <title>Admin - SpeedLog</title>
 <div class="container">
-    <!-- CONFIGURAR BOTAO LOGOUT -->
-    <a href='connect'>Logout</a>
+    <a class="btnLogout">Logout</a>
+    <?php print_r($this->session->userdata('tipo'))?>
+    <?php print_r($this->session->userdata('usuario'))?>
+
     <button type="button" class="btn btn-primary tabBtn btnListDeliveryman">entregadores</button>
     <button type="button" class="btn btn-primary tabBtn btnListDeliveries">entregas</button>
     <button type="button" class="btn btn-primary tabBtn btnListClients">clientes</button>

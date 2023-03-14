@@ -2,8 +2,8 @@
 class Admin extends CI_Controller {
 	public function index()
 	{
-		if($this->session->userdata('usuario') != NULL){
-			$dados['sessao']=$this->session->userdata('usuario');
+		if($this->session->userdata('tipo') == 'ADMINISTRADOR'){
+			$dados['sessao']=array($this->session->userdata('usuario'),$this->session->userdata('tipo'));
 			$this->load->model('model_Admin');
 			$dados['entregadores']=$this->model_Admin->listDeliverymen();
 			$dados['entregas']=$this->model_Admin->listDeliveries();
