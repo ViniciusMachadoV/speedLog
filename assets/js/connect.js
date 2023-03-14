@@ -1,6 +1,26 @@
 $(document).ready(function(){
     $(".signUpType").hide();
     $(".signUp").hide();
+	$('#CPF_SignUp').mask('000.000.000-00');
+	$('#phoneNumber_SignUp').mask('(00)00000-0000');
+	$('#plate_SignUp').mask('AAA AAAA');
+
+    // TIPO 1= CARRO, 2 =  MOTO, 3 = CAMINHAO
+    var settings = {
+        "url": "https://placa-fipe.apibrasil.com.br/placa/consulta",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "placa": "MRX5805"
+        }),
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
 });
 $(".btnSignIn").click(function(){
     $("#tabSignUp").removeClass('active');

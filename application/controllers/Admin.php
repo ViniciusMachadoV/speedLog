@@ -2,7 +2,7 @@
 class Admin extends CI_Controller {
 	public function index()
 	{
-		if($this->session->userdata('tipo') == 'ADMINISTRADOR'){
+		// if($this->session->userdata('tipo') == 'ADMINISTRADOR'){
 			$dados['sessao']=array($this->session->userdata('usuario'),$this->session->userdata('tipo'));
 			$this->load->model('model_Admin');
 			$dados['entregadores']=$this->model_Admin->listDeliverymen();
@@ -15,8 +15,8 @@ class Admin extends CI_Controller {
 			$this->load->view('template/header');
 			$this->load->view('pages/view_admin',$dados);
 			$this->load->view('template/footer');
-		}
-		else redirect('connect');
+		// }
+		// else redirect('connect');
 	}
 	public function timeoutAccount()
 	{
