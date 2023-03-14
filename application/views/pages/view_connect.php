@@ -117,3 +117,4 @@
     </div>
 </div>
 <script type = 'text/javascript' src = "<?php echo base_url('assets/js/connect.js');?>"></script>
+<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>
