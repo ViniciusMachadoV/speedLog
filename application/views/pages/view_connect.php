@@ -6,6 +6,7 @@
 <div class="masthead">
     <div class="masthead-content text-white">
         <div class="container">
+    <?php print_r($this->session->userdata('usuario'))?>
             <!-- SIGN OPTIONS -->
             <ul class="nav nav-tabs signOptions">
                 <li class="nav-item btnSignIn">
@@ -19,8 +20,6 @@
             <!-- SIGN IN -->
             <div class="signIn">
                 <div class="mb-3">
-                    <?php print_r($this->session->userdata('usuario')) ?>
-
                     <label for="userSignIn" class="form-label">USUÁRIO OU EMAIL</label>
                     <input type="email" class="form-control" id="user_SignIn">
                 </div>

@@ -1,5 +1,4 @@
 <title>Cliente - SpeedLog</title>
-
 <div class="container">
 	<div class="row">
 		<div class="col">

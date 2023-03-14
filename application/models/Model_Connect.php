@@ -6,6 +6,7 @@
         $userType = $query->row_array();
         if($query->num_rows() > 0){
             $this->session->set_userdata('usuario',$userLogin);
+            $this->session->set_userdata('tipo',$userType['usuario_tipo']);
             switch ($userType['usuario_tipo']) {
                 case 'ADMINISTRADOR':
                     echo base_url('index.php/admin');

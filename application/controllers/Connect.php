@@ -4,10 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
 	{
-		$this->load->helper('url');
-		$this->load->model('model_Connect');
-		$this->load->view('template/header');
-		$this->load->view('pages/view_connect');
+		if($this->session->userdata('tipo') == NULL){
+			$this->load->helper('url');
+			$this->load->model('model_Connect');
+			$this->load->view('template/header');
+			$this->load->view('pages/view_connect');
+		}
+		else switch ($this->session->userdata('tipo')) {
+                case 'ADMINISTRADOR':
+                    redirect('admin');
+                    break;
+                case 'CLIENTE':
+                    redirect('client');
+                    break;
+                case 'ENTREGADOR':
+                    redirect('deliveryman');
+                    break;
+            }
 	}
 	public function connectUser()
 	{
@@ -15,10 +28,6 @@ class Connect extends CI_Controller {
 		$userPass = $_POST['pass'];
 		$this->load->model('model_Connect');
         $logged = $this->model_Connect->loginCredentials($userName, $userPass);
-		if($logged){
-			$this->session->set_userdata('apelido','testando');
-			echo $this->session->userdata('apelido');
-		}
 	}
 	public function registerUser()
 	{
@@ -33,7 +42,7 @@ class Connect extends CI_Controller {
 	}
 	public function logout()  
     {  
-        // $this->session->sess_destroy();  
-        redirect(base_url().'speedlog/index.php/connect');  
+        $this->session->sess_destroy();  
+        redirect('connect');  
     }  
 }?>

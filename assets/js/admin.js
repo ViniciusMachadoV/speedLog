@@ -38,7 +38,9 @@ $("#btnCadastrarAdmin").click(function (){
 });
 $(".btnTimeOut").click(function (){
     var userTimedOut = this.id;
-    alert(this.id);
     $.post("admin/timeoutAccount",{user: userTimedOut});
-    // location.reload();
+    location.reload();
+});
+$(".btnLogout").click(function (){
+    location.assign('connect/logout');
 });
