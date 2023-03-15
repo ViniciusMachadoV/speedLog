@@ -140,6 +140,28 @@
     <form class="tabAdmin adjustVariables">
         <table class="table">
             <thead>
+                <div class="row">
+                    <div class="col">Alterar valores de frete: </td>
+                    <input class="inputVariables" type="text" id="rskm">
+                    <input class="inputVariables" type="text" id="rsmin">
+                    <input class="inputVariables" type="text" id="ate1kg">
+                    <input class="inputVariables" type="text" id="entre1e3kg">
+                    <input class="inputVariables" type="text" id="entre3e8kg">
+                    <input class="inputVariables" type="text" id="entre8e12kg">
+                    <div class="row">
+                        <div class="col">Aplicar nos dias: </td>
+                        <div class="col">
+                            <input type="checkbox" name="" id="all">TODOS
+                            <input type="checkbox" name="" id="Sunday">DOM
+                            <input type="checkbox" name="" id="Monday">SEG
+                            <input type="checkbox" name="" id="Tuesday">TER
+                            <input type="checkbox" name="" id="Wednesday">QUA
+                            <input type="checkbox" name="" id="Thursday">QUI
+                            <input type="checkbox" name="" id="Friday">SEX
+                            <input type="checkbox" name="" id="Saturday">SÁB
+                        </div>
+                    </div>
+                </tr>
                 <tr>
                 <th scope="col">TIPO</th>
                 <th scope="col">R$/Km</th>
