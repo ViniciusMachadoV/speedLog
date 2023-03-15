@@ -1,58 +1,149 @@
 <title>Entregador - SpeedLog</title>
 <div class="container">
-    <?php foreach ($entregas as $key) {
-    echo '
-    <div class="card text-center">
-      <div class="card-header">
+  <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <button class="btn btn-light" id="btnPendingOrders" aria-current="page">Pedido Pendente</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-light" id="btnOngoingOrders">Pedido atual</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-light" id="btnFinishedOrders">Pedido concluído</button>
+      </li>
+    </ul>
+    <div class="orderTab" id="listPendingOrders">
+      <?php foreach ($pendente as $key) {
+        echo '
+          <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+              <h5 class="card-title">Origem: '.$key->entrega_enderecoOrigem.$key->entrega_cepOrigem.'.</h5>
+              <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
+              <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
+              <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
+              <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
+              <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
+              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Iniciar Viagem
+              </button>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">Iniciar entrega</h4>
+                    </div>
+                    <div class="modal-body">
+                      Você deseja concluir essa viagem?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                      <a class="btn btn-primary confirmar" id="'. $key->entrega_id .'" >Concluir da viagem</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">
-        <h5 class="card-title">Origem: '.$key->entrega_enderecoOrigem.$key->entrega_cepOrigem.'.</h5>
-        <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
-        <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
-        <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
-        <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
-        <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
-  
+      <br>';
+        }?>
+    </div>
+    <div class="orderTab" id="listOngoingOrders">
+      <?php foreach ($andamento as $key) {
+        echo '
+        <div class="card text-center">
+          <div class="card-header">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+            <h5 class="card-title">Origem: '.$key->entrega_enderecoOrigem.$key->entrega_cepOrigem.'.</h5>
+            <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
+            <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
+            <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
+            <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
+            <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+              Concluir Viagem
+            </button>
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Cancelamento da Viagem</h4>
+                  </div>
+                  <div class="modal-body">
+                    Você deseja concluir essa viagem?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary concluir" id="'. $key->entrega_id .'" >Concluir da viagem</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+      
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-          Aceitar Pedido
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal3">
+          Cancelar Viagem
         </button>
-  
+
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Confirmação de Viagem</h4>
+                <h4 class="modal-title" id="myModalLabel">Cancelamento da Viagem</h4>
               </div>
               <div class="modal-body">
-                Você confirma o transporte desse pedido?
+                Você realmente deseja cancelar essa viagem?
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary confirmar" id="'. $key->entrega_id .'" >Confirmar Viagem</a>
+                <a class="btn btn-primary cancelar" id="'. $key->entrega_id .'" >Desistir da viagem</a>
               </div>
             </div>
           </div>
         </div>
         </div>
+      </div>
+      <br>';
+      }?>
     </div>
-    <br>';
-  }?>
+    <div class="orderTab" id="listFinishedOrders">
+      <?php foreach ($concluido as $key) {
+        echo '
+        <div class="card text-center">
+          <div class="card-header">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+            <h5 class="card-title">Origem: '.$key->entrega_enderecoOrigem.$key->entrega_cepOrigem.'.</h5>
+            <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
+            <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
+            <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
+            <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
+            <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        </div>
+        <br>';
+      }?>
+    </div>
   
-<form method="POST" enctype="multipart/form-data">
+<!-- <form method="POST" enctype="multipart/form-data">
   <label for="conteudo">Enviar imagem:</label>
   <input type="file" name="pic" accept="image/*" class="form-control">
 
   <div align="center">
     <button type="submit" class="btn btn-success">Enviar imagem</button>
   </div>
-</form>
+</form> -->
 </div>
 <?php
  if(isset($_FILES['pic']))
