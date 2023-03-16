@@ -1,4 +1,6 @@
+//https://threejs.org/
 $(document).ready(function () {
+    // alert('ajax');
 	$("#cpfAdmin").mask("000.000.000-00");
 	$("#telefoneAdmin").mask("(00)0 0000-0000");
     $(".tabAdmin").hide();
@@ -11,6 +13,7 @@ $(".btnListClients").click(function(){      $(".listClients").show();});
 $(".btnRegisterAdmins").click(function(){   $(".registerAdmins").show();});
 $(".btnAdjustVariables").click(function(){  $(".adjustVariables").show();});
 $(".btnReports").click(function(){          $(".listReports").show();});
+$(".btnVouchers").click(function(){         $(".addVoucher").show();});
 $("#btnCadastrarAdmin").click(function (){
     if ($("#nomeCompleto").val() != "" && 
     $("#emailAdmin").val() != "" && 
@@ -43,4 +46,50 @@ $(".btnTimeOut").click(function (){
 });
 $(".btnLogout").click(function (){
     location.assign('connect/logout');
+});
+$("#all").click(function (){
+    if (this.checked){
+        $('.weekDay').prop('checked', true);
+        $('.allDaysCheck').text('NENHUM');
+    }
+    else{
+        $('.weekDay').prop('checked', false);
+        $('.allDaysCheck').text('TODOS');
+    }
+});
+$(".btnEditVariables").click(function (){
+    $.each($('.weekDay'), function(){
+        if (this.checked){
+            alert($(this).attr('id').toUpperCase());
+        }
+    })
+});
+$("#btnAddVoucher").click(function (){
+    // alert($("#startVoucher").val() + ' 11:24:11');
+    if ($("#codeVoucher").val() != "" && 
+    $("#discountVoucher").val() != "" && 
+    $("#startVoucher").val() != "" &&
+    $("#endVoucher").val() != "" && 
+    $("#quantityVoucher").val() != "" && 
+    $("#descriptionVoucher").val() != "") {
+        var post_codeVoucher = $("#codeVoucher").val();
+        var post_discountVoucher = $("#discountVoucher").val();
+        if ($("#isPercentual").is(':checked')) var post_percentVoucher = '1';
+        else var post_percentVoucher = '0';
+        var post_startVoucher = $("#startVoucher").val() + ' 00:00:00';
+        var post_endVoucher = $("#endVoucher").val() + ' 23:59:59';
+        var post_quantityVoucher = $("#quantityVoucher").val();
+        var post_descriptionVoucher = $("#descriptionVoucher").val();
+
+        $.post("admin/addVoucher", {
+            codeVoucher: post_codeVoucher,
+            discountVoucher: post_discountVoucher,
+            percentVoucher: post_percentVoucher,
+            startVoucher: post_startVoucher,
+            endVoucher: post_endVoucher,
+            quantityVoucher: post_quantityVoucher,
+            descriptionVoucher: post_descriptionVoucher,
+        });
+    }
+    else alert('campos vazios');
 });
