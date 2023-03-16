@@ -55,4 +55,16 @@ class Admin extends CI_Controller {
 	{
 		//
 	}
+	public function addVoucher()
+	{
+		$this->load->model('Model_Admin');
+		$codeVoucher = $_POST['codeVoucher'];
+		$discountVoucher = $_POST['discountVoucher'];
+		$percentVoucher = $_POST['percentVoucher'];
+		$startVoucher = $_POST['startVoucher'];
+		$endVoucher = $_POST['endVoucher'];
+		$quantityVoucher = $_POST['quantityVoucher'];
+		$descriptionVoucher = $_POST['descriptionVoucher'];
+		$this->Model_Admin->addVoucher($codeVoucher, $discountVoucher,$percentVoucher, $startVoucher,$endVoucher, $quantityVoucher, $descriptionVoucher);
+	}
 }?>

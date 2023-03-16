@@ -10,6 +10,7 @@
     <button type="button" class="btn btn-primary tabBtn btnRegisterAdmins">cadastro de adms</button>
     <button type="button" class="btn btn-primary tabBtn btnAdjustVariables">Valores de frete</button>
     <button type="button" class="btn btn-primary tabBtn btnReports">Denuncias</button>
+    <button type="button" class="btn btn-primary tabBtn btnVouchers">Criar cupom</button>
 
     <table class="table tabAdmin listDeliveryman">
         <!-- <form class="d-flex" role="search">
@@ -105,6 +106,7 @@
             }?>
         </tbody>
     </table>
+    <!-- CHANGE AND ADAPT TO REGISTER USERS: -->
     <div class="tabAdmin registerAdmins">
         <div class="mb-3">
             <label for="nomeCompleto" class="form-label">Nome Completo</label>
@@ -137,30 +139,46 @@
         <button type="submit" id="btnCadastrarAdmin" class="btn btn-primary">Cadastrar</button>
     </div>
     <!-- MONTAR FORMULÁRIO PARA MUDAR VARIÁVEIS DE CÁLCULO DO VALOR FINAL -->
-    <form class="tabAdmin adjustVariables">
+    <div class="tabAdmin adjustVariables">
         <table class="table">
             <thead>
-                <div class="row">
-                    <div class="col">Alterar valores de frete: </td>
-                    <input class="inputVariables" type="text" id="rskm">
-                    <input class="inputVariables" type="text" id="rsmin">
-                    <input class="inputVariables" type="text" id="ate1kg">
-                    <input class="inputVariables" type="text" id="entre1e3kg">
-                    <input class="inputVariables" type="text" id="entre3e8kg">
-                    <input class="inputVariables" type="text" id="entre8e12kg">
+                <div class="col">
                     <div class="row">
-                        <div class="col">Aplicar nos dias: </td>
-                        <div class="col">
-                            <input type="checkbox" name="" id="all">TODOS
-                            <input type="checkbox" name="" id="Sunday">DOM
-                            <input type="checkbox" name="" id="Monday">SEG
-                            <input type="checkbox" name="" id="Tuesday">TER
-                            <input type="checkbox" name="" id="Wednesday">QUA
-                            <input type="checkbox" name="" id="Thursday">QUI
-                            <input type="checkbox" name="" id="Friday">SEX
-                            <input type="checkbox" name="" id="Saturday">SÁB
-                        </div>
+                        Alterar valores de frete:
+                        <input class="inputVariables" type="text" id="rskm" placeholder="R$/km">
+                        <input class="inputVariables" type="text" id="rsmin" placeholder="R$/min">
+                        <input class="inputVariables" type="text" id="ate1kg" placeholder="Até 1km">
+                        <input class="inputVariables" type="text" id="entre1e3kg" placeholder="1-3km">
+                        <input class="inputVariables" type="text" id="entre3e8kg" placeholder="3-8km">
+                        <input class="inputVariables" type="text" id="entre8e12kg" placeholder="8-12km">
                     </div>
+                    <div class="col">
+                        Aplicar nos dias:
+                        <input type="checkbox" name="days" id="all">
+                        <label class="allDaysCheck" for="days">TODOS</label>
+                        <input type="checkbox" class="weekDay" name="day0" id="domingo">
+                        <label for="day0">DOM</label>
+                        <input type="checkbox" class="weekDay" name="day1" id="segunda">
+                        <label for="day1">SEG</label>
+                        <input type="checkbox" class="weekDay" name="day2" id="terca">
+                        <label for="day2">TER</label>
+                        <input type="checkbox" class="weekDay" name="day3" id="quarta">
+                        <label for="day3">QUA</label>
+                        <input type="checkbox" class="weekDay" name="day4" id="quinta">
+                        <label for="day4">QUI</label>
+                        <input type="checkbox" class="weekDay" name="day5" id="sexta">
+                        <label for="day5">SEX</label>
+                        <input type="checkbox" class="weekDay" name="day6" id="sabado">
+                        <label for="day6">SÁB</label>
+                        <input type="checkbox" class="weekDay" name="holiday" id="feriado">
+                        <label for="holiday">FERIADO</label>
+                        <input type="checkbox" class="weekDay" name="sale" id="promocao">
+                        <label for="sale">PROMOÇÃO</label>
+                    </div>
+                    <div class="col">
+                    <button type="button" class="btn btn-primary btnEditVariables">SALVAR</button>
+                    </div>
+                </div>
                 </tr>
                 <tr>
                 <th scope="col">TIPO</th>
@@ -177,18 +195,18 @@
                         echo '
                             <tr>
                             <td scope="row">'.$colConfig->frete_tipo.'</td>
-                            <td>'.$colConfig->valor_km.'</td>
-                            <td>'.$colConfig->valor_minuto.'</td>
-                            <td>'.$colConfig->valor_kgAte1.'</td>
-                            <td>'.$colConfig->valor_kg1a3.'</td>
-                            <td>'.$colConfig->valor_kg3a8.'</td>
-                            <td>'.$colConfig->valor_kg8a12.'</td>
+                            <td>'.number_format($colConfig->valor_km, 2, ',', '.').'</td>
+                            <td>'.number_format($colConfig->valor_minuto, 2, ',', '.').'</td>
+                            <td>'.number_format($colConfig->valor_kgAte1, 2, ',', '.').'</td>
+                            <td>'.number_format($colConfig->valor_kg1a3, 2, ',', '.').'</td>
+                            <td>'.number_format($colConfig->valor_kg3a8, 2, ',', '.').'</td>
+                            <td>'.number_format($colConfig->valor_kg8a12, 2, ',', '.').'</td>
                             </tr>';
                 }?>
             </tbody>
         </table>
-    </form>
-    <form class="tabAdmin listReports">
+    </div>
+    <div class="tabAdmin listReports">
         <table class="table">
             <thead>
                 <tr>
@@ -221,7 +239,36 @@
                 }?>
             </tbody>
         </table>
-    </form>
+    </div>
+    <div class="tabAdmin addVoucher">
+        <div class="mb-3">
+            <label for="nomeCompleto" class="form-label">Código</label>
+            <input type="text" class="form-control" id="codeVoucher" >
+        </div>
+        <div class="mb-3">
+            <label for="emailAdmin" class="form-label">Desconto</label>
+            <input type="email" class="form-control" id="discountVoucher">
+            <label for="cpfAdmin" class="form-label">É percentual?</label>
+            <input type="checkbox" class="form-check-input" id="isPercentual">
+        </div>
+        <div class="mb-3">
+            <label for="apelidoAdmin" class="form-label">Início(opcional)</label>
+            <input type="date" class="form-control" id="startVoucher">
+        </div>
+        <div class="mb-3">
+            <label for="telefoneAdmin" class="form-label">Término(opcional)</label>
+            <input type="date" class="form-control" id="endVoucher">
+        </div>
+        <div class="mb-3">
+            <label for="senhaAdmin" class="form-label">Quantidade</label>
+            <input type="text" class="form-control" id="quantityVoucher">
+        </div>
+        <div class="mb-3">
+            <label for="ConfSenhaAdmin" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descriptionVoucher">
+        </div>
+        <button type="submit" id="btnAddVoucher" class="btn btn-primary">Adicionar</button>
+    </div>
 </div>
 <script type='text/javascript' src="<?php echo base_url('assets/js/admin.js');?>"></script>
 <script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.min.js');?>"></script>

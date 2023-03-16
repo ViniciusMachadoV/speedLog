@@ -72,4 +72,15 @@
 	{
 		//
 	}
+	public function addVoucher($codeVoucher, $discountVoucher, $percentVoucher, $startVoucher,$endVoucher, $quantityVoucher, $descriptionVoucher)
+	{
+		$this->cupom_cod = $codeVoucher;
+		$this->cupom_desconto = $discountVoucher;
+		$this->cupom_tipoPorcento = $percentVoucher;
+		$this->cupom_inicio = $startVoucher;
+		$this->cupom_termino = $endVoucher;
+		$this->cupom_qtde = $quantityVoucher;
+		$this->cupom_desc = $descriptionVoucher;
+        $this->db->insert('cupons',$this);
+	}
 }?>
