@@ -27,7 +27,7 @@ class Connect extends CI_Controller {
 		$userName = $_POST['user'];
 		$userPass = $_POST['pass'];
 		$this->load->model('model_Connect');
-        $logged = $this->model_Connect->loginCredentials($userName, $userPass);
+        $this->model_Connect->loginCredentials($userName, $userPass);
 	}
 	public function registerUser()
 	{
@@ -39,6 +39,7 @@ class Connect extends CI_Controller {
 		$pass_SignUp = $_POST['pass'];
 		$this->load->model('model_Connect');
         $this->model_Connect->register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp);
+		$this->model_Connect->loginCredentials($email_SignUp,$pass_SignUp);
 	}
 	public function logout()  
     {  
