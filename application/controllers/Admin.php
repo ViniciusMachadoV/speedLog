@@ -53,7 +53,10 @@ class Admin extends CI_Controller {
 	}
 	public function changeVariables()
 	{
-		//
+		$this->load->model('Model_Admin');
+		$days = $_POST['changedDays'];
+		$this->Model_Admin->changeVariables($days);
+	
 	}
 	public function addVoucher()
 	{

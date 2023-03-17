@@ -154,8 +154,7 @@
                     </div>
                     <div class="col">
                         Aplicar nos dias:
-                        <input type="checkbox" name="days" id="all">
-                        <label class="allDaysCheck" for="days">TODOS</label>
+                        <button type="button" class="btn btn-primary allDaysCheck" id="all">TODOS</button>
                         <input type="checkbox" class="weekDay" name="day0" id="domingo">
                         <label for="day0">DOM</label>
                         <input type="checkbox" class="weekDay" name="day1" id="segunda">

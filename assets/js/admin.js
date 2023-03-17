@@ -48,21 +48,34 @@ $(".btnLogout").click(function (){
     location.assign('connect/logout');
 });
 $("#all").click(function (){
-    if (this.checked){
+    if (this.text = 'TODOS'){
         $('.weekDay').prop('checked', true);
-        $('.allDaysCheck').text('NENHUM');
+        // this.text = 'NENHUM';
     }
     else{
         $('.weekDay').prop('checked', false);
-        $('.allDaysCheck').text('TODOS');
+        // this.text = 'TODOS';
     }
 });
 $(".btnEditVariables").click(function (){
+     var $days = [];
     $.each($('.weekDay'), function(){
         if (this.checked){
-            alert($(this).attr('id').toUpperCase());
+            // alert($(this).attr('id').toUpperCase());
+            $days.push("'"+$(this).attr('id').toUpperCase()+"'");
         }
     })
+    $.each($('.inputVariables'), function(){
+        if (this.val){
+            $valor = this.val;
+            alert($valor);
+            // alert(this.id);
+        }
+        // else alert(this.val);
+    })
+    // alert($days);
+    // $.push('Admin/changeVariables',{changedDays: days});
+    // location.reload();)
 });
 $("#btnAddVoucher").click(function (){
     // alert($("#startVoucher").val() + ' 11:24:11');
