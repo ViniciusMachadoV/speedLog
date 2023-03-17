@@ -57,18 +57,16 @@ $("#signIn").click(function(){
         if ($("#keepLogged").is(':checked')){
             alert("lembrar login marcado!")
         }
-        // $.post("connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
         $.post("connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
             if (result) location.assign(result);
             else $('#warning').html('Credenciais incorretas');
         });
-        // $("#user_SignIn").val('');
-        // $("#pass_SignIn").val('');
     }
     else $('#warning').html('Preencha todos os campos');
     });
 $("#signUp").click(function(){
     // FIRST DO A SELECT TO VERIFY IF USERNAME ALREADY EXISTS
+    // ADD DELIVERYMAN REGISTRATION
     if ($("#name_SignUp").val() != "" && 
     $("#email_SignUp").val() != "" && 
     $("#CPF_SignUp").val() != "" && 
@@ -82,13 +80,10 @@ $("#signUp").click(function(){
         var nickname_SignUp = $("#nickname_SignUp").val();
         var phoneNumber_SignUp = $("#phoneNumber_SignUp").val();
         var pass_SignUp = $("#pass1_SignUp").val();
-        // alert(name_signUp + email_SignUp + cpf_signUp + nickname_SignUp + phoneNumber_SignUp + pass_SignUp);
-        // $.post("index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp}, function(result){
         $.post("connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp}, function(result){
             if (result) location.assign(result);
         });
         $("#txtMessage").val('');
-        // location.reload();
         // if ($("#clientEmailCheck").is(':checked')){
         //     alert("receber email marcado!")
         // }
