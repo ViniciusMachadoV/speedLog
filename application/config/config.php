@@ -23,8 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://'. $_SERVER['HTTP_HOST'].'/speedlog/';
 $config['asset_url'] = 'http://'. $_SERVER['HTTP_HOST'].'/speedlog/assets';
+// $config['base_url'] = 'http://'. $_SERVER['HTTP_HOST'].'/speedlog/';
+$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------

@@ -70,7 +70,7 @@
     }
     public function changeVariables()
 	{
-		//
+		
 	}
 	public function addVoucher($codeVoucher, $discountVoucher, $percentVoucher, $startVoucher,$endVoucher, $quantityVoucher, $descriptionVoucher)
 	{
