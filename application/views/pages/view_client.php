@@ -1,4 +1,5 @@
 <title>Cliente - SpeedLog</title>
+<?php echo "bem vindo(a):".$_SESSION['usuario']; ?>
 <div class="container">
 	<div class="row">
 		<div class="col">
