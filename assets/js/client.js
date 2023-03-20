@@ -70,6 +70,7 @@ function teste() {
 		//USO DE API DE DISTANCIA
 		$.get("https://api.distancematrix.ai/maps/api/distancematrix/json?origins=" + cep2 + "&destinations=" + cep + "&key=bO1hA46Uj3fWyoqArNhwRvZbQ6hZv", function (data) {
 			if (data != "") {
+				
 				var distancia = data['rows'][0]['elements'][0]['distance']['text'];
 				var tempo = data['rows'][0]['elements'][0]['duration']['text'];
 				var numsStr = tempo.replace(/[^0-9]/g, '');
