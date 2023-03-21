@@ -1,5 +1,10 @@
 <title>Cliente - SpeedLog</title>
-<?php echo "bem vindo(a):".$_SESSION['usuario']; ?>
+<?php if (isset($_SESSION['usuario'])) {
+	echo "bem vindo(a):".$_SESSION['usuario'];
+}  else {
+	echo "você não esta logado!";
+}?>
+<!-- session_destroy();	 -->
 <div class="container">
 	<div class="row">
 		<div class="col">
