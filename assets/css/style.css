@@ -3,15 +3,37 @@ body{
     margin: 0;
     width: 100%;
     height: 100vh;
+    /* background: #121212; */
+    /* color: white; */
+}
+.pointer{
+    cursor: pointer;
 }
 .flex{
-    display: flex;
+    display: flex;  
 }
-.row-wrap{
-    flex-flow: row wrap;
+.row{
+    flex-direction: row;
 }
 .column{
     flex-direction: column;
+}
+.flex-row{
+    display: flex;  
+    flex-direction: row;
+}
+.flex-column{
+    display: flex;  
+    flex-direction: column;
+}
+.flex-vertical-centered{
+    align-self: center;
+}
+.flex-horizontal-centered{
+    justify-content: center;
+}
+.row-wrap{
+    flex-flow: row wrap;
 }
 .darkMode{
     background: black;
@@ -59,4 +81,50 @@ video {
     width: 70px;
 }
 /* CLIENTES / CLIENT: */
+
 /* ENTREGADORES / DELIVERYMAN: */
+.profileDeliveryman{
+    height: 500px;
+    width: 200px;
+    background: beige;
+    position: relative;
+    
+}
+.profilePhotoStatus{
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.profilePic{
+    width: 150px;
+    height: 150px;
+    border: 4px solid transparent;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+.profilePic>img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.profilePic:hover{
+    border: 4px solid white;
+}
+.statusDeliveryman{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    background:  #121212;
+    position: relative ;
+    bottom: 30px;
+    left: 100px;
+}
+.stat{
+    background: rgba(25,25,25,1);
+    margin: 5px;
+    color: wheat;
+    width: 100px;
+    height: 40px;
+}

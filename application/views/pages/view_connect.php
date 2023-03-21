@@ -3,7 +3,9 @@
 <!-- Background Video-->
 <!-- <body class="flex"> -->
 <div class="bg-video">
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?php echo base_url('assets/mp4/bg.mp4');?>" type="video/mp4" /></video>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="
+    <?php echo base_url('assets/mp4/bg.mp4');?>
+    " type="video/mp4" /></video>
 </div>
 <div class="loginForm">
     <?php print_r($this->session->userdata('usuario'))?>

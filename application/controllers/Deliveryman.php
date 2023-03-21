@@ -4,7 +4,9 @@ class Deliveryman extends CI_Controller {
 	{
 		// if($this->session->userdata('tipo') == 'ENTREGADOR'){
 			$dados['sessao']=$this->session->userdata('usuario');
+			$dados['idUser']=$this->session->userdata('idUser');
 			$this->load->model('model_Deliveryman');
+			$dados['perfil']=$this->model_Deliveryman->deliverymanProfile($dados['idUser']);
 			$dados['pendente']=$this->model_Deliveryman->viewPendingOrders();
 			$dados['andamento']=$this->model_Deliveryman->viewOngoingOrders();
 			$dados['concluido']=$this->model_Deliveryman->viewFinishedOrders();

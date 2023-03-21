@@ -1,5 +1,30 @@
 <title>Entregador - SpeedLog</title>
-<div class="container">
+<div class="container flex row-wrap">
+  <?php 
+    foreach($perfil as $DeliverymanColumn){
+    echo '
+    <div class="profileDeliveryman flex column">
+      <div class="profilePhotoStatus flex-vertical-centered" >
+        <img class="profilePic pointer" src="'.base_url('assets/pictures/Tulips.jpg').'">
+        <div class="statusDeliveryman pointer">status</div>
+      </div>
+      <div class="deliverymanStats flex-row">
+        <div class="stat" id="deliveries">Deliveries</div>
+        <div class="stat" id="rating">rate</div>
+        <div class="stat" id="serviceTime">'.$DeliverymanColumn->usuario_dataConta.'</div>
+      </div>
+      <div class="profileID">
+        <span class="accNickname">apelido</span>  
+        <button id="infoEdit">EDITAR</button><br>
+        <span class="accFullname">nome completo</span>
+      </div>
+      <div class="achievements">
+        <!--  -->
+      </div>
+    </div>';
+  }
+  ?>
+  <div>
   <ul class="nav nav-tabs">
       <li class="nav-item">
         <button class="btn btn-light" id="btnPendingOrders" aria-current="page">Pedido Pendente</button>
@@ -144,6 +169,7 @@
     <button type="submit" class="btn btn-success">Enviar imagem</button>
   </div>
 </form> -->
+  </div>
 </div>
 <?php
  if(isset($_FILES['pic']))
