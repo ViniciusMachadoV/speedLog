@@ -1,17 +1,24 @@
 <?php class Model_Client extends CI_Model {
     public function get_entregas()
     {        	
+        $id_cliente=$_SESSION['id'];
+        $this->db->where('entrega_cliente',$id_cliente);
         $query = $this->db->get('entregas');
         return $query->result();
     }
     public function get_acompanhamento(){       
-            $this->db->where('entrega_status','aberto'); 	
+        $id_cliente=$_SESSION['id'];
+        $this->db->where('entrega_cliente',$id_cliente);
+        $this->db->where('entrega_status','aberto'); 	
         $query = $this->db->get('entregas');
         return $query->result();
     }
     public function inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor)
     {
+        $id_cliente=$_SESSION['id'];
+
         $this->entrega_status="ABERTO";
+        $this->entrega_cliente=$id_cliente;
         $this->entrega_cepOrigem=$cepretirada;
         $this->entrega_cepDestino=$cepentrega;
         $this->entrega_peso=$peso;
