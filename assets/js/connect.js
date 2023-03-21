@@ -58,15 +58,18 @@ $("#signIn").click(function(){
             alert("lembrar login marcado!")
         }
         $.post("connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
-            if (result) location.assign(result);
+            if (result){
+                location.assign(result);
+                location.reload();
+            }
             else $('#warning').html('Credenciais incorretas');
         });
     }
     else $('#warning').html('Preencha todos os campos');
     });
 $("#signUp").click(function(){
-    // FIRST DO A SELECT TO VERIFY IF USERNAME ALREADY EXISTS
-    // ADD DELIVERYMAN REGISTRATION
+    // !!! FIRST DO A SELECT TO VERIFY IF USERNAME ALREADY EXISTS
+    // !!! ADD DELIVERYMAN REGISTRATION
     if ($("#name_SignUp").val() != "" && 
     $("#email_SignUp").val() != "" && 
     $("#CPF_SignUp").val() != "" && 

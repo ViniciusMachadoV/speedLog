@@ -44,6 +44,7 @@ class Connect extends CI_Controller {
 	public function logout()  
     {  
         $this->session->sess_destroy();  
-        redirect('connect');  
+        redirect('connect');
+		// header("Location: http:/localhost/speedlog");  
     }  
 }?>

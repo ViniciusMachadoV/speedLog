@@ -7,6 +7,13 @@
         $query = $this->db->get('entregas');
         return $query->result();
     }
+    // CARREGAR PERFIL DO MOTOBOY COM AS INFORMAÇÕES:
+    public function deliverymanProfile($idDeliveryman)
+    {
+        $this->db->where('usuario_id',$idDeliveryman);
+        $query = $this->db->get('usuarios');
+        return $query->result();
+    }
     // LISTAR PEDIDOS EM ANDAMENTO:
     public function viewOngoingOrders()
     {
