@@ -9,8 +9,16 @@
     }
     public function listDeliveries()
     {
+        
         $query = $this->db->get('entregas');  
         return $query->result();
+    }
+    public function valorCaixa()
+    {
+        $this->db->select('SUM(entrega_valor)');
+        $query = $this->db->get('entregas');
+        return $query->result();
+        
     }
     public function listClients()
     {

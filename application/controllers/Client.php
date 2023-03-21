@@ -10,9 +10,9 @@ class Client extends CI_Controller {
 			$dados['historico']=$this->Model_Client->get_entregas();
 			$this->load->helper('url');
 			$this->load->view('template/header');
-			$this->load->view('template/view_header');
+			// $this->load->view('template/view_header');
 			$this->load->view('pages/view_client',$dados);
-			$this->load->view('template/view_footer');
+			// $this->load->view('template/view_footer');
 			$this->load->view('template/footer');
 		// }
 		// else redirect('connect');

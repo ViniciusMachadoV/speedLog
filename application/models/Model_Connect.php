@@ -8,6 +8,7 @@
             $this->session->set_userdata('usuario',$userLogin);
             $this->session->set_userdata('idUser',$userType['usuario_id']);
             $this->session->set_userdata('tipo',$userType['usuario_tipo']);
+            $this->session->set_userdata('id',$userType['usuario_id']);
             switch ($userType['usuario_tipo']) {
                 case 'ADMINISTRADOR':
                     echo base_url('index.php/admin');

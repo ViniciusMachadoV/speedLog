@@ -23,11 +23,11 @@
     <div class="signIn">
         <div class="mb-3">
             <label for="userSignIn" class="form-label">USUÁRIO OU EMAIL</label>
-            <input type="email" class="form-control" id="user_SignIn">
+            <input value="carlinha" type="email" class="form-control" id="user_SignIn">
         </div>
         <div class="mb-3">
             <label for="passSignIn" class="form-label">SENHA</label>
-            <input type="password" class="form-control" id="pass_SignIn">
+            <input value="963" type="password" class="form-control" id="pass_SignIn">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="keepLogged">

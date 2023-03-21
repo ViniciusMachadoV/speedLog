@@ -11,6 +11,12 @@
     <button type="button" class="btn btn-primary tabBtn btnAdjustVariables">Valores de frete</button>
     <button type="button" class="btn btn-primary tabBtn btnReports">Denuncias</button>
     <button type="button" class="btn btn-primary tabBtn btnVouchers">Criar cupom</button>
+    VALOR EM CAIXA: <?php foreach ($valorCaixa as $value) {
+        foreach ($value as $value2) {
+            echo "R$". $value2;
+        }
+    }?>
+    
 
     <table class="table tabAdmin listDeliveryman">
         <!-- <form class="d-flex" role="search">
@@ -101,6 +107,7 @@
                         <td>'.$colunaDB->entrega_status.'</td>
                         <td>'.$colunaDB->entrega_dataPedido.'</td>
                         <td>'.$colunaDB->entrega_responsavel.'</td>
+                        <td>'.$colunaDB->entrega_valor.'</td>
                         <td>'.$colunaDB->entrega_observacao.'</td>
                         </tr>';
             }?>
