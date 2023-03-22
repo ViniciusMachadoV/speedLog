@@ -1,22 +1,27 @@
 <title>Entregador - SpeedLog</title>
 <div class="container flex row-wrap">
   <?php 
+    print_r($perfil);
     foreach($perfil as $DeliverymanColumn){
+      $idadeConta = date_diff(date_create(date('Y-m-d', strtotime($DeliverymanColumn->usuario_dataConta))),date_create(date('Y-m-d', time())));
     echo '
     <div class="profileDeliveryman flex column">
       <div class="profilePhotoStatus flex-vertical-centered" >
-        <img class="profilePic pointer" src="'.base_url('assets/pictures/Tulips.jpg').'">
-        <div class="statusDeliveryman pointer">status</div>
+        <img class="profilePic pointer" src="'.base_url('assets/pictures/Hydrangeas.jpg').'">
+        <div class="statusDeliveryman pointer">';
+        if($DeliverymanColumn->usuario_status == 'SUSPENSO') echo 's';
+        else echo 'a';
+        echo '</div>
       </div>
       <div class="deliverymanStats flex-row">
         <div class="stat" id="deliveries">Deliveries</div>
         <div class="stat" id="rating">rate</div>
-        <div class="stat" id="serviceTime">'.$DeliverymanColumn->usuario_dataConta.'</div>
+        <div class="stat" id="serviceTime">'.number_format($idadeConta->format("%a")/365, 1, ",", ".").' anos</div>
       </div>
       <div class="profileID">
-        <span class="accNickname">apelido</span>  
+        <span class="accNickname">'.$DeliverymanColumn->usuario_apelido.'</span>  
         <button id="infoEdit">EDITAR</button><br>
-        <span class="accFullname">nome completo</span>
+        <span class="accFullname">'.$DeliverymanColumn->usuario_nome.'</span>
       </div>
       <div class="achievements">
         <!--  -->
@@ -171,6 +176,12 @@
 </form> -->
   </div>
 </div>
+<footer class="mobileView flex-row">
+   <button class="btnMobile btnOrders">Pedidos</button>
+   <button class="btnMobile btnMessages">M+N</button>
+   <button class="btnMobile btnProfile">Perfil</button>
+   <button class="btnMobile btnSettings">Conf</button>
+</footer>
 <?php
  if(isset($_FILES['pic']))
  {
