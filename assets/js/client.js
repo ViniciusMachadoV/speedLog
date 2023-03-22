@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	$('#exampleModal').modal('show');
+
 
 	$('#cepretirada').mask('00000-000');
 	$('#cepentrega').mask('00000-000');
@@ -106,8 +108,13 @@ $('#btnMessage').click(function(){
   $("#txtMessage").val('');
   
 });
-// $('.delMsg').click(function(){
-//   var idMsg = this.id.replace("msg", "");
-//   $.post("<?php echo base_url(); ?>rpg/index.php/home/deleteMessage",{msgDel:idMsg});
+$('.btn_avaliar').click(function(){
+	$('#exampleModal').modal('show');
   
-// });
+});
+$('.closeModal').click(function(){
+	$('#exampleModal').modal('hide');
+  
+});
+
+ 

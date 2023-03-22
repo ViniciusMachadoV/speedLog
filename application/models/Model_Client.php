@@ -1,14 +1,19 @@
 <?php class Model_Client extends CI_Model {
     public function get_entregas()
-    {        	
-        $id_cliente=$_SESSION['id'];
-        $this->db->where('entrega_cliente',$id_cliente);
+    {    
+        if (isset($_SESSION['id'])) {
+            $id_cliente=$_SESSION['id'];
+            $this->db->where('entrega_cliente',$id_cliente);
+        }   	
         $query = $this->db->get('entregas');
         return $query->result();
     }
-    public function get_acompanhamento(){       
-        $id_cliente=$_SESSION['id'];
-        $this->db->where('entrega_cliente',$id_cliente);
+    public function get_acompanhamento(){
+               
+        if (isset($_SESSION['id'])) {
+            $id_cliente=$_SESSION['id'];
+            $this->db->where('entrega_cliente',$id_cliente);
+        }
         $this->db->where('entrega_status','aberto'); 	
         $query = $this->db->get('entregas');
         return $query->result();

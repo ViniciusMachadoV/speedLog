@@ -70,7 +70,7 @@
 				</div>
 				<div class="row">
 					<div class="col" id="historico">
-						<h1>seu historico de busca</h1>
+						<h1>seu historico de Pedidos</h1>
 						<table class="table">
 							<thead>
 								<tr>
@@ -95,7 +95,12 @@
 								<td><?php echo $p->entrega_cepDestino?></td>
 								<td><?php echo $p->entrega_peso?></td>
 								<td><?php echo $p->entrega_status?></td>
-								<?php ?>
+								
+								<?php if ($p->entrega_status=="FECHADO") {
+									
+									echo"<td> <button id=".  $p->entrega_id ." data-toggle='modal' data-target='#myModal type='button' class='btn btn-primary btn_avaliar'>AVALIAR</button></td>";
+
+								} ?>
 
 							</tr>
 							<?php } ?>
@@ -155,6 +160,50 @@
 
 		</div>
 	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nivel de satistação</h5>
+        <button type="button" class="closeModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+			<label class="form-check-label" for="inlineRadio1">1</label>
+			</div>
+			<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+			<label class="form-check-label" for="inlineRadio2">2</label>
+			</div>
+			<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+			<label class="form-check-label" for="inlineRadio3">3 </label>
+			</div>
+			<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+			<label class="form-check-label" for="inlineRadio3">4 </label>
+			</div>
+			<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+			<label class="form-check-label" for="inlineRadio3">5 </label>
+			</div> <br>
+			<div class="form-group">
+			<label for="exampleInputEmail1">Descrição da avaliação</label>
+			<input type="text" class="form-control" id="exampleInputText"  placeholder="nos ajude a melhorar, conte sua expêriencia">
+			
+		</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-secondary closeModal" data-dismiss="modal">fechar</button>
+        <button type="button" class="btn btn-primary">Avaliar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<script type='text/javascript' src="<?php echo base_url('assets/js/client.js');?>"></script>
 	<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>
