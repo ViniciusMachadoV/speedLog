@@ -21,6 +21,40 @@ $(document).ready(function(){
       $.ajax(settings).done(function (response) {
         console.log(response);
       });
+      
+    // var cpfSearch = {
+    //     "url": "https://apigateway.conectagov.estaleiro.serpro.gov.br/api-cpf-light-trial/v2/consulta/cpf",
+    //     "method": "POST",
+    //     // "timeout": 0,
+    //     "headers": {
+    //       "Content-Type": "application/json",
+    //     //   'Authorization': 'https://apigateway.conectagov.estaleiro.serpro.gov.br/oauth2/jwt-token'
+    //     },
+    //     "data": JSON.stringify({
+    //       "x-cpf-usuario": ""
+    //     }),
+    //   };
+      
+    //   $.ajax(cpfSearch).done(function (response) {
+    //     console.log(response);
+    //   });
+    // $.ajax({
+    //     url: 'https://apigateway.conectagov.estaleiro.serpro.gov.br/api-cpf-light-trial/v2/consulta/cpf',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     type: "POST",
+    //     dataType: "json",
+    //     data: {
+    //         "x-cpf-usuario": "14852776636"
+    //     },
+    //     success: function (result) {
+    //         console.log(result);
+    //     },
+    //     error: function () {
+    //         console.log("error");
+    //     }
+    // });
 });
 $(".btnSignIn").click(function(){
     $("#tabSignUp").removeClass('active');
@@ -57,7 +91,15 @@ $("#signIn").click(function(){
         if ($("#keepLogged").is(':checked')){
             alert("lembrar login marcado!")
         }
+        // $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
         $.post("connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
+            if (result){
+                location.assign(result);
+                location.reload();
+            }
+            else $('#warning').html('Credenciais incorretas');
+        });
+        $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
             if (result){
                 location.assign(result);
                 location.reload();

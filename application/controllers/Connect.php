@@ -20,7 +20,7 @@ class Connect extends CI_Controller {
                 case 'ENTREGADOR':
                     redirect('deliveryman');
                     break;
-            }
+		}
 	}
 	public function connectUser()
 	{
