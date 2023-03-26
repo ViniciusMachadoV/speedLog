@@ -3,6 +3,8 @@ $(document).ready(function () {
     // alert('ajax');
 	$("#cpfAdmin").mask("000.000.000-00");
 	$("#telefoneAdmin").mask("(00)0 0000-0000");
+	$("#rskm").mask("00.00", {reverse: true});
+	$("#rsmin").mask("00.00", {reverse: true});
     $(".tabAdmin").hide();
     $(".listDeliveryman").show();
 });
@@ -48,34 +50,39 @@ $(".btnLogout").click(function (){
     location.assign('connect/logout');
 });
 $("#all").click(function (){
-    if (this.text = 'TODOS'){
+    if ($(this).html() == 'TODOS'){
         $('.weekDay').prop('checked', true);
-        // this.text = 'NENHUM';
+        $(this).html('NENHUM');
     }
     else{
+        $(this).html('TODOS');
         $('.weekDay').prop('checked', false);
-        // this.text = 'TODOS';
     }
 });
 $(".btnEditVariables").click(function (){
-     var $days = [];
+    var $days = [];
     $.each($('.weekDay'), function(){
         if (this.checked){
-            // alert($(this).attr('id').toUpperCase());
-            $days.push("'"+$(this).attr('id').toUpperCase()+"'");
+            $days.push($(this).attr('id').toUpperCase());
         }
     })
+    var $cost = [];
     $.each($('.inputVariables'), function(){
-        if (this.val){
-            $valor = this.val;
-            alert($valor);
-            // alert(this.id);
+        if ($(this).val()){
+            $valor = $(this).val();
+            $cost.push($valor);
         }
-        // else alert(this.val);
+        else $cost.push(null);
     })
-    // alert($days);
-    // $.push('Admin/changeVariables',{changedDays: days});
-    // location.reload();)
+    var post_selectedDays = $days;
+    var post_deliveryCost = $cost;
+    if($days!="" && $cost!=""){
+        $.post("admin/changeVariables", {
+            days: post_selectedDays,
+            cost: post_deliveryCost,
+        });
+        location.reload();
+    } 
 });
 $("#btnAddVoucher").click(function (){
     // alert($("#startVoucher").val() + ' 11:24:11');

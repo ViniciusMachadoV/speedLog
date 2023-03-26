@@ -1,8 +1,10 @@
 <title>Admin - SpeedLog</title>
 <div class="container">
     <a class="btnLogout">Logout</a>
-    <?php print_r($this->session->userdata('tipo'))?>
-    <?php print_r($this->session->userdata('usuario'))?>
+    <!-- ?php  print_r(date_create(date('Y-m-d', time())))?> -->
+    <!-- PEGAR DIA DA SEMANA (DOMINGO = 0): ?php echo date('w')?> -->
+    <!-- ?php print_r($this->session->userdata('tipo'))?> -->
+    <!-- ?php print_r($this->session->userdata('usuario'))?> -->
 
     <button type="button" class="btn btn-primary tabBtn btnListDeliveryman">entregadores</button>
     <button type="button" class="btn btn-primary tabBtn btnListDeliveries">entregas</button>
@@ -149,7 +151,7 @@
     <div class="tabAdmin adjustVariables">
         <table class="table">
             <thead>
-                <div class="col">
+                <div class="col variableInputs">
                     <div class="row">
                         Alterar valores de frete:
                         <input class="inputVariables" type="text" id="rskm" placeholder="R$/km">

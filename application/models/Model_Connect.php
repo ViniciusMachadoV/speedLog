@@ -22,6 +22,21 @@
             }
         }
     }
+    public function verifyDuplicated($email_SignUp,$cpf_signUp,$nickname_SignUp){
+        $this->db->where('usuario_email', $email_SignUp);
+        $this->db->or_where('usuario_cpf', $cpf_signUp);
+        $this->db->or_where('usuario_apelido', $nickname_SignUp);
+        $query = $this->db->get('usuarios');
+        $queryInfo = $query->result_array();
+        $duplicated = [];
+        foreach ($queryInfo as $row) {
+            if ($row['usuario_email'] == $email_SignUp) $duplicated[] = 'email';
+            if ($row['usuario_cpf'] == $cpf_signUp) $duplicated[] = 'cpf';
+            if ($row['usuario_apelido'] == $nickname_SignUp) $duplicated[] = 'nickname';
+        }
+        if($query->num_rows() == 0) return false;
+        else return $duplicated;
+    }
     public function register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp){
         $this->usuario_nome = $name_signUp;
         $this->usuario_email = $email_SignUp;

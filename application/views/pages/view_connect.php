@@ -1,12 +1,9 @@
 <!-- <link rel = "stylesheet" type = "text/css" href = "?php echo base_url('assets/css/connect.css'); ?>"> -->
 <title>Conectar - SpeedLog</title>
-<!-- Background Video-->
-<!-- <body class="flex"> -->
-<div class="bg-video">
-    <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="
-    ?php echo base_url('assets/mp4/bg.mp4');?>
-    " type="video/mp4" /></video> -->
+<div class="background">
+    <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="?php echo base_url('assets/mp4/bg.mp4');?>" type="video/mp4" /></video> -->
 </div>
+<header class="homeHeader"><img src="<?php echo base_url('assets/img/title.png');?>" alt="Logo SpeedLog"></header>
 <div class="loginForm">
     <?php print_r($this->session->userdata('usuario'))?>
     <!-- SIGN OPTIONS -->
@@ -27,7 +24,7 @@
         </div>
         <div class="mb-3">
             <label for="passSignIn" class="form-label">SENHA</label>
-            <input value="963" type="password" class="form-control" id="pass_SignIn">
+            <input value="1" type="password" class="form-control" id="pass_SignIn">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="keepLogged">
@@ -49,24 +46,24 @@
     <div class="signUp">
         <div class="mb-3">
             <label for="name_SignUp" class="form-label">NOME COMPLETO</label>
-            <input class="form-control" id="name_SignUp">
+            <input class="form-control" id="name_SignUp" value="1" >
         </div>
         <div class="mb-3">
             <label for="email_SignUp" class="form-label">E-MAIL</label>
-            <input class="form-control" id="email_SignUp">
+            <input class="form-control" id="email_SignUp" value="1" >
         </div>
         <div class="mb-3">
-            <label for="CPF_SignUp" class="form-label">CPF</label>
-            <input class="form-control" id="CPF_SignUp">
+            <label for="cpf_SignUp" class="form-label">CPF</label>
+            <input class="form-control" id="cpf_SignUp" value="111.111.111-11" >
         </div>
         <div class="mb-3">
             <label for="nickname_SignUp" class="form-label">APELIDO</label>
-            <input class="form-control" id="nickname_SignUp">
+            <input class="form-control" id="nickname_SignUp" value="1" >
             <div id="nicknameHelp" class="form-text">Seu apelido deve ser único. Você poderá usar tanto o e-mail quanto esse apelido para acessar sua conta</div>
         </div>
         <div class="mb-3">
             <label for="phoneNumber_SignUp" class="form-label">TELEFONE</label>
-            <input class="form-control" id="phoneNumber_SignUp" placeholder="XX 00000 0000">
+            <input class="form-control" id="phoneNumber_SignUp" placeholder="(XX) 00000 0000" value="1" >
         </div>
 
         <!-- DELIVERY MAN ADDITIONAL INPUTS -->
@@ -83,11 +80,11 @@
         <!---->
         <div class="mb-3">
             <label for="pass1_SignUp" class="form-label">SENHA</label>
-            <input type="password" class="form-control" id="pass1_SignUp">
+            <input type="password" class="form-control" id="pass1_SignUp" value="1" >
         </div>
         <div class="mb-3">
             <label for="pass2_SignUp" class="form-label">CONFIRME SUA SENHA</label>
-            <input type="password" class="form-control" id="pass2_SignUp">
+            <input type="password" class="form-control" id="pass2_SignUp" value="1" >
         </div>
         
         <!-- DELIVERYMAN EMAIL CHECK -->
@@ -116,5 +113,6 @@
         <a class="btn btn-dark m-3" href="#!"><i class="fab fa-instagram"></i></a>
     </div>
 </div>
+<div class="lorem">lorem*100</div>
 <script type = 'text/javascript' src = "<?php echo base_url('assets/js/connect.js');?>"></script>
 <script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>

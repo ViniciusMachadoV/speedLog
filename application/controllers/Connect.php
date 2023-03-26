@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
 	{
+		// header('Clear-Site-Data: "cache"');
 		if($this->session->userdata('tipo') == NULL){
 			$this->load->helper('url');
 			$this->load->model('model_Connect');
@@ -38,8 +39,15 @@ class Connect extends CI_Controller {
 		$phoneNumber_SignUp = $_POST['phone'];
 		$pass_SignUp = $_POST['pass'];
 		$this->load->model('model_Connect');
-        $this->model_Connect->register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp);
-		$this->model_Connect->loginCredentials($email_SignUp,$pass_SignUp);
+        $alreadyExists = $this->model_Connect->verifyDuplicated($email_SignUp,$cpf_signUp,$nickname_SignUp);
+		if ($alreadyExists){
+			print_r($alreadyExists);
+		}
+		else{
+			print_r($alreadyExists);
+			$this->model_Connect->register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp);
+			$this->model_Connect->loginCredentials($email_SignUp,$pass_SignUp);
+		}
 	}
 	public function logout()  
     {  
