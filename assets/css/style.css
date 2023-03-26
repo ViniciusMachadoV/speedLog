@@ -40,14 +40,25 @@ body{
     color: white;
 }
 /* CONNECT: */
-.bg-video {
+.homeHeader{
+    position: fixed;
+    background: rgba(18, 18, 18, .9);
+    height: 100px;
+    width: 100vw;
+}
+.homeHeader>img{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.background {
     position: fixed;
     left: 0;
     top: 0;
     width: auto;
     height: auto;
 }
-.bg-video:before { 
+.background:before { 
     content:"";
     display: block;
     position: absolute;

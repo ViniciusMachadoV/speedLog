@@ -6,22 +6,23 @@ $(document).ready(function(){
 	$('#plate_SignUp').mask('AAA AAAA');
 
     // TIPO 1= CARRO, 2 =  MOTO, 3 = CAMINHAO
-    var settings = {
-        "url": "https://placa-fipe.apibrasil.com.br/placa/consulta",
-        "method": "POST",
-        "timeout": 0,
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "data": JSON.stringify({
-          "placa": "MRX5805"
-        }),
-      };
+    // var settings = {
+    //     "url": "https://placa-fipe.apibrasil.com.br/placa/consulta",
+    //     "method": "POST",
+    //     "timeout": 0,
+    //     "headers": {
+    //       "Content-Type": "application/json"
+    //     },
+    //     "data": JSON.stringify({
+    //       "placa": "MRX5805"
+    //     }),
+    //   };
       
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-      });
-      
+    //   $.ajax(settings).done(function (response) {
+    //     console.log(response);
+    //   });
+    
+    
     // var cpfSearch = {
     //     "url": "https://apigateway.conectagov.estaleiro.serpro.gov.br/api-cpf-light-trial/v2/consulta/cpf",
     //     "method": "POST",
@@ -91,18 +92,10 @@ $("#signIn").click(function(){
         if ($("#keepLogged").is(':checked')){
             alert("lembrar login marcado!")
         }
-        // $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
-        $.post("connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
-            if (result){
-                location.assign(result);
-                location.reload();
-            }
-            else $('#warning').html('Credenciais incorretas');
-        });
         $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
             if (result){
                 location.assign(result);
-                location.reload();
+                // location.reload();
             }
             else $('#warning').html('Credenciais incorretas');
         });
@@ -110,23 +103,33 @@ $("#signIn").click(function(){
     else $('#warning').html('Preencha todos os campos');
     });
 $("#signUp").click(function(){
-    // !!! FIRST DO A SELECT TO VERIFY IF USERNAME ALREADY EXISTS
     // !!! ADD DELIVERYMAN REGISTRATION
     if ($("#name_SignUp").val() != "" && 
     $("#email_SignUp").val() != "" && 
-    $("#CPF_SignUp").val() != "" && 
+    $("#cpf_SignUp").val() != "" && 
     $("#nickname_SignUp").val() != "" &&
     $("#phoneNumber_SignUp").val() != "" && 
     $("#pass1_SignUp").val() != "" && 
     $("#pass2_SignUp").val() == $("#pass1_SignUp").val()) {
         var name_signUp = $("#name_SignUp").val();
         var email_SignUp = $("#email_SignUp").val();
-        var cpf_signUp = $("#CPF_SignUp").val();
+        var cpf_signUp = $("#cpf_SignUp").val();
         var nickname_SignUp = $("#nickname_SignUp").val();
         var phoneNumber_SignUp = $("#phoneNumber_SignUp").val();
         var pass_SignUp = $("#pass1_SignUp").val();
-        $.post("connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp}, function(result){
-            if (result) location.assign(result);
+        $.post("index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp}, function(result){
+            if (result.includes("speedlog")){
+                location.assign(result);
+                location.reload();
+            }
+            else {
+                if (result.includes('email')) $("#email_SignUp").addClass('is-invalid');
+                else $("#email_SignUp").addClass('is-valid');
+                if (result.includes('cpf')) $("#cpf_SignUp").addClass('is-invalid');
+                else $("#cpf_SignUp").addClass('is-valid');
+                if (result.includes('nickname')) $("#nickname_SignUp").addClass('is-invalid');
+                else $("#nickname_SignUp").addClass('is-valid');
+            }
         });
         $("#txtMessage").val('');
         // if ($("#clientEmailCheck").is(':checked')){
@@ -136,6 +139,8 @@ $("#signUp").click(function(){
     else $('#warning').html('Preencha todos os campos');
 });
 
-$(".form-control").click(function(){
+$(".form-control").keyup(function(){
     $('#warning').html('');
+    $(this).removeClass('is-invalid');
+    $(this).removeClass('is-valid');
 });

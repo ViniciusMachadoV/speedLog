@@ -76,9 +76,16 @@
         $this->db->insert('usuarios',$this);
 
     }
-    public function changeVariables()
+    public function changeVariables($days,$cost)
 	{
-		
+        if($cost[0]) $this->valor_km = $cost[0];
+        if($cost[1]) $this->valor_minuto = $cost[1];
+        if($cost[2]) $this->valor_kgAte1 = $cost[2];
+        if($cost[3]) $this->valor_kg1a3 = $cost[3];
+        if($cost[4]) $this->valor_kg3a8 = $cost[4];
+        if($cost[5]) $this->valor_kg8a12 = $cost[5];
+        $this->db->where_in('frete_tipo', $days);
+        $this->db->update('frete', $this);
 	}
 	public function addVoucher($codeVoucher, $discountVoucher, $percentVoucher, $startVoucher,$endVoucher, $quantityVoucher, $descriptionVoucher)
 	{
