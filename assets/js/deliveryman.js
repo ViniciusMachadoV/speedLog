@@ -1,29 +1,49 @@
+
 $(document).ready(function () {
-  $(".orderTab").hide();
-  $("#listPendingOrders").show();
+  $("#pendente").show();
+  $("#atual").hide();
+  $("#lucro").show();
 });
-$('#btnPendingOrders').click(function () {
-  $(".orderTab").hide();
-  $("#listPendingOrders").show();
+$('#pedidoP').click(function () {
+  $("#pendente").show();
+  $("#concluido").hide();
+  $("#atual").hide();
+  $("#lucro").hide();
 });
-$('#btnOngoingOrders').click(function () {
-  $(".orderTab").hide();
-  $("#listOngoingOrders").show();
+$('#pedidoA').click(function () {
+  $("#atual").show();
+  $("#pendente").hide();
+  $("#concluido").hide();
+  $("#lucro").hide();
 });
-$('#btnFinishedOrders').click(function () {
-  $(".orderTab").hide();
-  $("#listFinishedOrders").show();
+$('#pedidoC').click(function () {
+  $("#pendente").hide();
+  $("#atual").hide();
+  $("#concluido").show();
+  $("#lucro").hide();
+});
+$('#ganhos').click(function () {
+  $("#pendente").hide();
+  $("#atual").hide();
+  $("#concluido").hide();
+  $("#lucro").show();
 });
 $('.confirmar').click(function () {
-    var idCard = this.id;
-    $.post("deliveryman/confirmarPedido", {idPedido: idCard});
-    location.reload();
+  $.post("deliveryman/confirmarPedido",{entregaId:this.id});
+  location.reload();
+
 });
 $('.cancelar').click(function () {
   $.post("deliveryman/cancelarPedido",{entregaId:this.id});
   location.reload();
+
 });
 $('.concluir').click(function () {
   $.post("deliveryman/concluirPedido",{entregaId:this.id});
+  location.reload();
+
+});
+$('.mostrar').click(function () {
+  $.post("deliveryman/mostrarLucro",{entregaId:this.id});
   location.reload();
 });

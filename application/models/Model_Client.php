@@ -14,7 +14,7 @@
             $id_cliente=$_SESSION['id'];
             $this->db->where('entrega_cliente',$id_cliente);
         }
-        $this->db->where('entrega_status','aberto'); 	
+        $this->db->where('entrega_status','ANDAMENTO'); 	
         $query = $this->db->get('entregas');
         return $query->result();
     }
