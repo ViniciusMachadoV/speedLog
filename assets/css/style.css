@@ -1,10 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Racing+Sans+One&family=Righteous&display=swap');
+/* font-family: 'Audiowide', cursive;
+font-family: 'Racing Sans One', cursive;
+font-family: 'Righteous', cursive; */
 /*  GENERAL STYLE // ESTILOS GERAIS: */
 body{
     margin: 0;
     width: 100%;
     height: 100vh;
-    /* background: #121212; */
+    background: #121212;
     /* color: white; */
+}
+label{
+    color: #DDDDDD;
+}
+input{
+    color: #DDDDDD;
+    border-radius: 8px;
+    background: rgba(85, 85, 85,.5);
+    border: 2px solid transparent;
+    transition: .7s;
+}
+input:hover{
+    background: rgba(85, 85, 85,.9);
 }
 .pointer{
     cursor: pointer;
@@ -21,6 +38,12 @@ body{
 .flex-row{
     display: flex;  
     flex-direction: row;
+}
+.spaced-around{
+    justify-content: space-around;
+}
+.spaced-between{
+    justify-content: space-between;
 }
 .flex-column{
     display: flex;  
@@ -45,11 +68,39 @@ body{
     background: rgba(18, 18, 18, .9);
     height: 100px;
     width: 100vw;
+    justify-content: right;
+    align-items: center;
 }
 .homeHeader>img{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+.signOptions{
+    background: beige;
+    width: 300px;
+    /* font-family: 'Racing Sans One', cursive; */
+    /* font-family: 'Audiowide', cursive; */
+    font-family: 'Righteous', cursive;
+}
+.signButtons{
+    background: orange;
+}
+.signButtons>button{
+    border: 4px solid transparent;
+    border-radius: 5px;
+    text-align: center;
+    margin: 5px;
+    transition: .7s;
+}
+.btnSignIn{
+    background: #f1f1f1;
+    color: #121212;
+    width: 80px;
+}
+.btnSignUp{
+    background: #00ffcc;
+    width: 120px;
 }
 .background {
     position: fixed;
@@ -86,6 +137,18 @@ video {
     background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
     padding: 20px;
+}
+.socialMedia{
+    width: 100vw;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+}
+.socialMedia>a{
+    background: #121212;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 /* ADMINISTRADORES / ADMIN: */
 .inputVariables{

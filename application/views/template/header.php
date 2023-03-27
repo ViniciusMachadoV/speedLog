@@ -26,14 +26,5 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
 	<!-- SCRIPT JQUERY -->
 	<script type = 'text/javascript' src = "<?php echo base_url('assets/js/jquery.js');?>"></script>
-	<style>
-		/* @font-face{ */
-			/* font-family: "Audiowide", sans-serif; */
-			/* src: url("assets/fonts/audiowide-Regular.ttf"); */
-		/* } */
-		/* header{ */
-			/* font-family: "Audiowide", sans-serif; */
-		/* } */
-	</style>
 </head>
 <body class="flex">
