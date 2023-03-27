@@ -5,7 +5,6 @@
 </div>
 <header class="homeHeader"><img src="<?php echo base_url('assets/img/title.png');?>" alt="Logo SpeedLog"></header>
 <div class="loginForm">
-    <?php print_r($this->session->userdata('usuario'))?>
     <!-- SIGN OPTIONS -->
     <ul class="nav nav-tabs signOptions">
         <li class="nav-item btnSignIn">

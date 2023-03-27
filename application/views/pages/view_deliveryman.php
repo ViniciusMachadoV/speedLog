@@ -1,7 +1,10 @@
 <title>Entregador - SpeedLog</title>
+<?php if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
+	else echo "você não esta logado!";
+	?>
 <div class="container flex row-wrap">
   <?php 
-    print_r($perfil);
+    // print_r($perfil);
     foreach($perfil as $DeliverymanColumn){
       $idadeConta = date_diff(date_create(date('Y-m-d', strtotime($DeliverymanColumn->usuario_dataConta))),date_create(date('Y-m-d', time())));
     echo '
@@ -55,7 +58,7 @@
               <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
               <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
               <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
-              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              <button type="button" class="btn btn-primary btn-lg confirmar" id="'.$key->entrega_id.'" data-toggle="modal" data-target="#myModal">
                 Iniciar Viagem
               </button>
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -95,7 +98,7 @@
             <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
             <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
             <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+            <button type="button" class="btn btn-primary btn-lg concluir" id="'. $key->entrega_id .'" data-toggle="modal" data-target="#myModal2">
               Concluir Viagem
             </button>
             <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -118,7 +121,7 @@
         </div>
       
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal3">
+        <button type="button" class="btn btn-primary btn-lg cancelar" id="'. $key->entrega_id .'" data-toggle="modal" data-target="#myModal3">
           Cancelar Viagem
         </button>
 
