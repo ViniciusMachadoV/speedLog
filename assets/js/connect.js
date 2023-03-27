@@ -139,7 +139,7 @@ $("#signUp").click(function(){
     else $('#warning').html('Preencha todos os campos');
 });
 
-$(".form-control").keyup(function(){
+$(".formInput").keyup(function(){
     $('#warning').html('');
     $(this).removeClass('is-invalid');
     $(this).removeClass('is-valid');

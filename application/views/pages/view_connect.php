@@ -3,7 +3,14 @@
 <div class="background">
     <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="?php echo base_url('assets/mp4/bg.mp4');?>" type="video/mp4" /></video> -->
 </div>
-<header class="homeHeader"><img src="<?php echo base_url('assets/img/title.png');?>" alt="Logo SpeedLog"></header>
+<header class="homeHeader flex-row"><img src="<?php echo base_url('assets/img/title.png');?>" alt="Logo SpeedLog">
+    <div class="signOptions flex-row">
+        <div class="signButtons flex-row spaced-around">
+            <button class="btnSignIn">ENTRAR</button>
+            <button class="btnSignUp">CADASTRAR</button>
+        </div>
+    </div>
+</header>
 <div class="loginForm">
     <?php print_r($this->session->userdata('usuario'))?>
     <!-- SIGN OPTIONS -->
@@ -20,11 +27,11 @@
     <div class="signIn">
         <div class="mb-3">
             <label for="userSignIn" class="form-label">USUÁRIO OU EMAIL</label>
-            <input value="carlinha" type="email" class="form-control" id="user_SignIn">
+            <input value="carlinha" type="email" class="formInput" id="user_SignIn">
         </div>
         <div class="mb-3">
             <label for="passSignIn" class="form-label">SENHA</label>
-            <input value="1" type="password" class="form-control" id="pass_SignIn">
+            <input value="1" type="password" class="formInput" id="pass_SignIn">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="keepLogged">
@@ -46,45 +53,45 @@
     <div class="signUp">
         <div class="mb-3">
             <label for="name_SignUp" class="form-label">NOME COMPLETO</label>
-            <input class="form-control" id="name_SignUp" value="1" >
+            <input class="formInput" id="name_SignUp" value="1" >
         </div>
         <div class="mb-3">
             <label for="email_SignUp" class="form-label">E-MAIL</label>
-            <input class="form-control" id="email_SignUp" value="1" >
+            <input class="formInput" id="email_SignUp" value="1" >
         </div>
         <div class="mb-3">
             <label for="cpf_SignUp" class="form-label">CPF</label>
-            <input class="form-control" id="cpf_SignUp" value="111.111.111-11" >
+            <input class="formInput" id="cpf_SignUp" value="111.111.111-11" >
         </div>
         <div class="mb-3">
             <label for="nickname_SignUp" class="form-label">APELIDO</label>
-            <input class="form-control" id="nickname_SignUp" value="1" >
+            <input class="formInput" id="nickname_SignUp" value="1" >
             <div id="nicknameHelp" class="form-text">Seu apelido deve ser único. Você poderá usar tanto o e-mail quanto esse apelido para acessar sua conta</div>
         </div>
         <div class="mb-3">
             <label for="phoneNumber_SignUp" class="form-label">TELEFONE</label>
-            <input class="form-control" id="phoneNumber_SignUp" placeholder="(XX) 00000 0000" value="1" >
+            <input class="formInput" id="phoneNumber_SignUp" placeholder="(XX) 00000 0000" value="1" >
         </div>
 
         <!-- DELIVERY MAN ADDITIONAL INPUTS -->
         <div class="deliverymanForm">
             <div class="mb-3 deliverymanForm">
                 <label for="plate_SignUp" class="form-label">PLACA DA MOTO</label>
-                <input class="form-control" id="plate_SignUp">
+                <input class="formInput" id="plate_SignUp">
             </div>
             <div class="mb-3 deliverymanForm">
                 <label for="facePhoto_SignUp" class="form-label">FOTO 3x4</label>
-                <input class="form-control" id="facePhoto_SignUp">
+                <input class="formInput" id="facePhoto_SignUp">
             </div>
         </div>
         <!---->
         <div class="mb-3">
             <label for="pass1_SignUp" class="form-label">SENHA</label>
-            <input type="password" class="form-control" id="pass1_SignUp" value="1" >
+            <input type="password" class="formInput" id="pass1_SignUp" value="1" >
         </div>
         <div class="mb-3">
             <label for="pass2_SignUp" class="form-label">CONFIRME SUA SENHA</label>
-            <input type="password" class="form-control" id="pass2_SignUp" value="1" >
+            <input type="password" class="formInput" id="pass2_SignUp" value="1" >
         </div>
         
         <!-- DELIVERYMAN EMAIL CHECK -->
@@ -104,15 +111,11 @@
         <div id="dataHelp" class="form-text">Seus dados jamais serão compartilhados.</div>
     </div>
 </div>
-<!-- Social Icons-->
-<!-- For more icon options, visit https://fontawesome.com/icons?d=gallery&p=2&s=brands-->
-<div class="social-icons">
-    <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-3 mt-lg-0">
-        <a class="btn btn-dark m-3" href="#!"><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-dark m-3" href="#!"><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-dark m-3" href="#!"><i class="fab fa-instagram"></i></a>
-    </div>
+<div class="socialMedia flex-row">
+        <a class="btnSocialMedia btnTwitter" target="_blank" rel="noopener noreferrer" href="twitter.com">a</a>
+        <a class="btnSocialMedia btnFacebook" target="_blank" rel="noopener noreferrer" href="facebook.com">b</a>
+        <a class="btnSocialMedia btnInstagram" target="_blank" rel="noopener noreferrer" href="instagram.com">c</a>
 </div>
-<div class="lorem">lorem*100</div>
+<!-- <div class="lorem">lorem*100</div> -->
 <script type = 'text/javascript' src = "<?php echo base_url('assets/js/connect.js');?>"></script>
 <script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>
