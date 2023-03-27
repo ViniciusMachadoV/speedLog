@@ -32,7 +32,8 @@
     public function takeOrder($idConfirmarPedido)
     {
         $this->entrega_status='ANDAMENTO';
-        // $this->entrega_responsavel=$session_entregador;
+        // PRECISA DE TESTES AINDA:
+        $this->entrega_responsavel= $_SESSION['usuario'];
         $this->db->where('entrega_id',$idConfirmarPedido);
         $this->db->update('entregas',$this);
     }

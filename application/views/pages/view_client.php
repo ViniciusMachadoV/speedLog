@@ -1,14 +1,10 @@
 <title>Cliente - SpeedLog</title>
-<?php if (isset($_SESSION['usuario'])) {
-	echo "bem vindo(a):".$_SESSION['usuario'];
-}  else {
-	echo "você não esta logado!";
-}?>
-<!-- session_destroy();	 -->
+<?php if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
+	else echo "você não esta logado!";
+	?>
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<h1>Area Cliente!</h1>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
 					<button class="btn btn-light" id="botaotrocatela" aria-current="page">Fazer Pedido</button>
