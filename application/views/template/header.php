@@ -27,4 +27,4 @@
 	<!-- SCRIPT JQUERY -->
 	<script type = 'text/javascript' src = "<?php echo base_url('assets/js/jquery.js');?>"></script>
 </head>
-<body class="flex">
+<body>
