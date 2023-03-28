@@ -23,45 +23,31 @@ input{
 input:hover{
     background: rgba(85, 85, 85,.9);
 }
+.hidden{
+    display: none;
+}
 .pointer{
     cursor: pointer;
 }
-.flex{
-    display: flex;  
-}
-.row{
-    flex-direction: row;
-}
-.column{
-    flex-direction: column;
-}
-.flex-row{
-    display: flex;  
-    flex-direction: row;
-}
-.spaced-around{
-    justify-content: space-around;
-}
-.spaced-between{
-    justify-content: space-between;
-}
-.flex-column{
-    display: flex;  
-    flex-direction: column;
-}
-.flex-vertical-centered{
-    align-self: center;
-}
-.flex-horizontal-centered{
-    justify-content: center;
-}
-.row-wrap{
-    flex-flow: row wrap;
-}
-.darkMode{
-    background: black;
-    color: white;
-}
+/* FLEX: */
+.flex{display: flex;}
+.row{flex-direction: row;}
+.column{flex-direction: column;}
+.flex-row{display: flex;  flex-direction: row;}
+.flex-column{display: flex;  flex-direction: column;}
+.spaced-around{justify-content: space-around;}
+.spaced-between{justify-content: space-between;}
+.flex-vertical-centered{align-self: center;}
+.flex-horizontal-centered{justify-content: center;}
+.row-wrap{flex-flow: row wrap;}
+/* TEXT: */
+.text-white{color: white;}
+.text-red{color: darkred;}
+.text-green{color: rgb(42, 196, 106);}
+.text-centered{text-align: center;}
+/* THEME: */
+.darkMode{background: black;color: white;}
+.lightMode{background: white;color: black;}
 /* CONNECT: */
 .homeHeader{
     position: fixed;
@@ -102,24 +88,6 @@ input:hover{
     background: #00ffcc;
     width: 120px;
 }
-.background {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: auto;
-    height: auto;
-}
-.background:before { 
-    content:"";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    z-index: 9;
-}
 video {
     object-fit: cover;
     width: 100vw;
@@ -131,17 +99,56 @@ video {
     left: 50%;
     transform: translateX(-50%);
     min-width: 300px;
-    /* width: 70%; */
     width: 300px;
     min-height: 400px;
     background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
     padding: 20px;
 }
+.content{
+    margin-top: 100px;
+    background: lightblue;
+}
+.features{
+    bottom: 0;
+    color: white;
+    background: gray;
+    width: 100vw;
+}
+.feature{
+    min-width:200px;
+    width: 300px;
+    min-height: 300px;
+    height: 400px;
+    margin: 20px;
+    background: darkgrey;
+}
+.services{
+    position: relative;
+    height: 400px;
+}
+.serviceImage{
+    width: 40%;
+    margin: 20px;
+}
+.service2{
+    position: relative;
+}
+.serviceDetails{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    color: #FFF;
+    background-color: rgba(50, 50, 50, 0.7);
+}
+.background{
+    filter: brightness(50%);
+    height: 200px;
+}
 .socialMedia{
     width: 100vw;
     justify-content: space-around;
-    position: fixed;
     bottom: 0;
 }
 .socialMedia>a{
@@ -162,7 +169,6 @@ video {
     width: 200px;
     background: beige;
     position: relative;
-    
 }
 .profilePhotoStatus{
     margin-top: 20px;
