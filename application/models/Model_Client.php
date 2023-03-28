@@ -8,6 +8,13 @@
         $query = $this->db->get('entregas');
         return $query->result();
     }
+    public function entregadorPerfil($EntregadorResponsavel)
+    {    
+        
+        $this->db->where('usuario_id',$EntregadorResponsavel); 	
+        $query = $this->db->get('usuarios');
+        return $query->result();
+    }
     public function get_acompanhamento(){
                
         if (isset($_SESSION['id'])) {
