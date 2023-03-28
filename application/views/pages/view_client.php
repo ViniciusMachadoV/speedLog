@@ -1,7 +1,10 @@
 <title>Cliente - SpeedLog</title>
-<?php if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
+<?php 
+// echo '<pre>'; print_r($_SESSION);
+if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 	else echo "você não esta logado!";
 	?>
+
 <div class="container">
 	<div class="row">
 		<div class="col">
@@ -121,7 +124,7 @@
 									<?php foreach ($acompanhar as $p) { ?>
 								<tr>
 									<th scope="row"><?php echo $p->entrega_id?></th>
-									<td><?php echo $p->entrega_responsavel?></td>
+									<td><button id="<?php echo $p->entrega_responsavel ?> "class="btnEntregador"><?php  echo $p->entrega_responsavel?></button></td>
 									<td><?php echo $p->entrega_enderecoDestino?></td>
 									<td><?php echo $p->entrega_cepDestino?></td>
 									<td><?php echo $p->entrega_valor?></td>
@@ -196,6 +199,48 @@
       <div class="modal-footer">
         <button type="button"  class="btn btn-secondary closeModal" data-dismiss="modal">fechar</button>
         <button type="button" class="btn btn-primary">Avaliar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL DE INFORMAÇÕES DO MOTOBOY -->
+	<div class="modal" id="modalMotoboy" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">INFORMAÇÕES DO ENTREGADOR RESPONSTAVEL</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+	  <table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Nome</th>
+									<th scope="col">Popularidade</th>
+									
+								</tr>
+							</thead>
+							<?php
+                         date_default_timezone_set('America/Sao_Paulo');
+                         // CRIA UMA VARIAVEL E ARMAZENA A HORA ATUAL DO FUSO-HORÀRIO DEFINIDO (BRASÍLIA)
+                             $obj=$_SESSION['motorista'][0];
+                              foreach ($obj as $info) { ?>
+							<tr>
+					
+
+								<td><?php echo $info->usuario_nome?></td>
+								<td><?php echo $info->usuario_status?></td>
+								
+								
+							</tr>
+							
+							<?php } ?>
+						</table>
+					
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

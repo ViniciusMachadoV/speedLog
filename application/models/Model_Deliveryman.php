@@ -3,7 +3,7 @@
     public function viewPendingOrders()
     {
         // $this->db->where('entrega_responsavel',$session_entregador);
-        $this->db->where('entrega_status','PENDENTE');
+        $this->db->where('entrega_status','ABERTO');
         $query = $this->db->get('entregas');
         return $query->result();
     }

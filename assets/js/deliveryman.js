@@ -8,6 +8,7 @@ $('#btnPendingOrders').click(function () {
 });
 $('#btnOngoingOrders').click(function () {
   $(".orderTab").hide();
+  // alert("asd");
   $("#listOngoingOrders").show();
 });
 $('#btnFinishedOrders').click(function () {

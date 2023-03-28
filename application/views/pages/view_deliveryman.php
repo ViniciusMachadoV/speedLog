@@ -1,5 +1,5 @@
 <title>Entregador - SpeedLog</title>
-<?php if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
+<?php date_default_timezone_set('America/Sao_Paulo'); if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 	else echo "você não esta logado!";
 	?>
 <div class="container flex row-wrap">

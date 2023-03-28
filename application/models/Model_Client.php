@@ -8,13 +8,20 @@
         $query = $this->db->get('entregas');
         return $query->result();
     }
+    public function entregadorPerfil($EntregadorResponsavel)
+    {    
+        
+        $this->db->where('usuario_id',$EntregadorResponsavel); 	
+        $query = $this->db->get('usuarios');
+        return $query->result();
+    }
     public function get_acompanhamento(){
                
         if (isset($_SESSION['id'])) {
             $id_cliente=$_SESSION['id'];
             $this->db->where('entrega_cliente',$id_cliente);
         }
-        $this->db->where('entrega_status','aberto'); 	
+        $this->db->where('entrega_status','ANDAMENTO'); 	
         $query = $this->db->get('entregas');
         return $query->result();
     }
