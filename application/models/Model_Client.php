@@ -13,7 +13,8 @@
         
         $this->db->where('usuario_id',$EntregadorResponsavel); 	
         $query = $this->db->get('usuarios');
-        return $query->result();
+        $entregador= $query->result();
+        print_r($entregador[0]);
     }
     public function get_acompanhamento(){
                
