@@ -6,6 +6,7 @@ class Client extends CI_Controller {
 			$dados['sessao']=$this->session->userdata('usuario');
 			$this->load->model('Model_Client');
 			$dados['mensagens']=$this->Model_Client->selectMessages();
+			$dados['pedidos']=$this->Model_Client->get_all();
 			$dados['acompanhar']=$this->Model_Client->get_acompanhamento();
 			$dados['historico']=$this->Model_Client->get_entregas();
 			$this->load->helper('url');
