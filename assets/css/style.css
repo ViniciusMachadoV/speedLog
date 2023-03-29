@@ -4,8 +4,12 @@ font-family: 'Racing Sans One', cursive;
 font-family: 'Righteous', cursive; */
 /*  GENERAL STYLE // ESTILOS GERAIS: */
 body{
-    margin: 0;
+    /* background: #121212; */
+    background: rgb(147, 196, 13);
     width: 100%;
+    margin: 0;
+    position: relative;
+    /* min-height: 100vh; */
     height: 100vh;
     /* background: #121212; */
     /* color: white; */
@@ -39,7 +43,7 @@ input:hover{
 .spaced-between{justify-content: space-between;}
 .flex-vertical-centered{align-self: center;}
 .flex-horizontal-centered{justify-content: center;}
-.row-wrap{flex-flow: row wrap;}
+.wrap{flex-wrap: wrap;}
 /* TEXT: */
 .text-white{color: white;}
 .text-red{color: darkred;}
@@ -51,15 +55,16 @@ input:hover{
 /* CONNECT: */
 .homeHeader{
     position: fixed;
-    background: rgba(18, 18, 18, .9);
-    height: 100px;
-    width: 100vw;
+    background: rgba(18, 18, 18, .5);
+    height: 80px;
+    width: 100%;
     justify-content: right;
     align-items: center;
 }
 .homeHeader>img{
     position: absolute;
     left: 50%;
+    width: 300px;
     transform: translateX(-50%);
 }
 .signOptions{
@@ -82,19 +87,33 @@ input:hover{
 .btnSignIn{
     background: #f1f1f1;
     color: #121212;
-    width: 80px;
+    width: 90px;
 }
 .btnSignUp{
     background: #00ffcc;
-    width: 120px;
+    width: 130px;
 }
-video {
-    object-fit: cover;
-    width: 100vw;
-    height: 100vh;
+.language{
+    position: relative;
+}
+.btnChangeLanguage{
+    /* position: absolute; */
+    background: #f1f1f1;
+    width: 80px;
+    border-radius: 20px;
+    transition: .7s;
+}
+.dropdownClosed{
+    height: 40px;
+}
+.dropdownOpened{
+    height: 120px;
+}
+.btnChangeLanguage:hover{
+    height: 120px;
 }
 .loginForm {
-    position: absolute;
+    /* position: absolute; */
     align-self: center;
     left: 50%;
     transform: translateX(-50%);
@@ -105,15 +124,19 @@ video {
     color: #f1f1f1;
     padding: 20px;
 }
+.landingBackground>img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
 .content{
-    margin-top: 100px;
     background: lightblue;
 }
 .features{
     bottom: 0;
     color: white;
     background: gray;
-    width: 100vw;
+    width: 100%;
 }
 .feature{
     min-width:200px;
@@ -125,7 +148,6 @@ video {
 }
 .services{
     position: relative;
-    height: 400px;
 }
 .serviceImage{
     width: 40%;
@@ -146,16 +168,36 @@ video {
     filter: brightness(50%);
     height: 200px;
 }
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: yellow;
+}
+.links,.brand,.socialMedia{
+    /* width: 200px; */
+    min-width: 200px;
+    width: 300px;
+}
+.links{
+    background: purple;
+}
+.brand{
+    background: pink;
+}
 .socialMedia{
-    width: 100vw;
     justify-content: space-around;
     bottom: 0;
 }
-.socialMedia>a{
-    background: #121212;
+.btnSocialMedia{
+    background: forestgreen;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    cursor: pointer;
+}
+.btnSocialMedia>img{
+    width: 100%;
 }
 /* ADMINISTRADORES / ADMIN: */
 .inputVariables{

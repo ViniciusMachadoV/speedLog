@@ -1,6 +1,13 @@
 <!-- <link rel = "stylesheet" type = "text/css" href = "?php echo base_url('assets/css/connect.css'); ?>"> -->
 <title>Conectar - SpeedLog</title>
 <header class="homeHeader flex-row"><img src="<?php echo base_url('assets/img/title.png');?>" alt="Logo SpeedLog">
+    <div class="language">
+        <div class="btnChangeLanguage">
+            <span>Português</span>
+            <li>pt-br</li>
+            <li>en</li>
+        </div>
+    </div>
     <div class="signOptions flex-row">
         <div class="signButtons flex-row spaced-around">
             <button class="btnSignIn">ENTRAR</button>
@@ -8,6 +15,7 @@
         </div>
     </div>
 </header>
+<div class="landingBackground"><img src="<?php echo base_url('assets/img/bg-mobile-fallback.jpg');?>" alt=""></div>
 <div class="content">
     <div class="loginForm hidden">
         <!-- SIGN OPTIONS -->
@@ -108,7 +116,7 @@
             <div id="dataHelp" class="form-text">Seus dados jamais serão compartilhados.</div>
         </div>
     </div>
-    <section class="features flex-row row-wrap flex-horizontal-centered  text-centered">
+    <section class="features flex-row wrap flex-horizontal-centered  text-centered">
         <div class="feature">
             <h1>Entrega em poucos cliques</h1>
             <h3>descrição</h3>
@@ -142,4 +150,3 @@
 
 <!-- <div class="lorem">lorem*100</div> -->
 <script type = 'text/javascript' src = "<?php echo base_url('assets/js/connect.js');?>"></script>
-<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>
