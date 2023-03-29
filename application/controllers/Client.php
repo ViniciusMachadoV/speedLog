@@ -65,4 +65,11 @@ class Client extends CI_Controller {
         $this->Model_Client->delete_msg($msgDel);
 
 	}	
+    public function pegaEntregador(){
+		$entregador = $_POST['entregador'];
+		$this->load->model('Model_Client');
+		$_SESSION['motorista']=$this->Model_Client->entregadorPerfil($entregador);
+		
+
+	}	
 }?>

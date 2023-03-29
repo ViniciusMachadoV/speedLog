@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('#exampleModal').modal('show');
+	// $('#exampleModal').modal('show');
 
 
 	$('#cepretirada').mask('00000-000');
@@ -116,5 +116,19 @@ $('.closeModal').click(function(){
 	$('#exampleModal').modal('hide');
   
 });
+$('.btnEntregador').click(function(){
+
+	var idEntregador = this.id;
+	$.post("client/pegaEntregador",{entregador:idEntregador},function (response) {
+		alert(response);
+		$('#modalMotoboy').modal('show');
+		
+	});
+
+
+  
+});
+
+
 
  
