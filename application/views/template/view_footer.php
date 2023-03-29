@@ -1,5 +1,5 @@
 <!-- RODAPÉ // FOOTER-->
-<footer class="flex row-wrap">
+<footer class="flex wrap">
     <!-- ÍCONES COM LINK PARA REDES SOCIAIS // SOCIAL MEDIA ICONS WITH LINKS-->
     <section class="socialMedia">
 

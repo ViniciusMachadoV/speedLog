@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <!-- LOGOTIPO E NOME DA EMPRESA // LOGO AND COMPANY NAME -->
-            <a class="navbar-brand flex row-wrap" href="#">
+            <a class="navbar-brand flex wrap" href="#">
                 <img src="" alt="SpeedLog-Icon" width="30" height="24" class="d-inline-block align-text-top">
                 <h3>SpeedLog</h3>
             </a>
