@@ -81,6 +81,7 @@ function teste() {
 					tempo_cal: numsStr,
 					peso_cal: peso
 				}, function (resposta) {
+					console.log(resposta);
 					$("#divcep2").html("distancia entre os pontos: " + distancia + "Tempo estimado de chegada: " + tempo + " Valor estimado de frete: " + resposta + "")
 					$("#valor_entrega").val(resposta);;
 				});
@@ -114,18 +115,6 @@ $('.btn_avaliar').click(function(){
 });
 $('.closeModal').click(function(){
 	$('#exampleModal').modal('hide');
-  
-});
-$('.btnEntregador').click(function(){
-
-	var idEntregador = this.id;
-	$.post("client/pegaEntregador",{entregador:idEntregador},function (response) {
-		alert(response);
-		$('#modalMotoboy').modal('show');
-		
-	});
-
-
   
 });
 

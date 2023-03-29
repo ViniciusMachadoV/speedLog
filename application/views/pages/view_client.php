@@ -1,5 +1,6 @@
 <title>Cliente - SpeedLog</title>
 <?php 
+print_r($historico);
 // echo '<pre>'; print_r($_SESSION);
 if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 	else echo "você não esta logado!";
@@ -95,7 +96,7 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 								<td><?php echo $p->entrega_peso?></td>
 								<td><?php echo $p->entrega_status?></td>
 								
-								<?php if ($p->entrega_status=="FECHADO") {
+								<?php if ($p->entrega_status=="CONCLUIDO") {
 									
 									echo"<td> <button id=".  $p->entrega_id ." data-toggle='modal' data-target='#myModal type='button' class='btn btn-primary btn_avaliar'>AVALIAR</button></td>";
 
@@ -134,7 +135,31 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 												PEDIDO! </a></button></td>
 									<!--  echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id) -->
 								</tr>
+								<tr>
+									<th scope="row"><?php echo $p->usuario_nome?></th>
+									<td><?php  echo $p->usuario_status?></td>
+									<td><?php echo $p->entregador_foto?></td>
+									<td><?php echo $p->entrega_cepDestino?></td>
+									
+									<!--  echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id) -->
+								</tr>
 								<?php } ?>
+									<?php foreach ($pedidos as $p) { ?>
+								<tr>
+									<th scope="row"><?php echo $p->entrega_id?></th>
+									<td><button id="<?php echo $p->entrega_responsavel ?> "class="btnEntregador"><?php  echo $p->entrega_responsavel?></button></td>
+									<td><?php echo $p->entrega_enderecoDestino?></td>
+									<td><?php echo $p->entrega_cepDestino?></td>
+									<td><?php echo $p->entrega_valor?></td>
+									<td><button id="btn_ex" class="btn btn-danger">
+											<a class="link_excluir" onclick="pegarid(<?php echo $p->entrega_id?>)"
+												id="<?php echo $p->entrega_id?>" style="text-decoration:none ">CANCELAR
+												PEDIDO! </a></button></td>
+									<!--  echo base_url('index.php/client/cancelar_pedido/'.$p->entrega_id) -->
+								</tr>
+								 
+								<?php } ?>
+								
 							</tbody>
                         </table>
 					</div>
@@ -203,48 +228,7 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
     </div>
   </div>
 </div>
-<!-- MODAL DE INFORMAÇÕES DO MOTOBOY -->
-	<div class="modal" id="modalMotoboy" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">INFORMAÇÕES DO ENTREGADOR RESPONSTAVEL</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-	  <table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Nome</th>
-									<th scope="col">Popularidade</th>
-									
-								</tr>
-							</thead>
-							<?php
-                         date_default_timezone_set('America/Sao_Paulo');
-                         // CRIA UMA VARIAVEL E ARMAZENA A HORA ATUAL DO FUSO-HORÀRIO DEFINIDO (BRASÍLIA)
-                             $obj=$_SESSION['motorista'][0];
-                              foreach ($obj as $info) { ?>
-							<tr>
-					
 
-								<td><?php echo $info->usuario_nome?></td>
-								<td><?php echo $info->usuario_status?></td>
-								
-								
-							</tr>
-							
-							<?php } ?>
-						</table>
-					
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 	<script type='text/javascript' src="<?php echo base_url('assets/js/client.js');?>"></script>
 	<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>

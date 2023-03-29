@@ -5,25 +5,44 @@
             $id_cliente=$_SESSION['id'];
             $this->db->where('entrega_cliente',$id_cliente);
         }   	
-        $query = $this->db->get('entregas');
+        $this->db->select('*');
+        $this->db->where('entrega_status',"CONCLUIDO");
+            
+        $this->db->from('entregas');
+        $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
+        $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
+        $query = $this->db->get();
         return $query->result();
-    }
-    public function entregadorPerfil($EntregadorResponsavel)
-    {    
+
         
-        $this->db->where('usuario_id',$EntregadorResponsavel); 	
-        $query = $this->db->get('usuarios');
-        $entregador= $query->result();
-        print_r($entregador[0]);
     }
+    public function get_all()
+    {    
+        if (isset($_SESSION['id'])) {
+            $id_cliente=$_SESSION['id'];
+            $this->db->where('entrega_cliente',$id_cliente);
+        }
+        $this->db->where('entrega_status',"ABERTO");
+        $this->db->select('*');
+        $this->db->from('entregas');
+        $query = $this->db->get();
+        return $query->result();
+
+        
+    }
+    
     public function get_acompanhamento(){
                
         if (isset($_SESSION['id'])) {
             $id_cliente=$_SESSION['id'];
             $this->db->where('entrega_cliente',$id_cliente);
         }
-        $this->db->where('entrega_status','ANDAMENTO'); 	
-        $query = $this->db->get('entregas');
+        $where="entrega_status='ANDAMENTO' OR entrega_status='ABERTO'" ;
+        $this->db->where($where); 	
+        $this->db->from('entregas');
+        $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
+        $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
+        $query = $this->db->get();
         return $query->result();
     }
     public function inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor)
