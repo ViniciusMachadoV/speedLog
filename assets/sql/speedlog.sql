@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13-Mar-2023 às 01:59
+-- Tempo de geração: 30-Mar-2023 às 22:36
 -- Versão do servidor: 5.6.34
 -- versão do PHP: 8.1.7
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `speedlog`
 --
-CREATE DATABASE IF NOT EXISTS `speedlog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `speedlog`;
 
 -- --------------------------------------------------------
 
@@ -71,6 +69,18 @@ INSERT INTO `conquistas` (`conquista_id`, `conquista_nome`, `conquista_desc`) VA
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `conversas`
+--
+
+CREATE TABLE `conversas` (
+  `conversa_id` int(11) NOT NULL,
+  `conversa_usuario1` int(11) NOT NULL,
+  `conversa_usuario2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `cupons`
 --
 
@@ -106,7 +116,7 @@ CREATE TABLE `denuncias` (
   `denuncia_entrega` int(11) DEFAULT NULL,
   `denuncia_descricao` varchar(254) NOT NULL,
   `denuncia_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `denuncia_status` varchar(10) NOT NULL
+  `denuncia_status` varchar(10) NOT NULL COMMENT 'PENDENTE, EM ANÁLISE, FECHADA'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -139,7 +149,7 @@ CREATE TABLE `entregadores` (
   `entregador_id` int(11) NOT NULL,
   `entregador_placaMoto` varchar(7) NOT NULL,
   `entregador_foto` varchar(70) NOT NULL,
-  `entregador_status` varchar(8) NOT NULL
+  `entregador_status` varchar(8) NOT NULL COMMENT 'LIVRE, OCUPADO OU INATIVO'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -163,14 +173,17 @@ CREATE TABLE `entregas` (
   `entrega_cepOrigem` varchar(8) NOT NULL,
   `entrega_cepDestino` varchar(8) NOT NULL,
   `entrega_peso` float NOT NULL,
-  `entrega_status` varchar(9) NOT NULL,
+  `entrega_status` varchar(9) NOT NULL COMMENT 'PENDENTE, EM ANDAMENTO OU FINALIZADA',
   `entrega_dataPedido` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `entrega_dataTransporte` datetime DEFAULT CURRENT_TIMESTAMP,
   `entrega_dataEntrega` datetime DEFAULT CURRENT_TIMESTAMP,
-  `entrega_cliente` int(11) NOT NULL,
+  `tempoEstimado` varchar(10) NOT NULL,
+  `entrega_cliente` varchar(100) NOT NULL,
+  `entrega_clienteID` int(11) NOT NULL,
   `entrega_responsavel` int(11) DEFAULT NULL,
   `entrega_valor` decimal(10,0) NOT NULL,
-  `entrega_cupom` int(11) DEFAULT NULL,
+  `entrega_gorjeta` decimal(4,0) DEFAULT NULL,
+  `entrega_cupom` varchar(15) DEFAULT NULL,
   `entrega_observacao` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -178,8 +191,19 @@ CREATE TABLE `entregas` (
 -- Extraindo dados da tabela `entregas`
 --
 
-INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `entrega_cliente`, `entrega_responsavel`, `entrega_valor`, `entrega_cupom`, `entrega_observacao`) VALUES
-(1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'ANDAMENTO', '2023-02-15 21:32:45', NULL, NULL, 4, 2, '0', NULL, NULL);
+INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `tempoEstimado`, `entrega_cliente`, `entrega_clienteID`, `entrega_responsavel`, `entrega_valor`, `entrega_gorjeta`, `entrega_cupom`, `entrega_observacao`) VALUES
+(1, 'r. alfineiros n4', '', '', '36035210', 11.2, 'PENDENTE', '2023-02-15 21:32:45', NULL, NULL, '', '4', 0, 2, '0', '0', NULL, NULL),
+(5, '', '', '36050-00', 'teste en', 12, 'ANDAMENTO', '2023-03-26 11:02:53', '2023-03-26 11:02:53', '2023-03-26 11:02:53', '', '4', 0, NULL, '0', '0', NULL, NULL),
+(6, '', '', '36050-00', 'teste2', 12, 'ANDAMENTO', '2023-03-26 11:04:03', '2023-03-26 11:04:03', '2023-03-26 11:04:03', '', '4', 0, 0, '0', '0', NULL, NULL),
+(7, '', '', '36050-00', 'aaa', 12, 'PENDENTE', '2023-03-26 11:28:22', '2023-03-26 11:28:22', '2023-03-26 11:28:22', '', '4', 0, NULL, '0', '0', NULL, NULL),
+(8, '', '', '36050-00', 'a', 12, 'PENDENTE', '2023-03-30 10:28:13', '2023-03-30 10:28:13', '2023-03-30 10:28:13', '', '4', 0, NULL, '0', NULL, NULL, NULL),
+(9, 'Rua Américo Lobo', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-03-30 18:29:10', '2023-03-30 18:29:10', '2023-03-30 18:29:10', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(10, 'Rua Américo Lobo', 'Avenida dos Andradas', '36050-00', '36036-00', 12, 'PENDENTE', '2023-03-30 18:29:37', '2023-03-30 18:29:37', '2023-03-30 18:29:37', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(11, '', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-03-30 18:37:27', '2023-03-30 18:37:27', '2023-03-30 18:37:27', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(12, '', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-03-30 19:05:03', '2023-03-30 19:05:03', '2023-03-30 19:05:03', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(13, '', '', '36050-00', '36036-00', 12, 'ANDAMENTO', '2023-03-30 19:09:42', '2023-03-30 19:09:42', '2023-03-30 19:09:42', '', 'carlinha', 4, 2, '0', NULL, NULL, ''),
+(14, '', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-03-30 19:15:08', '2023-03-30 19:15:08', '2023-03-30 19:15:08', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(15, '', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-03-30 19:30:39', '2023-03-30 19:30:39', '2023-03-30 19:30:39', '', 'carlinha', 4, NULL, '0', NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -203,16 +227,15 @@ CREATE TABLE `frete` (
 --
 
 INSERT INTO `frete` (`frete_id`, `frete_tipo`, `valor_km`, `valor_minuto`, `valor_kgAte1`, `valor_kg1a3`, `valor_kg3a8`, `valor_kg8a12`) VALUES
-(1, 'DOMINGO', '0.50', '0.70', '3.00', '5.00', '9.00', '12.00'),
+(1, 'DOMINGO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
 (2, 'SEGUNDA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
 (3, 'TERCA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
 (4, 'QUARTA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
 (5, 'QUINTA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
 (6, 'SEXTA', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(7, 'SÁBADO', '0.40', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(8, 'PADRAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
-(9, 'FERIADO', '0.60', '0.40', '3.00', '5.00', '9.00', '12.00'),
-(10, 'PROMOÇÃO', '0.30', '0.20', '3.00', '5.00', '9.00', '12.00');
+(7, 'SABADO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(9, 'FERIADO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00'),
+(10, 'PROMOCAO', '0.50', '0.30', '3.00', '5.00', '9.00', '12.00');
 
 -- --------------------------------------------------------
 
@@ -236,7 +259,7 @@ CREATE TABLE `log` (
 
 CREATE TABLE `mensagens` (
   `mensagem_id` int(11) NOT NULL,
-  `mensagem_codEntrega` int(11) NOT NULL,
+  `mensagem_conversa` int(11) NOT NULL,
   `mensagem_usuario` int(11) NOT NULL,
   `mensagem_texto` varchar(254) NOT NULL,
   `mensagem_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -276,9 +299,9 @@ CREATE TABLE `usuarios` (
   `usuario_cpf` varchar(14) NOT NULL,
   `usuario_apelido` varchar(15) NOT NULL,
   `usuario_senha` varchar(30) NOT NULL,
-  `usuario_tipo` varchar(13) NOT NULL,
+  `usuario_tipo` varchar(13) NOT NULL COMMENT 'ADMINISTRADOR, CLIENTE, ENTREGADOR OU SUPORTE',
   `usuario_telefone` varchar(16) DEFAULT NULL,
-  `usuario_status` varchar(10) NOT NULL,
+  `usuario_status` varchar(10) NOT NULL DEFAULT 'ATIVO' COMMENT 'ATIVO, INATIVO, SUSPENSO OU BANIDO',
   `usuario_dataConta` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -287,10 +310,15 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_cpf`, `usuario_apelido`, `usuario_senha`, `usuario_tipo`, `usuario_telefone`, `usuario_status`, `usuario_dataConta`) VALUES
-(1, 'ADMINISTRADOR', 'admin@mail.com', '000.000.000-00', 'admin', '123', 'ADMINISTRADOR', NULL, '', '2020-01-10 09:00:00'),
-(2, 'ROGÉRIO ULISSES', 'rogerinho@mail.com', '123.456.789-10', 'rogerinho', '456', 'ENTREGADOR', '+55(32)9999-9999', 'SUSPENSO', '2016-04-07 10:20:00'),
-(3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '789', 'ENTREGADOR', '9 9999-9998', 'SUSPENSO', '2022-06-10 18:33:00'),
-(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '963', 'CLIENTE', '9 88888888', 'ATIVO', '2020-12-23 17:03:00');
+(1, 'ADMINISTRADOR', 'admin@mail.com', '000.000.000-00', 'admin', '1', 'ADMINISTRADOR', NULL, 'ATIVO', '2020-01-10 09:00:00'),
+(2, 'ROGÉRIO ULISSES', 'rogerin@mail.com', '123.456.789-10', 'rogerin', '1', 'ENTREGADOR', '(32)9999-9999', 'ATIVO', '2016-04-07 10:20:00'),
+(3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '1', 'ENTREGADOR', '9 9999-9998', 'ATIVO', '2022-06-10 18:33:00'),
+(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '1', 'CLIENTE', '9 88888888', 'ATIVO', '2020-12-23 17:03:00'),
+(5, 'VINÍCIUS MACHADO VIANNA', 'vini@mail.com', '444.444.444-44', 'vini', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-16 20:33:30'),
+(7, 'BERNARDO DA SILVA BRIGOLINI', 'bernardo@mail.com', '111.111.111-11', 'be', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-25 18:59:01'),
+(8, 'RAFAELA DE FARIA BILHEIROS', 'rafa@mail.com', '222.222.222-22', 'rafa', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-25 19:05:01'),
+(9, 'JACKSON EDUARDO DA SILVA', 'jack@gmail.com', '333.333.333-33', 'jack', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-25 19:06:21'),
+(10, '1', '1', '111.111.111-12', '1', '1', 'CLIENTE', '(1', 'ATIVO', '2023-03-30 18:55:45');
 
 --
 -- Índices para tabelas despejadas
@@ -406,7 +434,7 @@ ALTER TABLE `elogios`
 -- AUTO_INCREMENT de tabela `entregas`
 --
 ALTER TABLE `entregas`
-  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `frete`
@@ -436,7 +464,7 @@ ALTER TABLE `notificacoes`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
