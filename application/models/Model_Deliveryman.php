@@ -3,7 +3,7 @@
     public function viewPendingOrders()
     {
         // $this->db->where('entrega_responsavel',$session_entregador);
-        $this->db->where('entrega_status','ABERTO');
+        $this->db->where('entrega_status','PENDENTE');
         $query = $this->db->get('entregas');
         return $query->result();
     }
@@ -24,7 +24,7 @@
     // LISTAR PEDIDOS FINALIZADOS:
     public function viewFinishedOrders()
     {
-        $this->db->where('entrega_status','CONCLUIDO');
+        $this->db->where('entrega_status','FINALIZADO');
         $query = $this->db->get('entregas');
         return $query->result();
     }
@@ -62,7 +62,7 @@
     // CONCLUIR ENTREGA:
     public function finishOrder($idConcluirPedido)
     {
-        $this->entrega_status='CONCLUIDO';
+        $this->entrega_status='FINALIZADO';
         $this->db->where('entrega_id',$idConcluirPedido);
         $this->db->update('entregas',$this);
     }

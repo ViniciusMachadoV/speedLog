@@ -22,7 +22,7 @@
             $id_cliente=$_SESSION['id'];
             $this->db->where('entrega_cliente',$id_cliente);
         }
-        $this->db->where('entrega_status',"ABERTO");
+        $this->db->where('entrega_status',"PENDENTE");
         $this->db->select('*');
         $this->db->from('entregas');
         $query = $this->db->get();
@@ -50,7 +50,7 @@
         $cliente=$_SESSION['usuario'];
         $id_cliente=$_SESSION['id'];
 
-        $this->entrega_status="ABERTO";
+        $this->entrega_status="PENDENTE";
         $this->entrega_cliente=$cliente;
         $this->entrega_clienteID=$id_cliente;
         $this->entrega_cepOrigem=$cepretirada;
