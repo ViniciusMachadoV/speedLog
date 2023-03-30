@@ -61,18 +61,25 @@ $(document).ready(function(){
 });
 $(".btnSign").click(function(){
     if ($(this).hasClass("btnSignIn") && $('.signIn').is(':hidden')){
+        $('.tabSign').removeClass('selectedTabSign');
+        $('.tabSignIn').addClass('selectedTabSign');
         $(".loginForm").show();
         $(".signUpType").hide();
         $(".signUp").hide();
         $(".signIn").show();
     }
     else if ($(this).hasClass("btnSignUp") && $('.signUpType').is(':hidden') || $(this).hasClass("btnService") && $('.signUpType').is(':hidden')){
+        $('.tabSign').removeClass('selectedTabSign');
+        $('.tabSignUp').addClass('selectedTabSign');
         $(".loginForm").show();
         $(".signUpType").show();
         $(".signIn").hide();
         $(".signUp").hide();
     }
-    else $(".loginForm").hide();
+    else {
+        $(".loginForm").hide();
+        $('.tabSign').removeClass('selectedTabSign');
+    }
 });
 $(".videoPause").click(function(){
     if ($(".background").get(0).paused){

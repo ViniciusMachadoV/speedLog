@@ -2,7 +2,7 @@
 class Deliveryman extends CI_Controller {
 	public function index()
 	{
-		// if($this->session->userdata('tipo') == 'ENTREGADOR'){
+		if($this->session->userdata('tipo') == 'ENTREGADOR'){
 			$dados['sessao']=$this->session->userdata('usuario');
 			$dados['idUser']=$this->session->userdata('idUser');
 			$this->load->model('model_Deliveryman');
@@ -12,12 +12,10 @@ class Deliveryman extends CI_Controller {
 			$dados['concluido']=$this->model_Deliveryman->viewFinishedOrders();
 			$this->load->helper('url');
 			$this->load->view('template/header');
-			// $this->load->view('template/view_header');
 			$this->load->view('pages/view_deliveryman',$dados);
-			// $this->load->view('template/view_footer');
 			$this->load->view('template/footer');
-		// }
-		// else redirect('connect');
+		}
+		else redirect(base_url(''));
 	}
 	public function confirmarPedido()
 	{

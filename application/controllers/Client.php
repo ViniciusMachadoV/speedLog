@@ -2,7 +2,7 @@
 class Client extends CI_Controller {
 	public function index()
 	{
-		// if($this->session->userdata('tipo') == 'CLIENTE'){
+		if($this->session->userdata('tipo') == 'CLIENTE'){
 			$dados['sessao']=$this->session->userdata('usuario');
 			$this->load->model('Model_Client');
 			$dados['mensagens']=$this->Model_Client->selectMessages();
@@ -11,12 +11,10 @@ class Client extends CI_Controller {
 			$dados['historico']=$this->Model_Client->get_entregas();
 			$this->load->helper('url');
 			$this->load->view('template/header');
-			// $this->load->view('template/view_header');
 			$this->load->view('pages/view_client',$dados);
-			// $this->load->view('template/view_footer');
 			$this->load->view('template/footer');
-		// }
-		// else redirect('connect');
+		}
+		else redirect(base_url(''));
 	}
 	public function fazer_pedido()
 	{
