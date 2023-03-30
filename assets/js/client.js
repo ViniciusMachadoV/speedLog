@@ -1,20 +1,10 @@
 $(document).ready(function () {
-	// $('#exampleModal').modal('show');
-
-
 	$('#cepretirada').mask('00000-000');
 	$('#cepentrega').mask('00000-000');
 	$('#altura').mask('0.00');
 	$('#largura').mask('0.00');
-	
-
+	$(".informacaoPagamento").hide();
 	$("#valor_entrega").hide();
-	// $("#tempoEstimado").hide();
-
-	// function timeout_desabilitar_botao() {
-	//   timeout = setTimeout(desabilitarbotao, 3000);
-	// }
-	// timeout_desabilitar_botao();
 	$("#form_client").hide();
 	$("#acompanhar").hide();
 	$("#historico").hide();
@@ -45,6 +35,9 @@ $(document).ready(function () {
 		$("#historico").hide();
 		$("#form_client").hide();
 		$("#acompanhar").hide();
+	});
+	$(".btnPagar").click(function () {
+		$(".informacaoPagamento").show();
 	});
 });
  

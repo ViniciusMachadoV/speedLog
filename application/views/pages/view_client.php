@@ -78,7 +78,119 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 
 						<input type="number" class="form-control" name="tempoEstimado" id="tempoEstimado"
 							placeholder="tempo estimado" aria-describedby="TextHelp">
+						<!-- Pagar -->
+						<button type="button" class="btn btn-primary btnPagar" >
+							Pagar
+						</button>
+						<div class="informacaoPagamento">
+							<div class="cupom">
+								<div class="mb-3">
+									<label for="cupom" class="form-label">Cupom</label>
+									<input type="text" class="form-control" id="cupom" placeholder="">
+								</div>
+							</div>
+							<div class="Total">
+								Total
+							</div>
+							<div class="formaPagamento">
+								Forma de Pagamento
+								<!-- Acordeão -->
+								<div class="accordion accordion-flush" id="accordionFlushExample">
+									<div class="cartao">
+										<h2 class="accordion-header" id="flush-headingOne">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+												Cartão de débito e crédito (até 3x sem juros)
+											</button>
+										</h2>
+										<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">
+												<p>O cliente deve ter pelo menos 16 anos. Ao clicar em comprar, você dá ciência e aceita os termos desta transação.</p>
 
+												<div class="row">
+													<div class="form-check cCredito col-2">
+													<input class="form-check-input" type="radio" name="flexRadioDefault" id="cCredito" checked>
+													<label class="form-check-label" for="cCredito">
+														Crédito
+													</label>
+													</div>
+													<div class="form-check cDebito col-2 ">
+														<input class="form-check-input" type="radio" name="flexRadioDefault" id="cDebito" checked>
+														<label class="form-check-label" for="cDebito">
+															Débito
+														</label>
+													</div>
+												</div>
+
+												<div class="Pagamento">
+													<div class="cartão">
+														<div class="mb-3">
+															<label for="numeroCartao" class="form-label">Número do cartão</label>
+															<input type="text" class="form-control" id="numeroCartao" aria-describedby="emailHelp">
+														</div>
+														<div class="mb-3">
+															<label for="nomeCartao" class="form-label">Nome do cartão</label>
+															<input type="text" class="form-control" id="nomeCartao">
+														</div>
+														<div class="mb-3">
+															<label for="dataValidade" class="form-label">Data de Validade</label>
+															<input type="text" class="form-control" id="dataValidade">
+														</div>
+														<div class="mb-3">
+															<label for="cvv" class="form-label">CVV</label>
+															<input type="text" class="form-control" id="cvv">
+														</div>
+														<div class="row parcelas">
+															<div class="form-check col-2">
+															<input class="form-check-input" type="radio" name="flexRadioDefault" id="umaParcela">
+															<label class="form-check-label" for="umaParcela">
+																1 Parcela 
+															</label>
+															</div>
+															<div class="form-check col-2">
+																<input class="form-check-input" type="radio" name="flexRadioDefault" id="duasParcela" checked>
+																<label class="form-check-label" for="duasParcela">
+																	2 Parcelas
+																</label>
+															</div>
+															<div class="form-check col-2">
+																<input class="form-check-input" type="radio" name="flexRadioDefault" id="tresParcela" checked>
+																<label class="form-check-label" for="tresParcela">
+																	3 Parcelas
+																</label>
+															</div>
+														</div>
+														<button type="submit" class="btn btn-primary">Pagar</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingThree">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+												Boleto
+											</button>
+										</h2>
+										<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">O prazo de validade do seu boleto é de até 3 dias úteis, você pode imprimir e pagar no banco ou utilizar o código que será enviado para o email cadastrado para pagar pela internet. Após o pagamento, o status do seu pedido será atualizado também em até 3 dias úteis (o tempo de atualização pode ser maior durante feriados). Além disso, você precisa ter 16 anos ou mais para que a sua compra seja autorizada. Ao clicar em comprar, você dá ciência e aceita os termos desta transação.</div>
+											<button type="submit" class="btn btn-primary">Pagar</
+										</div>
+									</div>
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingTwo">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+												Pix
+											</button>
+										</h2>
+										<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">Pagamento aprovado na hora.  Você poderá finalizar o seu Pix por meio do QR Code ou código no banco que preferir! Mas fique atento, este código só será válido por 4 horas. Ao clicar em comprar, você dá ciência e aceita os termos desta transação..</div>
+											<button type="submit" class="btn btn-primary">Pagar</button>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+						<!-- /pagar -->
 						<button type="submit" class="btn btn-primary">Fazer pedido</button>
 					</form>
 				</div>

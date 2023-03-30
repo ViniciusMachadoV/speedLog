@@ -144,8 +144,6 @@ input:hover{
     width: 80%;
     margin: 20px;
     cursor: pointer;
-}
-.serviceImage:hover{
     clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
 }
 .serviceDescription{
