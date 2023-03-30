@@ -8,6 +8,7 @@ class Deliveryman extends CI_Controller {
 			$this->load->model('model_Deliveryman');
 			$dados['perfil']=$this->model_Deliveryman->deliverymanProfile($dados['idUser']);
 			$dados['pendente']=$this->model_Deliveryman->viewPendingOrders();
+			$dados['valorCaixa']=$this->model_Deliveryman->valorCaixa();
 			$dados['andamento']=$this->model_Deliveryman->viewOngoingOrders();
 			$dados['concluido']=$this->model_Deliveryman->viewFinishedOrders();
 			$this->load->helper('url');

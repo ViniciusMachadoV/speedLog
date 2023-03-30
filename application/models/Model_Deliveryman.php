@@ -41,14 +41,14 @@
             $tmp= $value->tempoEstimado;
         }
         // armazenando variaveis de tempo
-        $agora = date('H:m');
-        $Previsao= date('H:i:s', strtotime('+'.$tmp.' minute', strtotime($agora)));
-
+        $agora = date('H:i');
+        $Previsao= date('H:i', strtotime('+ '.$tmp.' minute', strtotime($agora)));
+        echo $Previsao;
         // update
         $this->entrega_status='ANDAMENTO';
         $this->tempoEstimado=$Previsao;
         // PRECISA DE TESTES AINDA:
-        $this->entrega_responsavel= $_SESSION['usuario'];
+        $this->entrega_responsavel= $_SESSION['id'];
         $this->db->where('entrega_id',$idConfirmarPedido);
         $this->db->update('entregas',$this);
     }
@@ -65,5 +65,14 @@
         $this->entrega_status='CONCLUIDO';
         $this->db->where('entrega_id',$idConcluirPedido);
         $this->db->update('entregas',$this);
+    }
+    public function valorCaixa()
+    {   
+        $id= $_SESSION['id'];
+        $this->db->where('entrega_responsavel',$id);
+        $this->db->select('SUM(entrega_valor)');
+        $query = $this->db->get('entregas');
+        return $query->result();
+        
     }
 }?>

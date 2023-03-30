@@ -1,6 +1,17 @@
 //https://threejs.org/
 $(document).ready(function () {
-    // alert('ajax');
+    
+    $("#valorCaixa").hide();
+    var valor=$("#valorCaixa").text();
+    valor=valor.replace(/[^0-9]/g, '');
+    valor=parseInt(valor);
+    valor=(valor*0.30);
+    $("#valorCaixa").text("VALOR EM CAIXA:"+ valor);
+    $("#valorCaixa").show()
+
+
+    
+
 	$("#cpfAdmin").mask("000.000.000-00");
 	$("#telefoneAdmin").mask("(00)0 0000-0000");
 	$("#rskm").mask("00.00", {reverse: true});

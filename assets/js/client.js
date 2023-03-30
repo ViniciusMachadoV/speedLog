@@ -72,6 +72,7 @@ function teste() {
 	if (cep != "") {
 		//USO DE API DE DISTANCIA
 		$.get("https://api.distancematrix.ai/maps/api/distancematrix/json?origins=" + cep2 + "&destinations=" + cep + "&key=EcQvMZeILr23cq8aw6nausfBMUMl5", function (data) {
+			console.log(data);
 			if (data != "") {
 				
 				var distancia = data['rows'][0]['elements'][0]['distance']['text'];
@@ -85,27 +86,35 @@ function teste() {
 					tempo_cal: numsStr,
 					peso_cal: peso
 				}, function (resposta) {
-					console.log(resposta);
 					$("#divcep2").html("distancia entre os pontos: " + distancia + "Tempo estimado de chegada: " + tempo + " Valor estimado de frete: " + resposta + "")
 					$("#valor_entrega").val(resposta);;
 				});
-				// $("#divcep2").html("distancia entre os pontos: "+ distancia +"Tempo estimado de chegada: " +tempo+"")
-				// $("#divcep2").html("distancia entre os pontos: "+ distancia);
 			}
 		});
-		//USO DE API DE LOCALIZAÇÃO
-		// var cepmeu="36108000"
+		// USO DE API DE LOCALIZAÇÃO
+		var cepmeu=cep;
 
-		// $.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
-		//     console.log(data2);
+		$.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
+		    $("#ruaEntrega").val(data2['logradouro']);
+		    console.log("data2");
+			
+		});
 
-		// $("#divcep2").html(cep);
-		// });
+		
 	}
 	if (cep2 || cep == "") {
 		$("#divcep").html("digite um cep valido!");
 	}
 
+}
+function preencherCep1() {
+	var cepmeu2 = $("#cepretirada").val();
+
+	$.get( "https://viacep.com.br/ws/"+ cepmeu2 +"/json/?data=?", function( data3 ) {
+		    $("#ruaRetirada").val(data3['logradouro']);
+		    console.log("data2");
+			
+		});
 }
 $('#btnMessage').click(function(){
   var message = $("#txtMessage").val();

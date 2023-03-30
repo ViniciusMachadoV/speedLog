@@ -1,4 +1,12 @@
 $(document).ready(function () {
+  
+	$("#valorCaixa").hide();
+    var valor=$("#valorCaixa").text();
+    valor=valor.replace(/[^0-9]/g, '');
+    valor=parseInt(valor);
+    valor=(valor*0.70);
+    $("#valorCaixa").text("VALOR EM CAIXA:"+ valor);
+    $("#valorCaixa").show()
   $(".orderTab").hide();
   $("#listPendingOrders").show();
 });
@@ -18,8 +26,8 @@ $('#btnFinishedOrders').click(function () {
 $('.confirmar').click(function () {
     var idCard = this.id;
     $.post("deliveryman/confirmarPedido", {idPedido: idCard},function(response) {
-      // alert(response);
-      location.reload();
+      alert(response);
+      // location.reload();
     });
 });
 $('.cancelar').click(function () {
