@@ -28,8 +28,9 @@ class Client extends CI_Controller {
 		$cepentrega =$this->input->post('cepentrega');
 		$peso =$this->input->post('peso');
 		$observacao =$this->input->post('observacao');
+		$tempoEstimado =$this->input->post('tempoEstimado');
 		
-        $this->Model_Client->inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor);
+        $this->Model_Client->inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor,$tempoEstimado);
        
 	}
 	public function cancelar_pedido()

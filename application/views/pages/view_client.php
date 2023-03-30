@@ -59,11 +59,14 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">Observações</label>
 							<input type="Text" class="form-control" name="cepentrega" id="observacao"
-								placeholder="Digite o cep de entrega da sua mercadoria" aria-describedby="TextHelp">
+								placeholder="Observações" aria-describedby="TextHelp">
 							<div id="divcep2"></div>
 						</div>
 						<input type="Text" class="form-control" name="valor" id="valor_entrega"
 							placeholder="Valor da entrega" aria-describedby="TextHelp">
+
+						<input type="number" class="form-control" name="tempoEstimado" id="tempoEstimado"
+							placeholder="tempo estimado" aria-describedby="TextHelp">
 
 						<button type="submit" class="btn btn-primary">Fazer pedido</button>
 					</form>
