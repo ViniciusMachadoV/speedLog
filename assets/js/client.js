@@ -1,9 +1,12 @@
 $(document).ready(function () {
+	$(".informacaoPagamento").hide();
+	$("#numeroCartao").mask("0000 0000 0000 0000");
+	$("#dataValidade").mask("00/00");
+	$("#cvv").mask("000");
 	$('#cepretirada').mask('00000-000');
 	$('#cepentrega').mask('00000-000');
 	$('#altura').mask('0.00');
 	$('#largura').mask('0.00');
-	$(".informacaoPagamento").hide();
 	$("#valor_entrega").hide();
 	$("#form_client").hide();
 	$("#acompanhar").hide();
@@ -13,22 +16,19 @@ $(document).ready(function () {
 		$("#form_client").show();
 		$("#acompanhar").hide();
 		$("#historico").hide();
-	$("#chat").hide();
-
+		$("#chat").hide();
 	});
 	$("#botaoacompanhar").click(function () {
 		$("#acompanhar").show();
 		$("#historico").hide();
 		$("#form_client").hide();
-	$("#chat").hide();
-
+		$("#chat").hide();
 	});
 	$("#botaohistorico").click(function () {
 		$("#historico").show();
 		$("#form_client").hide();
 		$("#acompanhar").hide();
-	  $("#chat").hide();
-
+	  	$("#chat").hide();
 	});
 	$("#botaoreclamacoes").click(function () {
 		$("#chat").show();
@@ -40,8 +40,6 @@ $(document).ready(function () {
 		$(".informacaoPagamento").show();
 	});
 });
- 
-
 function pegarid(aq) {
 	$.post("client/cancelar_pedido", {
 		id: aq

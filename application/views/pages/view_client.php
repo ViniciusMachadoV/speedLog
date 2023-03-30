@@ -76,12 +76,10 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 						<input type="Text" class="form-control" name="valor" id="valor_entrega"
 							placeholder="Valor da entrega" aria-describedby="TextHelp">
 
-						<input type="number" class="form-control" name="tempoEstimado" id="tempoEstimado"
-							placeholder="tempo estimado" aria-describedby="TextHelp">
+						<input type="number" class="form-control" name="tempoEstimado" id="tempoEstimado" placeholder="tempo estimado" aria-describedby="TextHelp">
 						<!-- Pagar -->
 						<button type="button" class="btn btn-primary btnPagar" >
-							Pagar
-						</button>
+							Pagar</button>
 						<div class="informacaoPagamento">
 							<div class="cupom">
 								<div class="mb-3">
@@ -184,10 +182,12 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 										</h2>
 										<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
 											<div class="accordion-body">Pagamento aprovado na hora.  Você poderá finalizar o seu Pix por meio do QR Code ou código no banco que preferir! Mas fique atento, este código só será válido por 4 horas. Ao clicar em comprar, você dá ciência e aceita os termos desta transação..</div>
-											<button type="submit" class="btn btn-primary">Pagar</button>
+											<button type="submit" class="btn btn-primary">Pagar</
 										</div>
 									</div>
 								</div>
+								</div>
+							</div>	
 							</div>	
 						</div>
 						<!-- /pagar -->
