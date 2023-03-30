@@ -1,6 +1,8 @@
 $(document).ready(function(){
+    $(".loginForm").hide();
     $(".signUpType").hide();
     $(".signUp").hide();
+    $(".iconContinue").hide();
 	$('#CPF_SignUp').mask('000.000.000-00');
 	$('#phoneNumber_SignUp').mask('(00)00000-0000');
 	$('#plate_SignUp').mask('AAA AAAA');
@@ -57,19 +59,32 @@ $(document).ready(function(){
     //     }
     // });
 });
-$(".btnSignIn").click(function(){
-    $("#tabSignUp").removeClass('active');
-    $("#tabSignIn").addClass('active');
-    $(".signUpType").hide();
-    $(".signUp").hide();
-    $(".signIn").show();
+$(".btnSign").click(function(){
+    if ($(this).hasClass("btnSignIn") && $('.signIn').is(':hidden')){
+        $(".loginForm").show();
+        $(".signUpType").hide();
+        $(".signUp").hide();
+        $(".signIn").show();
+    }
+    else if ($(this).hasClass("btnSignUp") && $('.signUpType').is(':hidden') || $(this).hasClass("btnService") && $('.signUpType').is(':hidden')){
+        $(".loginForm").show();
+        $(".signUpType").show();
+        $(".signIn").hide();
+        $(".signUp").hide();
+    }
+    else $(".loginForm").hide();
 });
-$(".btnSignUp").click(function(){
-    $("#tabSignIn").removeClass('active');
-    $("#tabSignUp").addClass('active');
-    $(".signUpType").show();
-    $(".signIn").hide();
-    $(".signUp").hide();
+$(".videoPause").click(function(){
+    if ($(".background").get(0).paused){
+        $(".background").get(0).play();
+        $(".iconPause").show();
+        $(".iconContinue").hide();
+    }
+    else {
+        $(".background").get(0).pause();
+        $(".iconContinue").show();
+        $(".iconPause").hide();
+    }
 });
 $(".signUpClient").click(function(){
     $(".deliverymanForm").hide();
