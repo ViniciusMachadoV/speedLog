@@ -17,7 +17,7 @@ class Admin extends CI_Controller {
 			$this->load->view('pages/view_admin',$dados);
 			$this->load->view('template/footer');
 		}
-		else redirect('connect');
+		else redirect(base_url(''));
 	}
 	public function timeoutAccount()
 	{

@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
 	{
-		// header('Clear-Site-Data: "cache"');
 		if($this->session->userdata('tipo') == NULL){
 			$this->load->helper('url');
 			$this->load->model('model_Connect');
