@@ -1,23 +1,23 @@
 <footer class="flex-row spaced-around wrap">
-    <div class="links">
+    <div class="links flex-row spaced-around wrap">
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Termos e condições</a>
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Privacidade</a>
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Sobre nós</a>
     </div>  
     <div class="brand flex-column text-centered">
-        <img src="" alt="">
+        <img src="<?php echo base_url('assets/img/logo.png');?>" alt="">
         <span>© 2023 SpeedLog</span>
         
     </div>
     <div class="socialMedia flex-row">
         <a class="btnSocialMedia btnTwitter" target="_blank" rel="noopener noreferrer" href="http://twitter.com">
-            <!-- <img src="?php echo base_url('assets/img/twitter.png');?>" alt=""> -->
+            <img src="<?php echo base_url('assets/icons/twitter-white.png');?>" alt="Link Twitter">
         </a>
         <a class="btnSocialMedia btnFacebook" target="_blank" rel="noopener noreferrer" href="http://facebook.com">
-            <!-- <img src="?php echo base_url('assets/img/facebook.png');?>" alt=""> -->
+            <img src="<?php echo base_url('assets/icons/facebook-white.png');?>" alt="Link Facebook">
         </a>
         <a class="btnSocialMedia btnInstagram" target="_blank" rel="noopener noreferrer" href="http://instagram.com">
-            <!-- <img src="?php echo base_url('assets/img/instagram.png');?>" alt=""> -->
+            <img src="<?php echo base_url('assets/icons/instagram-white.png');?>" alt="Link Instagram">
         </a>
     </div>
 </footer>
