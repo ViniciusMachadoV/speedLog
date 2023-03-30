@@ -9,6 +9,7 @@ $(document).ready(function () {
 	
 
 	$("#valor_entrega").hide();
+	// $("#tempoEstimado").hide();
 
 	// function timeout_desabilitar_botao() {
 	//   timeout = setTimeout(desabilitarbotao, 3000);
@@ -70,12 +71,15 @@ function teste() {
 	var peso = $("#peso").val();
 	if (cep != "") {
 		//USO DE API DE DISTANCIA
-		$.get("https://api.distancematrix.ai/maps/api/distancematrix/json?origins=" + cep2 + "&destinations=" + cep + "&key=bO1hA46Uj3fWyoqArNhwRvZbQ6hZv", function (data) {
+		$.get("https://api.distancematrix.ai/maps/api/distancematrix/json?origins=" + cep2 + "&destinations=" + cep + "&key=EcQvMZeILr23cq8aw6nausfBMUMl5", function (data) {
 			if (data != "") {
 				
 				var distancia = data['rows'][0]['elements'][0]['distance']['text'];
 				var tempo = data['rows'][0]['elements'][0]['duration']['text'];
+				
 				var numsStr = tempo.replace(/[^0-9]/g, '');
+				$("#tempoEstimado").val(numsStr);
+
 				$.post("client/calculo", {
 					distancia_cal: distancia,
 					tempo_cal: numsStr,

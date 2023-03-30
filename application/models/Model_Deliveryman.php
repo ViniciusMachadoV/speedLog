@@ -1,4 +1,4 @@
-<?php class Model_Deliveryman extends CI_Model {
+<?php date_default_timezone_set('America/Sao_Paulo');class Model_Deliveryman extends CI_Model {
     // LISTAR PEDIDOS PENDENTES:
     public function viewPendingOrders()
     {
@@ -31,7 +31,22 @@
     // ACEITAR ENTREGA:
     public function takeOrder($idConfirmarPedido)
     {
+        //select data
+        $this->db->where('entrega_id',$idConfirmarPedido);
+        $query = $this->db->get('entregas');
+        $data= $query->result();
+        // print_r($data);
+        // calculo para tempo estimado
+        foreach ($data as $value) {
+            $tmp= $value->tempoEstimado;
+        }
+        // armazenando variaveis de tempo
+        $agora = date('H:m');
+        $Previsao= date('H:i:s', strtotime('+'.$tmp.' minute', strtotime($agora)));
+
+        // update
         $this->entrega_status='ANDAMENTO';
+        $this->tempoEstimado=$Previsao;
         // PRECISA DE TESTES AINDA:
         $this->entrega_responsavel= $_SESSION['usuario'];
         $this->db->where('entrega_id',$idConfirmarPedido);

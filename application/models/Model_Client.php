@@ -45,7 +45,7 @@
         $query = $this->db->get();
         return $query->result();
     }
-    public function inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor)
+    public function inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor,$tempoEstimado)
     {
         $id_cliente=$_SESSION['id'];
 
@@ -56,6 +56,8 @@
         $this->entrega_peso=$peso;
         $this->entrega_valor=$valor;
         $this->entrega_observacao=$observacao;
+        $this->entrega_observacao=$observacao;
+        $this->tempoEstimado=$tempoEstimado;
         $this->db->insert('entregas', $this);
     }
     public function deletar_pedido($entregaDel){

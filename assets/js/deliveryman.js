@@ -17,8 +17,10 @@ $('#btnFinishedOrders').click(function () {
 });
 $('.confirmar').click(function () {
     var idCard = this.id;
-    $.post("deliveryman/confirmarPedido", {idPedido: idCard});
-    location.reload();
+    $.post("deliveryman/confirmarPedido", {idPedido: idCard},function(response) {
+      // alert(response);
+      location.reload();
+    });
 });
 $('.cancelar').click(function () {
   $.post("deliveryman/cancelarPedido",{entregaId:this.id});
