@@ -37,7 +37,7 @@
             $id_cliente=$_SESSION['id'];
             $this->db->where('entrega_cliente',$id_cliente);
         }
-        $where="entrega_status='ANDAMENTO' OR entrega_status='ABERTO'" ;
+        $where="entrega_status='ANDAMENTO'" ;
         $this->db->where($where); 	
         $this->db->from('entregas');
         $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
@@ -45,19 +45,22 @@
         $query = $this->db->get();
         return $query->result();
     }
-    public function inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor,$tempoEstimado)
+    public function inserir($largura, $altura,$cepretirada,$cepentrega,$peso,$observacao,$valor,$tempoEstimado,$ruaRetirada,$ruaEntrega)
     {
+        $cliente=$_SESSION['usuario'];
         $id_cliente=$_SESSION['id'];
 
         $this->entrega_status="ABERTO";
-        $this->entrega_cliente=$id_cliente;
+        $this->entrega_cliente=$cliente;
+        $this->entrega_clienteID=$id_cliente;
         $this->entrega_cepOrigem=$cepretirada;
         $this->entrega_cepDestino=$cepentrega;
         $this->entrega_peso=$peso;
         $this->entrega_valor=$valor;
         $this->entrega_observacao=$observacao;
-        $this->entrega_observacao=$observacao;
         $this->tempoEstimado=$tempoEstimado;
+        $this->entrega_enderecoOrigem=$ruaRetirada;
+        $this->entrega_enderecoDestino=$ruaEntrega;
         $this->db->insert('entregas', $this);
     }
     public function deletar_pedido($entregaDel){

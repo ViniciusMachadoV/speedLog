@@ -1,6 +1,6 @@
 <title>Cliente - SpeedLog</title>
 <?php 
-print_r($historico);
+// print_r($pedidos);
 // echo '<pre>'; print_r($_SESSION);
 if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 	else echo "você não esta logado!";
@@ -45,22 +45,33 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">cep(retirada)</label>
 							<input type="Text" value="36050-000" class="form-control" name="cepretirada"
-								id="cepretirada" placeholder="Digite o cep de retirada da sua mercadoria"
+								id="cepretirada" onblur="preencherCep1()" placeholder="Digite o cep de retirada da sua mercadoria"
 								aria-describedby="TextHelp">
 							<div id="divcep1"></div>
 						</div>
 						<div class="mb-3">
+							<label for="exampleInputText1" class="form-label">Rua Retirada</label>
+							<input type="Text"  class="form-control" name="ruaRetirada"
+								id="ruaRetirada" placeholder="Digite o cep de entrega da sua mercadoria"
+								aria-describedby="TextHelp">
+						</div>
+						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">cep(entrega)</label>
-							<input type="Text" value="36010-071" class="form-control" onblur="teste()" name="cepentrega"
+							<input type="Text" value="36036000" class="form-control" onblur="teste()" name="cepentrega"
 								id="cepentrega" placeholder="Digite o cep de entrega da sua mercadoria"
 								aria-describedby="TextHelp">
 							<div id="divcep2"></div>
 						</div>
 						<div class="mb-3">
+							<label for="exampleInputText1" class="form-label">Rua Entrega</label>
+							<input type="Text"  class="form-control" name="ruaEntrega"
+								id="ruaEntrega" placeholder="Digite o cep de entrega da sua mercadoria"
+								aria-describedby="TextHelp">
+						</div>
+						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">Observações</label>
-							<input type="Text" class="form-control" name="cepentrega" id="observacao"
+							<input type="Text" class="form-control" name="observacao" id="observacao"
 								placeholder="Observações" aria-describedby="TextHelp">
-							<div id="divcep2"></div>
 						</div>
 						<input type="Text" class="form-control" name="valor" id="valor_entrega"
 							placeholder="Valor da entrega" aria-describedby="TextHelp">
@@ -121,6 +132,7 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 									<th scope="col">Endereço de entrega</th>
 									<th scope="col">Cep de entrega</th>
 									<th scope="col">Valor</th>
+									<th scope="col">Previsao para entrega</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -132,6 +144,7 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 									<td><?php echo $p->entrega_enderecoDestino?></td>
 									<td><?php echo $p->entrega_cepDestino?></td>
 									<td><?php echo $p->entrega_valor?></td>
+									<td><?php echo $p->tempoEstimado?></td>
 									<td><button id="btn_ex" class="btn btn-danger">
 											<a class="link_excluir" onclick="pegarid(<?php echo $p->entrega_id?>)"
 												id="<?php echo $p->entrega_id?>" style="text-decoration:none ">CANCELAR

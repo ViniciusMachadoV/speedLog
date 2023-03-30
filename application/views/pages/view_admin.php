@@ -13,11 +13,12 @@
     <button type="button" class="btn btn-primary tabBtn btnAdjustVariables">Valores de frete</button>
     <button type="button" class="btn btn-primary tabBtn btnReports">Denuncias</button>
     <button type="button" class="btn btn-primary tabBtn btnVouchers">Criar cupom</button>
-    VALOR EM CAIXA: <?php foreach ($valorCaixa as $value) {
+    <div id="valorCaixa"> VALOR EM CAIXA: <?php foreach ($valorCaixa as $value) {
         foreach ($value as $value2) {
             echo "R$". $value2;
         }
     }?>
+    </div>
     
 
     <table class="table tabAdmin listDeliveryman">

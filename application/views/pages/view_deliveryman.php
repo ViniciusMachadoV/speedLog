@@ -1,9 +1,15 @@
 <title>Entregador - SpeedLog</title>
+<div id="valorCaixa"> VALOR EM CAIXA: <?php foreach ($valorCaixa as $value) {
+        foreach ($value as $value2) {
+            echo "R$". $value2;
+        }
+    }?>
+    </div>
 <?php date_default_timezone_set('America/Sao_Paulo'); if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 	else echo "você não esta logado!";
 	?>
 <div class="container flex wrap">
-  <?php 
+  <?php   
     // print_r($perfil);
     foreach($perfil as $DeliverymanColumn){
       $idadeConta = date_diff(date_create(date('Y-m-d', strtotime($DeliverymanColumn->usuario_dataConta))),date_create(date('Y-m-d', time())));
@@ -56,7 +62,7 @@
               <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
               <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
               <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
-              <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
+              <p class="card-text">Nome do cliente: '.$key->entrega_cliente.'</p>
               <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
               <button type="button" class="btn btn-primary btn-lg confirmar" id="'.$key->entrega_id.'" data-toggle="modal" data-target="#myModal">
                 Iniciar Viagem
@@ -96,7 +102,7 @@
             <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
             <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
             <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
-            <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
+            <p class="card-text">Nome do cliente: '.$key->entrega_cliente.'</p>
             <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
             <button type="button" class="btn btn-primary btn-lg concluir" id="'. $key->entrega_id .'" data-toggle="modal" data-target="#myModal2">
               Concluir Viagem
@@ -159,7 +165,7 @@
             <h5 class="card-title">Destino: '.$key->entrega_enderecoDestino.$key->entrega_cepDestino.'.</h5>
             <p class="card-text">Valor: R$ '.$key->entrega_valor.',00</p>
             <p class="card-text">Peso: '.$key->entrega_peso.'kg</p>
-            <p class="card-text">Nome do cliente: '.$key->entrega_responsavel.'</p>
+            <p class="card-text">Nome do cliente: '.$key->entrega_cliente.'</p>
             <p class="card-text">Observação: '.$key->entrega_observacao.'</p>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
