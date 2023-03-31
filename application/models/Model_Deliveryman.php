@@ -24,6 +24,7 @@
     // LISTAR PEDIDOS FINALIZADOS:
     public function viewFinishedOrders()
     {
+        $this->db->where('entrega_clienteID',$_SESSION['id']);
         $this->db->where('entrega_status','FINALIZADO');
         $query = $this->db->get('entregas');
         return $query->result();

@@ -5,9 +5,6 @@
         }
     }?>
     </div>
-<?php date_default_timezone_set('America/Sao_Paulo'); if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
-	else echo "você não esta logado!";
-	?>
 <div class="container flex wrap">
   <?php   
     // print_r($perfil);
@@ -32,6 +29,12 @@
         <button id="infoEdit">EDITAR</button><br>
         <span class="accFullname">'.$DeliverymanColumn->usuario_nome.'</span>
       </div>
+      <div class="ganhos">VALOR EM CAIXA: ';foreach ($valorCaixa as $value) {
+        foreach ($value as $value2) {
+            echo "R$". $value2;
+        }
+      }
+        echo '</div>
       <div class="achievements">
         <!--  -->
       </div>
@@ -185,12 +188,12 @@
 </form> -->
   </div>
 </div>
-<footer class="mobileView flex-row">
+<!-- <footer class="mobileView flex-row">
    <button class="btnMobile btnOrders">Pedidos</button>
    <button class="btnMobile btnMessages">M+N</button>
    <button class="btnMobile btnProfile">Perfil</button>
    <button class="btnMobile btnSettings">Conf</button>
-</footer>
+</footer> -->
 <?php
  if(isset($_FILES['pic']))
  {
