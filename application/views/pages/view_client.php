@@ -1,11 +1,4 @@
 <title>Cliente - SpeedLog</title>
-<?php 
-// print_r($pedidos);
-// echo '<pre>'; print_r($_SESSION);
-if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
-	else echo "você não esta logado!";
-	?>
-
 <div class="container">
 	<div class="row">
 		<div class="col">
@@ -222,7 +215,7 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
 								<td><?php echo $p->entrega_peso?></td>
 								<td><?php echo $p->entrega_status?></td>
 								
-								<?php if ($p->entrega_status=="CONCLUIDO") {
+								<?php if ($p->entrega_status=="FINALIZADO" || $p->entrega_status=="CANCELADO") {
 									
 									echo"<td> <button id=".  $p->entrega_id ." data-toggle='modal' data-target='#myModal type='button' class='btn btn-primary btn_avaliar'>AVALIAR</button></td>";
 
@@ -356,7 +349,5 @@ if (isset($_SESSION['usuario'])) echo "bem vindo(a):".$_SESSION['usuario'];
     </div>
   </div>
 </div>
-
-
-	<script type='text/javascript' src="<?php echo base_url('assets/js/client.js');?>"></script>
-	<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>
+<script type='text/javascript' src="<?php echo base_url('assets/js/client.js');?>"></script>
+<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>

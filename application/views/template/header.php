@@ -30,12 +30,6 @@
 </head>
 <body>
 <!-- CABEÇALHO // HEADER -->
-<?php if($this->session->userdata('tipo') == 'ADMIN'){ echo
-'admin';}?>
-<?php if($this->session->userdata('tipo') == 'CLIENTE'){ echo
-'cliente';}?>
-<?php if($this->session->userdata('tipo') == 'ENTREGADOR'){ echo
-'ent';}?>
 <?php if($this->session->userdata('tipo') == ''){ echo
 	'<header class="homeHeader flex-row"><img src="'.base_url("assets/img/title.png").'" alt="Logo SpeedLog">
 	<!-- <div class="language">
@@ -143,5 +137,32 @@
 		</div>
 	</div>
 	</header>';
-}?>
+}
+else { echo '<header class="userHeader flex-row">
+	<div class="welcome flex-row">
+		<img src="'. base_url("assets/img/logo.png") .'" alt="Logo SpeedLog">
+		<h4>Boas vindas,'. $_SESSION["apelido"] .'</h4>
+    	<button class="btnHeader btnLogout">Logout</button>
+	</div>
+	<div class="userNavbar">
+		<button class="btnHeader btnProfile">Perfil</button>
+		<button class="btnHeader btnMessages">Mensagens</button>
+		<button class="btnHeader btnNotifications">Notificações</button>
+		<button class="btnHeader btnSettings">Configurações</button>
+	</div>
+	<!-- <div class="language">
+		<div class="btnChangeLanguage">
+			<span>Português</span>
+			<li>pt-br</li>
+			<li>en</li>
+		</div>
+	</div> -->
+</header>';
+if($this->session->userdata('tipo') == 'ADMIN'){ echo
+'';}
+if($this->session->userdata('tipo') == 'CLIENTE'){ echo
+'';}
+if($this->session->userdata('tipo') == 'ENTREGADOR'){ echo
+'';}
+};
 

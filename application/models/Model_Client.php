@@ -1,16 +1,13 @@
 <?php class Model_Client extends CI_Model {
     public function get_entregas()
     {    
-        if (isset($_SESSION['id'])) {
-            $id_cliente=$_SESSION['id'];
-            $this->db->where('entrega_cliente',$id_cliente);
-        }   	
+        $this->db->where('entrega_clienteID',$_SESSION['id']);
         $this->db->select('*');
-        $this->db->where('entrega_status',"CONCLUIDO");
-            
+        $this->db->where('entrega_status',"FINALIZADO");
+        $this->db->or_where('entrega_status',"CANCELADO");
         $this->db->from('entregas');
-        $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
-        $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
+        // $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
+        // $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
         $query = $this->db->get();
         return $query->result();
 
@@ -18,10 +15,7 @@
     }
     public function get_all()
     {    
-        if (isset($_SESSION['id'])) {
-            $id_cliente=$_SESSION['id'];
-            $this->db->where('entrega_cliente',$id_cliente);
-        }
+        $this->db->where('entrega_clienteID',$_SESSION['id']);
         $this->db->where('entrega_status',"PENDENTE");
         $this->db->select('*');
         $this->db->from('entregas');
@@ -33,12 +27,8 @@
     
     public function get_acompanhamento(){
                
-        if (isset($_SESSION['id'])) {
-            $id_cliente=$_SESSION['id'];
-            $this->db->where('entrega_cliente',$id_cliente);
-        }
-        $where="entrega_status='ANDAMENTO'" ;
-        $this->db->where($where); 	
+        $this->db->where('entrega_clienteID',$_SESSION['id']);
+        $this->db->where('entrega_status','ANDAMENTO');
         $this->db->from('entregas');
         $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
         $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
@@ -100,10 +90,6 @@
        } else {
         echo "0";
        }
-       
-        
-
-        
     }
     public function selectMessages()
     {
