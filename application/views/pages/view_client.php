@@ -1,4 +1,5 @@
 <title>Cliente - SpeedLog</title>
+<?php echo $_SESSION['id'];?>
 <div class="container">
 	<div class="row">
 		<div class="col">
@@ -80,7 +81,7 @@
 									<input type="text" class="form-control" id="cupom" placeholder="">
 								</div>
 							</div>
-							<div class="Total">
+							<div class="total">
 								Total
 							</div>
 							<div class="formaPagamento">
@@ -182,9 +183,9 @@
 								</div>
 							</div>	
 							</div>	
+							<button type="submit" class="btn btn-primary">Fazer pedido</button>
 						</div>
 						<!-- /pagar -->
-						<button type="submit" class="btn btn-primary">Fazer pedido</button>
 					</form>
 				</div>
 				<div class="row">

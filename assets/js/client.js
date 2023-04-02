@@ -78,7 +78,8 @@ function teste() {
 					peso_cal: peso
 				}, function (resposta) {
 					$("#divcep2").html("distancia entre os pontos: " + distancia + "Tempo estimado de chegada: " + tempo + " Valor estimado de frete: " + resposta + "")
-					$("#valor_entrega").val(resposta);;
+					$(".total").html(resposta);
+					$("#valor_entrega").val(resposta);
 				});
 			}
 		});
@@ -87,7 +88,7 @@ function teste() {
 
 		$.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
 		    $("#ruaEntrega").val(data2['logradouro']);
-		    console.log("data2");
+		    // console.log("data2");
 			
 		});
 
@@ -103,7 +104,7 @@ function preencherCep1() {
 
 	$.get( "https://viacep.com.br/ws/"+ cepmeu2 +"/json/?data=?", function( data3 ) {
 		    $("#ruaRetirada").val(data3['logradouro']);
-		    console.log("data2");
+		    // console.log("data2");
 			
 		});
 }

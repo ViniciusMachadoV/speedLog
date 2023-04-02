@@ -18,6 +18,12 @@ class Deliveryman extends CI_Controller {
 		}
 		else redirect(base_url(''));
 	}
+	public function editProfilePicture()
+	{
+		// $idConfirmarPedido = $_POST['idPedido'];
+		// $this->load->model('model_Deliveryman');
+        // $this->model_Deliveryman->takeOrder($idConfirmarPedido);
+	}
 	public function confirmarPedido()
 	{
 		$idConfirmarPedido = $_POST['idPedido'];

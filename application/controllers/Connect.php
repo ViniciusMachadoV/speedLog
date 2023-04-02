@@ -37,6 +37,7 @@ class Connect extends CI_Controller {
 		$cpf_signUp = $_POST['cpf'];
 		$nickname_SignUp = $_POST['nick'];
 		$phoneNumber_SignUp = $_POST['phone'];
+		$license_SignUp = $_POST['license'];
 		$pass_SignUp = $_POST['pass'];
 		$this->load->model('model_Connect');
         $alreadyExists = $this->model_Connect->verifyDuplicated($email_SignUp,$cpf_signUp,$nickname_SignUp);
@@ -44,15 +45,13 @@ class Connect extends CI_Controller {
 			print_r($alreadyExists);
 		}
 		else{
-			print_r($alreadyExists);
-			$this->model_Connect->register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp);
+			$this->model_Connect->register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$license_SignUp,$pass_SignUp);
 			$this->model_Connect->loginCredentials($email_SignUp,$pass_SignUp);
 		}
 	}
 	public function logout()  
     {  
         $this->session->sess_destroy();  
-        redirect('connect');
-		// header("Location: http:/localhost/speedlog");  
+		redirect(base_url(''));
     }  
 }?>

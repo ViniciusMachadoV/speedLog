@@ -19,14 +19,17 @@
 .flex-column{display: flex;  flex-direction: column;}
 .spaced-around{justify-content: space-around;}
 .spaced-between{justify-content: space-between;}
-.flex-vertical-centered{align-self: center;}
+.flex-vertical-centered{align-items: center;}
+.flex-vertical-self-centered{align-self: center;}
 .flex-horizontal-centered{justify-content: center;}
+.flex-horizontal-self-centered{justify-self: center;}
 .wrap{flex-wrap: wrap;}
 /* TEXT: */
 .text-white{color: white;}
 .text-red{color: darkred;}
 .text-green{color: rgb(42, 196, 106);}
 .text-centered{text-align: center;}
+.text-justified{text-align: justify;}
 /* DROPDOWN: */
 .dropdownClosed{height: 40px;}
 .dropdownOpened{height: 120px;}

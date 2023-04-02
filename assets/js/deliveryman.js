@@ -1,15 +1,17 @@
 $(document).ready(function () {
-  
-	$("#valorCaixa").hide();
-    var valor=$("#valorCaixa").text();
-    valor=valor.replace(/[^0-9]/g, '');
-    valor=parseInt(valor);
-    valor=(valor*0.70);
-    $("#valorCaixa").text("VALOR EM CAIXA:"+ valor);
-    $("#valorCaixa").show()
+  $("#valorCaixa").hide();
+  var valor=$("#valorCaixa").text();
+  valor=valor.replace(/[^0-9]/g, '');
+  valor=parseInt(valor);
+  valor=(valor*0.70);
+  $("#valorCaixa").text("VALOR EM CAIXA:"+ valor);
+  $("#valorCaixa").show()
   $(".orderTab").hide();
   $("#listPendingOrders").show();
 });
+// $('.btnEditProfileInfo').click(function () {
+  
+// });
 $('#btnPendingOrders').click(function () {
   $(".orderTab").hide();
   $("#listPendingOrders").show();

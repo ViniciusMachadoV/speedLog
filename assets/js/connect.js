@@ -3,9 +3,9 @@ $(document).ready(function(){
     $(".signUpType").hide();
     $(".signUp").hide();
     $(".iconContinue").hide();
-	$('#CPF_SignUp').mask('000.000.000-00');
+	$('#cpf_SignUp').mask('000.000.000-00');
 	$('#phoneNumber_SignUp').mask('(00)00000-0000');
-	$('#plate_SignUp').mask('AAA AAAA');
+	$('#license_SignUp').mask('AAA AAAA');
 
     // TIPO 1= CARRO, 2 =  MOTO, 3 = CAMINHAO
     // var settings = {
@@ -115,9 +115,10 @@ $("#signIn").click(function(){
             alert("lembrar login marcado!")
         }
         $.post("index.php/connect/connectUser",{user:userName_signIn,pass:userPass_signIn}, function(result){
+            console.log(result);
             if (result){
                 location.assign(result);
-                // location.reload();
+                location.reload();
             }
             else $('#warning').html('Credenciais incorretas');
         });
@@ -125,44 +126,83 @@ $("#signIn").click(function(){
     else $('#warning').html('Preencha todos os campos');
     });
 $("#signUp").click(function(){
-    // !!! ADD DELIVERYMAN REGISTRATION
-    if ($("#name_SignUp").val() != "" && 
-    $("#email_SignUp").val() != "" && 
-    $("#cpf_SignUp").val() != "" && 
-    $("#nickname_SignUp").val() != "" &&
-    $("#phoneNumber_SignUp").val() != "" && 
-    $("#pass1_SignUp").val() != "" && 
-    $("#pass2_SignUp").val() == $("#pass1_SignUp").val()) {
-        var name_signUp = $("#name_SignUp").val();
-        var email_SignUp = $("#email_SignUp").val();
-        var cpf_signUp = $("#cpf_SignUp").val();
-        var nickname_SignUp = $("#nickname_SignUp").val();
-        var phoneNumber_SignUp = $("#phoneNumber_SignUp").val();
-        var pass_SignUp = $("#pass1_SignUp").val();
-        $.post("index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,pass:pass_SignUp}, function(result){
-            if (result.includes("speedlog")){
-                location.assign(result);
-                location.reload();
-            }
-            else {
-                if (result.includes('email')) $("#email_SignUp").addClass('is-invalid');
-                else $("#email_SignUp").addClass('is-valid');
-                if (result.includes('cpf')) $("#cpf_SignUp").addClass('is-invalid');
-                else $("#cpf_SignUp").addClass('is-valid');
-                if (result.includes('nickname')) $("#nickname_SignUp").addClass('is-invalid');
-                else $("#nickname_SignUp").addClass('is-valid');
-            }
-        });
-        $("#txtMessage").val('');
-        // if ($("#clientEmailCheck").is(':checked')){
-        //     alert("receber email marcado!")
-        // }
+    if ($('.deliverymanForm').is(':hidden')) {
+        if ($("#name_SignUp").val() != "" && 
+        $("#email_SignUp").val() != "" && 
+        $("#cpf_SignUp").val() != "" && 
+        $("#nickname_SignUp").val() != "" &&
+        $("#phoneNumber_SignUp").val() != "" && 
+        $("#pass1_SignUp").val() != "" && 
+        $("#pass2_SignUp").val() == $("#pass1_SignUp").val()) {
+            var name_signUp = $("#name_SignUp").val();
+            var email_SignUp = $("#email_SignUp").val();
+            var cpf_signUp = $("#cpf_SignUp").val();
+            var nickname_SignUp = $("#nickname_SignUp").val();
+            var phoneNumber_SignUp = $("#phoneNumber_SignUp").val();
+            var licensePlate_SignUp = $('#license_SignUp').val();
+            var pass_SignUp = $("#pass1_SignUp").val();
+            $.post("index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,license:licensePlate_SignUp,pass:pass_SignUp}, function(result){
+                if (result.includes("speedlog")){
+                    location.assign(result);
+                    location.reload();
+                }
+                else {
+                    if (result.includes('email')) $("#email_SignUp").addClass('invalidInput');
+                    else $("#email_SignUp").addClass('validInput');
+                    if (result.includes('cpf')) $("#cpf_SignUp").addClass('invalidInput');
+                    else $("#cpf_SignUp").addClass('validInput');
+                    if (result.includes('nickname')) $("#nickname_SignUp").addClass('invalidInput');
+                    else $("#nickname_SignUp").addClass('validInput');
+                }
+            });
+            $("#txtMessage").val('');
+            // if ($("#clientEmailCheck").is(':checked')){
+            //     alert("receber email marcado!")
+            // }
+        }
+        else $('#warning').html('Preencha todos os campos');
     }
-    else $('#warning').html('Preencha todos os campos');
+    else if ($('.deliverymanForm').is(':visible') && $('#license_SignUp').val() != "") {
+        if ($("#name_SignUp").val() != "" && 
+        $("#email_SignUp").val() != "" && 
+        $("#cpf_SignUp").val() != "" && 
+        $("#nickname_SignUp").val() != "" &&
+        $("#phoneNumber_SignUp").val() != "" && 
+        $("#pass1_SignUp").val() != "" && 
+        $("#pass2_SignUp").val() == $("#pass1_SignUp").val()) {
+            var name_signUp = $("#name_SignUp").val();
+            var email_SignUp = $("#email_SignUp").val();
+            var cpf_signUp = $("#cpf_SignUp").val();
+            var nickname_SignUp = $("#nickname_SignUp").val();
+            var phoneNumber_SignUp = $("#phoneNumber_SignUp").val();
+            var licensePlate_SignUp = $('#license_SignUp').val();
+            var pass_SignUp = $("#pass1_SignUp").val();
+            $.post("index.php/connect/registerUser",{name:name_signUp,email:email_SignUp,cpf:cpf_signUp,nick:nickname_SignUp,phone:phoneNumber_SignUp,license:licensePlate_SignUp,pass:pass_SignUp}, function(result){
+                if (result.includes("speedlog")){
+                    location.assign(result);
+                    location.reload();
+                }
+                else {
+                    if (result.includes('email')) $("#email_SignUp").addClass('invalidInput');
+                    else $("#email_SignUp").addClass('validInput');
+                    if (result.includes('cpf')) $("#cpf_SignUp").addClass('invalidInput');
+                    else $("#cpf_SignUp").addClass('validInput');
+                    if (result.includes('nickname')) $("#nickname_SignUp").addClass('invalidInput');
+                    else $("#nickname_SignUp").addClass('validInput');
+                }
+            });
+            $("#txtMessage").val('');
+        }
+        else $('#warning').html('Preencha todos os campos');
+    }
+    else{
+        $('#license_SignUp').attr('placeholder', 'Não pode ser vazio');
+        $("#license_SignUp").addClass('invalidInput');
+    }
 });
 
 $(".formInput").keyup(function(){
     $('#warning').html('');
-    $(this).removeClass('is-invalid');
-    $(this).removeClass('is-valid');
+    $(this).removeClass('invalidInput');
+    $(this).removeClass('validInput');
 });

@@ -11,6 +11,7 @@
     public function deliverymanProfile($idDeliveryman)
     {
         $this->db->where('usuario_id',$idDeliveryman);
+        $this->db->join('entregadores', 'usuarios.usuario_id = entregadores.entregador_id');
         $query = $this->db->get('usuarios');
         return $query->result();
     }
