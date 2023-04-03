@@ -21,8 +21,9 @@
 					<form action="<?php echo base_url()?>index.php/client/fazer_pedido" method="post">
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">Peso da Mercadoria(Kg)</label>
-							<input type="Text" value="12" class="form-control" name="peso" id="peso"
+							<input type="number" value="12" onblur="verificar_peso()" class="form-control" name="peso" id="peso"
 								placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
+							<div id="divPeso"></div>
 						</div>
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">Largura</label>
@@ -69,7 +70,8 @@
 						<input type="Text" class="form-control" name="valor" id="valor_entrega"
 							placeholder="Valor da entrega" aria-describedby="TextHelp">
 
-						<input type="number" class="form-control" name="tempoEstimado" id="tempoEstimado" placeholder="tempo estimado" aria-describedby="TextHelp">
+						<input type="number" class="form-control" name="tempoEstimado" id="tempoEstimado" placeholder="tempo estimado" aria-describedby="TextHelp"><br>
+						<input type="text" class="form-control" name="valor" id="valor" placeholder="valor" aria-describedby="TextHelp">
 						<!-- Pagar -->
 						<button type="button" class="btn btn-primary btnPagar" >
 							Pagar</button>
