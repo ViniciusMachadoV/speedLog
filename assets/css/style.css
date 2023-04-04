@@ -285,14 +285,27 @@ input:hover{
     color: #DDDDDD;
 }
 /* RODAPÉ: */
-footer{
+.computerView,.tabletView,.mobileView{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    height: 0px;
+    width: 100%;
+}
+.computerView{
     position: absolute;
     bottom: 0;
     align-items: center;
-    width: 100%;
-    height: 0px;
     padding: 0px 40px;
     background: rgba(0, 0, 0, 0.5);
+}
+/* .tabletView{
+
+} */
+.mobileView{
+    width: 100%;
+    align-items: end;
+    background: orange;
 }
 .links,.brand,.socialMedia{
     min-width: 200px;
@@ -463,7 +476,7 @@ footer{
 }
 .mobileView>button{
     width: 50px;
-    height: 30px;
+    height: 50px;
 }
 /* RESPONSIVIDADE: */
 @media (min-width:1024px){

@@ -1,4 +1,4 @@
-<footer class="computerView flex-row spaced-around wrap">
+<footer class="computerView">
     <div class="links flex-row spaced-around wrap">
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Termos e condições</a>
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Privacidade</a>
@@ -22,11 +22,15 @@
     </div>
 </footer>
 
-<footer class="tabletView flex-row spaced-around wrap">
+<footer class="tabletView">
     </footer>
 
-<footer class="mobileView flex-row spaced-around wrap">
-   <button class="btnMobile btnOrders"><img src="" alt=""> Pedidos</button>
+<footer class="mobileView">
+    <?php if($this->session->userdata('tipo') == 'ENTREGADOR') echo'
+   <button class="btnMobile btnOrders"><img src="" alt=""> Pedidos</button>';
+   else if($this->session->userdata('tipo') == 'CLIENTE') echo '
+   <button class="btnMobile btnOrders"><img src="" alt=""> Pedidos</button>';
+   ?>
    <button class="btnMobile btnMessages">M+N</button>
    <button class="btnMobile btnProfile">Perfil</button>
    <button class="btnMobile btnSettings">Conf</button>

@@ -10,7 +10,7 @@
     // LISTAR PEDIDOS PENDENTES:
     public function viewPendingOrders()
     {
-        // $this->db->where('entrega_responsavel',$session_entregador);
+        $this->db->where('entrega_responsavel',$_SESSION['id']);
         $this->db->where('entrega_status','PENDENTE');
         $query = $this->db->get('entregas');
         return $query->result();
