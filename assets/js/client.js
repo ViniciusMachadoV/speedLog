@@ -1,5 +1,7 @@
 $(document).ready(function () {
 	$(".informacaoPagamento").hide();
+	$("#valor").hide();
+	$("#tempoEstimado").hide();
 	$("#numeroCartao").mask("0000 0000 0000 0000");
 	$("#dataValidade").mask("00/00");
 	$("#cvv").mask("000");
@@ -54,12 +56,31 @@ function pegarid(aq) {
 
 	});
 }
+function verificar_peso() {
+	var peso = $("#peso").val();
+	$("#peso").css('background', 'red');
+	parseInt(peso);
+	if (peso>12) {
+	$("#divPeso").html("Não é permitido cargas com esse porte.");
+	$("#divPeso").show();
 
+
+	}else{
+	$("#peso").css('background', 'white');
+	$("#divPeso").hide();
+
+	}
+}
 // calculo de valor do pedido
 function teste() {
 	var cep = $("#cepentrega").val();
 	var cep2 = $("#cepretirada").val();
 	var peso = $("#peso").val();
+	parseInt(peso);
+	if (peso>12) {
+		console.log("peso dms");
+		
+	}
 	if (cep != "") {
 		//USO DE API DE DISTANCIA
 		$.get("https://api.distancematrix.ai/maps/api/distancematrix/json?origins=" + cep2 + "&destinations=" + cep + "&key=EcQvMZeILr23cq8aw6nausfBMUMl5", function (data) {
@@ -68,6 +89,7 @@ function teste() {
 				
 				var distancia = data['rows'][0]['elements'][0]['distance']['text'];
 				var tempo = data['rows'][0]['elements'][0]['duration']['text'];
+				console.log(data);
 				
 				var numsStr = tempo.replace(/[^0-9]/g, '');
 				$("#tempoEstimado").val(numsStr);
