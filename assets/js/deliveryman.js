@@ -11,31 +11,25 @@ $(document).ready(function () {
 });
 $('#sendPicture').click(function () {
   var $picture = $('#picChange').val().substring($('#picChange').val().indexOf('.'));
-  $.post("deliveryman/editProfilePicture",{pic:$picture});
-      // success: function (result) {
-      //     console.log(result);
-      // },
-      // error: function () {
-      //     console.log("error");
-      // }
-  // });
-    // $.ajax({
-    //     url: 'deliveryman/editProfilePicture',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     type: "POST",
-    //     dataType: "json",
-    //     data: {
-    //         "pic": $('#picChange').val().substring($('#picChange').val().indexOf('.'))
-    //     },
-    //     success: function (result) {
-    //         console.log(result);
-    //     },
-    //     error: function () {
-    //         console.log("error");
-    //     }
-    // });
+  if (~$picture.indexOf(".")) {
+    $.ajax({
+        url: 'deliveryman/updatePicture',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        type: "POST",
+        dataType: "json",
+        data: {
+            "pic": $picture
+        },
+        success: function (result) {
+            console.log(result);
+        },
+        error: function () {
+            console.log("error");
+        }
+    });
+  }
 });
 $('#btnPendingOrders').click(function () {
   $(".orderTab").hide();

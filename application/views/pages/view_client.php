@@ -19,23 +19,25 @@
 			<div class="row">
 				<div class="col" id="form_client">
 					<form action="<?php echo base_url()?>index.php/client/fazer_pedido" method="post">
-						<div class="mb-3">
+					<div class="line flex-row packageInfo">
+						<div class="">
 							<label for="exampleInputText1" class="form-label">Peso da Mercadoria(Kg)</label>
 							<input type="number" value="12" onblur="verificar_peso()" class="form-control" name="peso" id="peso"
 								placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
 							<div id="divPeso"></div>
 						</div>
-						<div class="mb-3">
+						<div class="">
 							<label for="exampleInputText1" class="form-label">Largura</label>
 							<input type="Text" class="form-control" name="largura" id="largura"
 								placeholder="Digite a largura da sua mercadoria" aria-describedby="TextHelp">
 						</div>
-						<div class="mb-3">
+						<div class="">
 							<label for="exampleInputText1" class="form-label">Altura</label>
 							<input type="Text" class="form-control" name="altura" id="altura"
 								placeholder="Digite a altura da sua mercadoria" aria-describedby="TextHelp">
 						</div>
-
+					</div>
+					<div class="line flex-row originInfo">
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">cep(retirada)</label>
 							<input type="Text" value="36050-000" class="form-control" name="cepretirada"
@@ -49,6 +51,8 @@
 								id="ruaRetirada" placeholder="Digite o cep de entrega da sua mercadoria"
 								aria-describedby="TextHelp">
 						</div>
+					</div>
+					<div class="line flex-row destinationInfo">
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">cep(entrega)</label>
 							<input type="Text" value="36036000" class="form-control" onblur="teste()" name="cepentrega"
@@ -62,6 +66,7 @@
 								id="ruaEntrega" placeholder="Digite o cep de entrega da sua mercadoria"
 								aria-describedby="TextHelp">
 						</div>
+					</div>
 						<div class="mb-3">
 							<label for="exampleInputText1" class="form-label">Observações</label>
 							<input type="Text" class="form-control" name="observacao" id="observacao"

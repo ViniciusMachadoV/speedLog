@@ -54,7 +54,7 @@
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="passSignIn" class="form-label text-centered">SENHA</label>
-					<input type="password" class="formInput inputSignIn" id="pass_SignIn">
+					<input value="1" type="password" class="formInput inputSignIn" id="pass_SignIn">
 				</div>
 				<div class="mb-3 form-check">
 					<input type="checkbox" class="form-check-input" id="keepLogged">
