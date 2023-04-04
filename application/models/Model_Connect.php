@@ -38,14 +38,26 @@
         if($query->num_rows() == 0) return false;
         else return $duplicated;
     }
-    public function register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$pass_SignUp){
+    public function register($name_signUp,$email_SignUp,$cpf_signUp,$nickname_SignUp,$phoneNumber_SignUp,$license_SignUp,$pass_SignUp){
         $this->usuario_nome = $name_signUp;
         $this->usuario_email = $email_SignUp;
         $this->usuario_cpf = $cpf_signUp;
         $this->usuario_apelido = $nickname_SignUp;
         $this->usuario_senha = $pass_SignUp;
-        $this->usuario_tipo = "CLIENTE";
         $this->usuario_telefone = $phoneNumber_SignUp;
+        if($license_SignUp!="") $this->usuario_tipo = "ENTREGADOR";
+        else $this->usuario_tipo = "CLIENTE";
         $this->db->insert('usuarios',$this);
+        if($license_SignUp!=""){
+            $sql = "SELECT * FROM usuarios WHERE usuario_apelido = '$nickname_SignUp'"; 
+            $query = $this->db->query($sql);  
+            $deliveryman = $query->row_array();
+            $deliverymanData = array(
+                'entregador_id'=>intval($deliveryman['usuario_id']),
+                'entregador_placaMoto'=>$license_SignUp,
+                'entregador_status'=>'LIVRE'
+            );
+            $this->db->insert('entregadores',$deliverymanData);
+        }
     }
 }?>

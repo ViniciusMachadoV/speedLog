@@ -31,7 +31,7 @@
         $this->db->where('entrega_status','ANDAMENTO');
         $this->db->from('entregas');
         $this->db->join('usuarios', 'entregas.entrega_responsavel = usuarios.usuario_id');
-        $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
+        // $this->db->join('entregadores', 'entregas.entrega_responsavel = entregadores.entregador_id');
         $query = $this->db->get();
         return $query->result();
     }
@@ -85,10 +85,10 @@
        //query
          $this->db->where('entrega_id', $id_deletado);
          $this->db->update('entregas', array('entrega_status' => "CANCELADO"));
-        echo "2";
+        // echo "2";
 
        } else {
-        echo "0";
+        // echo "0";
        }
     }
     public function selectMessages()
@@ -107,12 +107,15 @@
     }
     public function calcular_valor($peso,$distancia,$tempo)
     {
+        // $sql = "SELECT * FROM frete WHERE frete_tipo = 'PADRAO'"; 
+        // $query = $this->db->query($sql);  
+        // $variables = $query->row_array();
         // QUERY PARA DEFINIR VALORES DE CALCULO
         $this->db->where('frete_tipo','PADRAO'); 	
         $query = $this->db->get('frete');
         $resultados=$query->result();
         // ALIMENTANDO VARIAVEIS COM VALORES PARA CALCULO
-        foreach ($resultados as $key => $value) {
+        foreach ($resultados as $value) {
             $calculo_distancia = $value->valor_km;
             $calculo_tempo = $value->valor_minuto;
             //peso
@@ -146,11 +149,14 @@
             default:
             $valorp="Transporte não autorizado pelo peso.";
         }
-        // echo $valorp;
-        $valord=$distanciar*$calculo_distancia;
+        $valord=floatval(str_replace(' km', '', $distanciar))*$calculo_distancia;
         $valort=$tempor*$calculo_tempo;
-        $valor= $valorp+$valord+$valort;
-        echo $valor;
+        // echo var_dump($valort);
+        // echo var_dump($calculo_tempo);
+        $valor= (floatval($valorp)+floatval($valord)+floatval($valort));
+        // echo var_dump($valor);
+        // echo 'R$'.$valor;
+        echo 'R$'.$valor;
               
         
     }

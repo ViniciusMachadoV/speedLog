@@ -18,6 +18,13 @@ class Deliveryman extends CI_Controller {
 		}
 		else redirect(base_url(''));
 	}
+	public function editProfilePicture()
+	{
+		$extension = $_POST['pic'];
+		$profilePic = $_SESSION['apelido'].$extension;
+		$this->load->model('model_Deliveryman');
+        $this->model_Deliveryman->updatePicture($profilePic);
+	}
 	public function confirmarPedido()
 	{
 		$idConfirmarPedido = $_POST['idPedido'];

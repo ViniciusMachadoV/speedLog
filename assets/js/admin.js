@@ -1,6 +1,5 @@
 //https://threejs.org/
 $(document).ready(function () {
-    
     $("#valorCaixa").hide();
     var valor=$("#valorCaixa").text();
     valor=valor.replace(/[^0-9]/g, '');
@@ -8,10 +7,6 @@ $(document).ready(function () {
     valor=(valor*0.30);
     $("#valorCaixa").text("VALOR EM CAIXA:"+ valor);
     $("#valorCaixa").show()
-
-
-    
-
 	$("#cpfAdmin").mask("000.000.000-00");
 	$("#telefoneAdmin").mask("(00)0 0000-0000");
 	$("#rskm").mask("00.00", {reverse: true});
@@ -56,9 +51,6 @@ $(".btnTimeOut").click(function (){
     var userTimedOut = this.id;
     $.post("admin/timeoutAccount",{user: userTimedOut});
     location.reload();
-});
-$(".btnLogout").click(function (){
-    location.assign('connect/logout');
 });
 $("#all").click(function (){
     if ($(this).html() == 'TODOS'){
