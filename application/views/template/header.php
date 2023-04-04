@@ -50,18 +50,18 @@
 			<div class="signIn flex-column">
 				<div class="mb-3 flex-column">
 					<label for="userSignIn" class="form-label text-centered">USUÁRIO OU EMAIL</label>
-					<input value="carlinha" type="email" class="formInput" id="user_SignIn">
+					<input value="carlinha" type="email" class="formInput inputSignIn" id="user_SignIn">
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="passSignIn" class="form-label text-centered">SENHA</label>
-					<input type="password" class="formInput" id="pass_SignIn">
+					<input type="password" class="formInput inputSignIn" id="pass_SignIn">
 				</div>
 				<div class="mb-3 form-check">
 					<input type="checkbox" class="form-check-input" id="keepLogged">
 					<label class="form-check-label" for="keepLogged">Lembrar dados de acesso</label>
 					<a href="">Esqueci minha senha</a>
 				</div>
-				<button id="signIn" class="btn btn-success" >ENTRAR</button>
+				<button id="signIn" class="btnSign btnSignIn btnWhite" >ENTRAR</button>
 				<p id="warning"></p>
 			</div>
 			<!-- SIGN UP TYPE BUTTONS -->
@@ -73,40 +73,40 @@
 			<div class="signUp flex column">
 				<div class="mb-3 flex-column">
 					<label for="name_SignUp" class="form-label text-centered">NOME COMPLETO</label>
-					<input name="name_SignUp" class="formInput" id="name_SignUp" value="1" >
+					<input name="name_SignUp" class="formInput inputSignUp" id="name_SignUp" value="1" >
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="email_SignUp" class="form-label text-centered">E-MAIL</label>
-					<input name="email_SignUp" class="formInput" id="email_SignUp" value="1" >
+					<input name="email_SignUp" class="formInput inputSignUp" id="email_SignUp" value="1" >
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="cpf_SignUp" class="form-label text-centered">CPF</label>
-					<input name="cpf_SignUp" class="formInput" id="cpf_SignUp" value="111.111.111-11" >
+					<input name="cpf_SignUp" class="formInput inputSignUp" id="cpf_SignUp" value="111.111.111-11" >
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="nickname_SignUp" class="form-label text-centered">APELIDO</label>
-					<input name="nickname_SignUp" class="formInput" id="nickname_SignUp" value="1" >
+					<input name="nickname_SignUp" class="formInput inputSignUp" id="nickname_SignUp" value="1" >
 					<div id="nicknameHelp" class="form-text">Seu apelido deve ser único. Você poderá usar tanto o e-mail quanto esse apelido para acessar sua conta</div>
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="phoneNumber_SignUp" class="form-label text-centered">TELEFONE</label>
-					<input name="phoneNumber_SignUp" class="formInput" id="phoneNumber_SignUp" placeholder="(XX) 00000 0000" value="1" >
+					<input name="phoneNumber_SignUp" class="formInput inputSignUp" id="phoneNumber_SignUp" placeholder="(XX) 00000 0000" value="1" >
 				</div>
 				
 				<!-- DELIVERY MAN ADDITIONAL INPUTS -->
 				<div class="deliverymanForm">
 					<div class="mb-3 flex-column deliverymanForm">
 						<label for="license_SignUp" class="form-label text-centered">PLACA DA MOTO</label>
-						<input name="license_SignUp" class="formInput" id="license_SignUp" value="">
+						<input name="license_SignUp" class="formInput inputSignUp" id="license_SignUp" value="">
 					</div>
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="pass1_SignUp" class="form-label text-centered">SENHA</label>
-					<input name="pass1_SignUp" type="password" class="formInput" id="pass1_SignUp" value="1" >
+					<input name="pass1_SignUp" type="password" class="formInput inputSignUp" id="pass1_SignUp" value="1" >
 				</div>
 				<div class="mb-3 flex-column">
 					<label for="pass2_SignUp" class="form-label text-centered">CONFIRME SUA SENHA</label>
-					<input name="pass2_SignUp" type="password" class="formInput" id="pass2_SignUp" value="1" >
+					<input name="pass2_SignUp" type="password" class="formInput inputSignUp" id="pass2_SignUp" value="1" >
 				</div>
 				
 				<!-- DELIVERYMAN EMAIL CHECK -->

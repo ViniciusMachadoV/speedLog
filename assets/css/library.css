@@ -23,6 +23,7 @@
 .flex-vertical-self-centered{align-self: center;}
 .flex-horizontal-centered{justify-content: center;}
 .flex-horizontal-self-centered{justify-self: center;}
+.flex-both-centered{justify-content: center;align-items: center;}
 .wrap{flex-wrap: wrap;}
 /* TEXT: */
 .text-white{color: white;}

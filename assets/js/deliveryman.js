@@ -9,16 +9,40 @@ $(document).ready(function () {
   $(".orderTab").hide();
   $("#listPendingOrders").show();
 });
-// $('.btnEditProfileInfo').click(function () {
-  
-// });
+$('#sendPicture').click(function () {
+  var $picture = $('#picChange').val().substring($('#picChange').val().indexOf('.'));
+  $.post("deliveryman/editProfilePicture",{pic:$picture});
+      // success: function (result) {
+      //     console.log(result);
+      // },
+      // error: function () {
+      //     console.log("error");
+      // }
+  // });
+    // $.ajax({
+    //     url: 'deliveryman/editProfilePicture',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     type: "POST",
+    //     dataType: "json",
+    //     data: {
+    //         "pic": $('#picChange').val().substring($('#picChange').val().indexOf('.'))
+    //     },
+    //     success: function (result) {
+    //         console.log(result);
+    //     },
+    //     error: function () {
+    //         console.log("error");
+    //     }
+    // });
+});
 $('#btnPendingOrders').click(function () {
   $(".orderTab").hide();
   $("#listPendingOrders").show();
 });
 $('#btnOngoingOrders').click(function () {
   $(".orderTab").hide();
-  // alert("asd");
   $("#listOngoingOrders").show();
 });
 $('#btnFinishedOrders').click(function () {
@@ -29,7 +53,7 @@ $('.confirmar').click(function () {
     var idCard = this.id;
     $.post("deliveryman/confirmarPedido", {idPedido: idCard},function(response) {
       alert(response);
-      // location.reload();
+      location.reload();
     });
 });
 $('.cancelar').click(function () {

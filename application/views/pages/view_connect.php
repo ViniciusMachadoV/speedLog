@@ -2,7 +2,7 @@
 <?php print_r($this->session->userdata('tipo'));?>
 <div class="landingBackground"><img src="<?php echo base_url('assets/img/bg-mobile-fallback.jpg');?>" alt=""></div>
 <div class="content">
-    <section class="features flex-row wrap flex-horizontal-centered  text-centered">
+    <section class="features flex text-centered">
         <div class="feature">
             <img src="<?php echo base_url('assets/icons/friends-colored.png');?>" alt="">
             <h3><span>Mais que parceiros, amigos</span></h3>

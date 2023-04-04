@@ -1,4 +1,4 @@
-<footer class="flex-row spaced-around wrap">
+<footer class="computerView flex-row spaced-around wrap">
     <div class="links flex-row spaced-around wrap">
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Termos e condições</a>
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Privacidade</a>
@@ -20,6 +20,16 @@
             <img src="<?php echo base_url('assets/icons/instagram-white.png');?>" alt="Link Instagram">
         </a>
     </div>
+</footer>
+
+<footer class="tabletView flex-row spaced-around wrap">
+    </footer>
+
+<footer class="mobileView flex-row spaced-around wrap">
+   <button class="btnMobile btnOrders"><img src="" alt=""> Pedidos</button>
+   <button class="btnMobile btnMessages">M+N</button>
+   <button class="btnMobile btnProfile">Perfil</button>
+   <button class="btnMobile btnSettings">Conf</button>
 </footer>
 <script type='text/javascript' src="<?php echo base_url('assets/js/jquery.mask.js');?>"></script>
 <!-- JAVA SCRIPT BOOTSTRAP -->

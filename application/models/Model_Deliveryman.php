@@ -1,4 +1,12 @@
 <?php date_default_timezone_set('America/Sao_Paulo');class Model_Deliveryman extends CI_Model {
+    // ATUALIZAR FOTO DE PERFIL:
+    
+    public function updatePicture($profilePic)
+    {
+        $this->entregador_foto = $profilePic;
+        $this->db->where('entregador_id',$_SESSION['id']);
+        $this->db->update('entregadores',$this);
+    }
     // LISTAR PEDIDOS PENDENTES:
     public function viewPendingOrders()
     {

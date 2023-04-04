@@ -1,5 +1,4 @@
 <title>Cliente - SpeedLog</title>
-<?php echo $_SESSION['id'];?>
 <div class="container">
 	<div class="row">
 		<div class="col">

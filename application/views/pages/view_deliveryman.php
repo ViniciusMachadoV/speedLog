@@ -1,5 +1,4 @@
 <title>Entregador - SpeedLog</title>
-<?php print_r($_SESSION);?>
 <div class="container flex wrap">
   <?php   
     foreach($perfil as $DeliverymanColumn){
@@ -9,16 +8,18 @@
       <div class="profilePhotoStatus flex-vertical-self-centered" >
       
         <form method="POST" enctype="multipart/form-data">
-          <label for="picChange">';
+          <label class="profilePhoto" for="picChange">';
             if ($DeliverymanColumn->entregador_foto) echo '
             <img class="profilePic pointer" src="'.base_url('assets/pictures/'.$DeliverymanColumn->entregador_foto).'">';
             else echo '<img class="profilePic pointer" src="'.base_url('assets/icons/user-colored.png').'">';
           echo '
+            <div id="overlay"><button class="changePic">a</div>
           </label>
+          <br>
           <input id="picChange" type="file" name="pic" accept="image/*" class="form-control">
           <div align="center">
-            <button type="submit" class="btn btn-success">Enviar imagem</button>
-            </div>
+            <button type="submit" id="sendPicture" class="btnBlue">Enviar imagem</button>
+          </div>
         </form>
         <div class="statusDeliveryman pointer">';
         if($DeliverymanColumn->usuario_status == 'SUSPENSO') echo 's';
@@ -187,18 +188,12 @@
   
   </div>
 </div>
-<!-- <footer class="mobileView flex-row">
-   <button class="btnMobile btnOrders">Pedidos</button>
-   <button class="btnMobile btnMessages">M+N</button>
-   <button class="btnMobile btnProfile">Perfil</button>
-   <button class="btnMobile btnSettings">Conf</button>
-</footer> -->
 <?php
  if(isset($_FILES['pic']))
  {
     $ext = strtolower(substr($_FILES['pic']['name'],-4)); //Pegando extensão do arquivo
-    $new_name = 'delivery' . $ext; //Definindo um novo nome para o arquivo
-    $dir ="assets/img/"; //Diretório para uploads
+    $new_name = $_SESSION['apelido'] . $ext; //Definindo um novo nome para o arquivo
+    $dir ="assets/pictures/"; //Diretório para uploads
  
     move_uploaded_file($_FILES['pic']['tmp_name'], $dir.$new_name); //Fazer upload do arquivo
     // echo '<div class="alert alert-success" role="alert" align="center">

@@ -20,9 +20,10 @@ class Deliveryman extends CI_Controller {
 	}
 	public function editProfilePicture()
 	{
-		// $idConfirmarPedido = $_POST['idPedido'];
-		// $this->load->model('model_Deliveryman');
-        // $this->model_Deliveryman->takeOrder($idConfirmarPedido);
+		$extension = $_POST['pic'];
+		$profilePic = $_SESSION['apelido'].$extension;
+		$this->load->model('model_Deliveryman');
+        $this->model_Deliveryman->updatePicture($profilePic);
 	}
 	public function confirmarPedido()
 	{

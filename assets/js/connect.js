@@ -6,6 +6,20 @@ $(document).ready(function(){
 	$('#cpf_SignUp').mask('000.000.000-00');
 	$('#phoneNumber_SignUp').mask('(00)00000-0000');
 	$('#license_SignUp').mask('AAA AAAA');
+    // IMPEDE ESPAÇOS NOS INPUTS:
+    $(".inputSignIn").on({
+        keydown: function(e) {
+          if (e.which === 32)
+            return false;
+        },
+        change: function() {
+          this.value = this.value.replace(/\s/g, "");
+        }
+    });
+    // var str = "    ";
+    // if (!str.replace(/\s/g, '').length) {
+    // console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
+    // }
 
     // TIPO 1= CARRO, 2 =  MOTO, 3 = CAMINHAO
     // var settings = {
@@ -126,6 +140,15 @@ $("#signIn").click(function(){
     else $('#warning').html('Preencha todos os campos');
     });
 $("#signUp").click(function(){
+    
+    $.each($('.inputSignUp'), function(){
+        if ($(this).val()=="") {
+            // alert($(this).attr('id'));
+            $(this).attr('placeholder', 'Não pode ser vazio');
+            $(this).addClass('invalidInput');
+            $(this).filter(":first").focus();
+        }
+    })
     if ($('.deliverymanForm').is(':hidden')) {
         if ($("#name_SignUp").val() != "" && 
         $("#email_SignUp").val() != "" && 
@@ -147,12 +170,21 @@ $("#signUp").click(function(){
                     location.reload();
                 }
                 else {
-                    if (result.includes('email')) $("#email_SignUp").addClass('invalidInput');
-                    else $("#email_SignUp").addClass('validInput');
-                    if (result.includes('cpf')) $("#cpf_SignUp").addClass('invalidInput');
-                    else $("#cpf_SignUp").addClass('validInput');
-                    if (result.includes('nickname')) $("#nickname_SignUp").addClass('invalidInput');
+                    if (result.includes('nickname')){
+                        $("#nickname_SignUp").addClass('invalidInput');
+                        $('#nickname_SignUp').filter(":first").focus();
+                    }
                     else $("#nickname_SignUp").addClass('validInput');
+                    if (result.includes('cpf')){
+                        $("#cpf_SignUp").addClass('invalidInput');
+                        $('#cpf_SignUp').filter(":first").focus();
+                    }
+                    else $("#cpf_SignUp").addClass('validInput');
+                    if (result.includes('email')){
+                        $("#email_SignUp").addClass('invalidInput');
+                        $('#email_SignUp').filter(":first").focus();
+                    }
+                    else $("#email_SignUp").addClass('validInput');
                 }
             });
             $("#txtMessage").val('');
