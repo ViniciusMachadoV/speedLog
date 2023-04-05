@@ -75,7 +75,7 @@ class Connect extends CI_Controller {
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
 			$mail->Username = '0000821648@senaimgaluno.com.br';
-			$mail->Password = 'AADOIDO22';
+			$mail->Password = '';
 			$mail->Port = 587;
 		
 			$mail->setFrom('0000821648@senaimgaluno.com.br');
