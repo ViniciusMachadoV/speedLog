@@ -1,5 +1,9 @@
 <?php 
 ob_start(); 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Connect extends CI_Controller {
 	public function index()
@@ -53,5 +57,43 @@ class Connect extends CI_Controller {
     {  
         $this->session->sess_destroy();  
 		redirect(base_url(''));
-    }  
+    } 
+	public function sub_email()
+	{
+		require_once('assets/email/PHPMailer.php');
+		require_once('assets/email/SMTP.php');
+		require_once('assets/email/Exception.php');
+		
+		
+		$email_client=$_POST["emailNewsletter"];
+		$mail = new PHPMailer(true);
+		
+		try {
+
+			$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+			$mail->isSMTP();
+			$mail->Host = 'smtp.gmail.com';
+			$mail->SMTPAuth = true;
+			$mail->Username = '0000821648@senaimgaluno.com.br';
+			$mail->Password = 'AADOIDO22';
+			$mail->Port = 587;
+		
+			$mail->setFrom('0000821648@senaimgaluno.com.br');
+			$mail->addAddress($email_client);
+		
+			$mail->isHTML(true);
+			$mail->Subject = 'Equipe Speed Log';
+			$mail->Body = '<strong> Obrigado por Assinar nosso portal de noticias, vamos manter você sincronizado com nossas novidades!!  </strong>';
+			$mail->AltBody = 'Atenciosamente equipe Speed Log ';
+		
+			if($mail->send()) {
+				echo 'Email enviado com sucesso';
+				redirect('connect');
+			} else {
+				echo 'Email nao enviado';
+			}
+		} catch (Exception $e) {
+			echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
+		}
+	} 
 }?>

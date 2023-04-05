@@ -1,7 +1,6 @@
 <title>Cliente - SpeedLog</title>
 <div class="container">
 	<div class="row">
-		<div class="col">
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
 					<button class="btn btn-light" id="botaotrocatela" aria-current="page">Fazer Pedido</button>
@@ -17,12 +16,16 @@
 				</li>
 			</ul>
 			<div class="row">
-				<div class="col" id="form_client">
+
+				
+				<div class="col flex-row spaced-between" id="form_client">
+
+				
 					<form action="<?php echo base_url()?>index.php/client/fazer_pedido" method="post">
 					<div class="line flex-row packageInfo">
 						<div class="">
 							<label for="exampleInputText1" class="form-label">Peso da Mercadoria(Kg)</label>
-							<input type="number" value="12" onblur="verificar_peso()" class="form-control" name="peso" id="peso"
+							<input type="number"  onblur="verificar_peso()" class="form-control" name="peso" id="peso"
 								placeholder="Digite o peso da sua mercadoria" aria-describedby="TextHelp">
 							<div id="divPeso"></div>
 						</div>
@@ -193,7 +196,87 @@
 						</div>
 						<!-- /pagar -->
 					</form>
+					<table class="printer-ticket">
+ 	<thead>
+		<tr>
+			<th class="title" >SpeedLog</th>
+		</tr>
+		<tr>
+			<th colspan="3"><?php $hoje = date('d/m/Y H:i:s'); echo $hoje;?></th>
+		</tr>
+		<tr>
+			<th colspan="3">
+			<?php echo $_SESSION["nome"];?> <br />
+			<?php echo $_SESSION["cpf"];?>
+			</th>
+		</tr>
+		<tr>
+			<th class="ttu" colspan="">
+				<b>Nota fiscal</b>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="top">
+			<td colspan="3">Informações de entrega</td>
+		</tr>
+		<tr>
+			<td >Peso: <span id="peso_nota"></span></td>
+			<td>Largura: <span id="largura_nota"></span></td>
+			<td>Altura: <span id="altura_nota"></span></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr class="sup ttu p--0">
+			<td colspan="3">
+				<b>Totais</b>
+			</td>
+		</tr>
+		<tr class="ttu">
+			<td colspan="2">Sub-total</td>
+			<td align="right">R$43,60</td>
+		</tr>
+		
+		<tr class="ttu">
+			<td colspan="2">cupom</td>
+			<td align="right">00,00</td>
+		</tr>
+		<tr class="ttu">
+			<td colspan="2">Total</td>
+			<td align="right">R$45,56</td>
+		</tr>
+		<tr class="sup ttu p--0">
+			<td colspan="3">
+				<b>Pagamentos</b>
+			</td>
+		</tr>
+		
+		<tr class="ttu">
+			<td colspan="2"><span> Forma de Pagamento</span> </td>
+			<td align="right">R$<span ></span></td>
+		</tr>
+		<tr class="ttu">
+			<td colspan="2">Total pago</td>
+			<td align="right">R$00,00</td>
+		</tr>
+		<tr class="ttu">
+			<td colspan="2">Troco</td>
+			<td align="right">R$0,00</td>
+		</tr>
+		<tr class="sup">
+			<td colspan="3" align="center">
+				<b>Pedido:</b>
+			</td>
+		</tr>
+		<tr class="sup">
+			<td colspan="3" align="center">
+				<button class="btn btn-primary">Enviar por Email</button>
+			</td>
+		</tr>
+	</tfoot>
+</table>
 				</div>
+				
 				<div class="row">
 					<div class="col" id="historico">
 						<h1>seu historico de Pedidos</h1>

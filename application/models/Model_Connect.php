@@ -7,6 +7,8 @@
         if($query->num_rows() > 0){
             $this->session->set_userdata('usuario',$userLogin);
             $this->session->set_userdata('apelido',$userType['usuario_apelido']);
+            $this->session->set_userdata('nome',$userType['usuario_nome']);
+            $this->session->set_userdata('cpf',$userType['usuario_cpf']);
             $this->session->set_userdata('idUser',$userType['usuario_id']);
             $this->session->set_userdata('tipo',$userType['usuario_tipo']);
             $this->session->set_userdata('id',$userType['usuario_id']);

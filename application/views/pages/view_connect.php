@@ -26,9 +26,12 @@
                     Fique por dentro das promoções, notícias e receba cupons no seu e-mail. Não vai perder nenhuma oportunidade assinando nossa <i>newsletter</i>:
                 </span>
                 <div>
-                    <label for="emailNewsletter">E-mail:</label>
-                    <input type="text" name="emailNewsletter" id="newsletter">
-                    <button class="btnNewsletter">Assinar</button>
+                    <form action="<?php echo base_url()?>index.php/connect/sub_email" method="post">
+                        <label for="emailNewsletter">E-mail:</label>
+                        <input type="text" name="emailNewsletter" id="newsletter">
+                        <button class="btnNewsletter">Assinar</button>
+                    </form>
+                    
                 </div>
             </div>
             <div class="flex-row">
