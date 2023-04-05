@@ -1,6 +1,6 @@
 $(document).ready(function () {
-	$(".informacaoPagamento").hide();
-	$("#valor").hide();
+	// $(".informacaoPagamento").hide();
+	// $("#valor").hide();
 	$("#tempoEstimado").hide();
 	$("#numeroCartao").mask("0000 0000 0000 0000");
 	$("#dataValidade").mask("00/00");
@@ -56,9 +56,25 @@ function pegarid(aq) {
 
 	});
 }
+$("#peso").keyup(function() {
+	var peso = $("#peso").val();
+	$("#peso_nota").html(peso + "Kg");
+
+  });
+$("#largura").keyup(function() {
+	var largura = $("#largura").val();
+	$("#largura_nota").html(largura + "cm");
+
+  });
+$("#altura").keyup(function() {
+	var altura = $("#altura").val();
+	$("#altura_nota").html(altura + "cm");
+
+  });
 function verificar_peso() {
 	var peso = $("#peso").val();
 	$("#peso").css('background', 'red');
+
 	parseInt(peso);
 	if (peso>12) {
 	$("#divPeso").html("Não é permitido cargas com esse porte.");

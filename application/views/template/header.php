@@ -1,4 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('America/Sao_Paulo');?>
 <!DOCTYPE html>
 <!-- BRAZILIAN PORTUGUESE -->
 <html lang="pt-br">
