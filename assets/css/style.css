@@ -65,7 +65,6 @@ input:hover{
     position: relative;
 }
 .btnChangeLanguage{
-    /* position: absolute; */
     background: #f1f1f1;
     width: 80px;
     border-radius: 20px;
@@ -285,7 +284,7 @@ input:hover{
     color: #DDDDDD;
 }
 /* RODAPÉ: */
-.computerView,.tabletView,.mobileView{
+.computerView,.tabletView,.mobileView,.mobileView2{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -299,12 +298,9 @@ input:hover{
     padding: 0px 40px;
     background: rgba(0, 0, 0, 0.5);
 }
-/* .tabletView{
-
-} */
 .mobileView{
     width: 100%;
-    align-items: end;
+    align-items: top;
     background: orange;
 }
 .links,.brand,.socialMedia{
@@ -376,12 +372,40 @@ input:hover{
 .btnHeader:hover{
     color: #9e9e9e;
 }
+.btnLogout{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+.btnLogout>img{
+    width: 100%;
+    height: 100%;
+}
 /* ADMINISTRADORES / ADMIN: */
 .inputVariables{
     width: 70px;
 }
 /* CLIENTES / CLIENT: */
-
+.invoice{
+    width: 250px;
+    height: fit-content;
+    background: rgba(158, 158, 158,0.4);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+.invoiceDeliveryData,.invoiceAddress,.invoiceValues{
+    display: flex;
+    flex-flow: column;
+}
+.invoiceDeliveryData>strong,.invoiceAddress>strong,.invoiceValues>strong{
+    align-self: center;
+}
+.invoiceClientInfo,.invoicePayment{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
 /* ENTREGADORES / DELIVERYMAN: */
 .profileDeliveryman{
     /* height: 500px; */
@@ -470,24 +494,24 @@ input:hover{
     justify-content: center;
 }
 .mobileView{
-    height: 100px;
+    height: 50px;
     position: fixed;
     bottom: 0;
-}
-.mobileView>button{
-    width: 50px;
-    height: 50px;
 }
 /* RESPONSIVIDADE: */
 @media (min-width:1024px){
     .computerView{visibility: visible;}
     .tabletView{visibility: hidden;}
     .mobileView{visibility: hidden;}
+    .mobileView2{visibility: hidden;}
     /* .homeHeader{
         background: yellow;
     } */
 }
 @media (max-width:1023px){
+    .userNavbar{
+        display: none;
+    }
     .features{
         flex-direction: column;
         align-items: center;
@@ -497,20 +521,23 @@ input:hover{
     .computerView{visibility: hidden;}
     .tabletView{visibility: visible;}
     .mobileView{visibility: hidden;}
+    .mobileView2{visibility: hidden;}
     .homeHeader>img{
         left: 20%;
     }
-    /* .homeHeader{
-        background: green;
-    } */
 }
 .btnMobile{
     background: #9e9e9e;
+    margin-top: -25px;
     color: #121212;
-    width: 100px;
-    width: 100px;
+    width: 50px;
+    height  : 50px;
     border-radius: 50%;
     border: 2px solid transparent;
+}
+.btnMobile>img{
+    width: 100%;
+    height: 100%;
 }
 .btnMobile:hover{
     background: #121212;

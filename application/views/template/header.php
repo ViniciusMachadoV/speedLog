@@ -134,7 +134,7 @@ else { echo '<header class="userHeader flex-row">
 	<div class="welcome flex-row">
 		<img src="'. base_url("assets/img/logo.png") .'" alt="Logo SpeedLog">
 		<h4>Boas vindas,'. $_SESSION["apelido"] .'</h4>
-    	<button class="btnHeader btnLogout">Logout</button>
+    	<button class="btnHeader btnLogout"><img src="'. base_url("assets/icons/logout-colored.png") .'" alt="Logo SpeedLog"></button>
 	</div>
 	<div class="userNavbar">
 		<button class="btnHeader btnProfile">Perfil</button>

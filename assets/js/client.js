@@ -10,7 +10,7 @@ $(document).ready(function () {
 	$('#altura').mask('0.00');
 	$('#largura').mask('0.00');
 	$("#valor_entrega").hide();
-	$("#form_client").hide();
+	$("#form_client").show();
 	$("#acompanhar").hide();
 	$("#historico").hide();
 	$("#chat").hide();
@@ -58,17 +58,17 @@ function pegarid(aq) {
 }
 $("#peso").keyup(function() {
 	var peso = $("#peso").val();
-	$("#peso_nota").html(peso + "Kg");
+	$("#packageWeight").html(peso + "Kg");
 
   });
 $("#largura").keyup(function() {
 	var largura = $("#largura").val();
-	$("#largura_nota").html(largura + "cm");
+	$("#packageWidth").html(largura + "cm");
 
   });
 $("#altura").keyup(function() {
 	var altura = $("#altura").val();
-	$("#altura_nota").html(altura + "cm");
+	$("#packageHeight").html(altura + "cm");
 
   });
 function verificar_peso() {
