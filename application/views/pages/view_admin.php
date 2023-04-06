@@ -1,5 +1,5 @@
 <title>Admin - SpeedLog</title>
-<div class="container">
+<div class="container viewAdmin">
     <a class="btnLogout">Logout</a>
     <!-- ?php  print_r(date_create(date('Y-m-d', time())))?> -->
     <!-- PEGAR DIA DA SEMANA (DOMINGO = 0): ?php echo date('w')?> -->
