@@ -549,6 +549,145 @@ input:hover{
     position: fixed;
     bottom: 0;
 }
+/* CONQUISTAS // ACHIEVEMENTS: */
+.achievement{
+    background: #424242;
+    height: 60px;
+    width: 400px;
+    border-radius: 30px;
+    border: 2px solid #b6b6b6;
+    padding: 5px;
+}
+.achievementImage{
+    width: 100px;
+}
+.achievementImage>img{
+    height: 100%;
+    background: #121212;
+    border-radius: 50%;
+    padding: 5px;
+}
+/* SUPORTE // SUPPORT: */
+.support{
+    display: flex;
+    flex-flow: column;
+    border: 2px solid #ddd; 
+    padding: 10px;
+    background: #121212;
+    border-radius: 10px;
+    position: fixed;
+    margin: 10px;
+    height: 300px;
+    width: 270px;
+    bottom: 70px;
+    right: 0;
+    transition: .7s;
+}
+.supportImage{
+    cursor: pointer;
+    background: transparent;
+    position: fixed;
+    bottom: 70px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: .7s;
+}
+.supportImage:hover{
+    background: #3a3a3a;
+    border: 2px solid #ddd;
+}
+.supportImage>img{
+    width: 100%;
+}
+.supportChat{
+    overflow: auto;
+    z-index: -1;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.supportTitle,.typeAndSend{
+    background: #121212;
+    display: flex;
+    flex-flow: row;
+    width: 250px;
+}
+.supportTitle{
+    position: fixed;
+    margin-top: -10px;
+}
+.supportTitle>span{
+    align-self: center;
+}
+.supportTitle>img{
+    width: 35px;
+}
+.typeAndSend{
+    justify-content: end;
+    width: 100%;
+    margin-bottom: -5px;
+}
+.typeAndSend>input{
+    width: 100%;
+}
+.typeAndSend>img{
+    cursor: pointer;
+    width: 30px;
+}
+.sendMessage{
+    cursor: pointer;
+}
+.supportMessage{
+    border-radius: 10px;
+    color: #121212;
+    padding: 5px;
+    margin: 5px;
+}
+.messageClient{
+    background: #e7e7e7;
+    align-self:flex-end;
+    margin-left: 30px;
+}
+.messageAdmin{
+    background: #ddd;
+    margin-right: 30px;
+    align-self:flex-start;
+    display: flex;
+    flex-flow: column;
+}
+.messageAdmin>button{
+    margin: 5px;
+    background: #2e2e2e;
+    color: #ddd;
+    height: 30px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    transition: .6s;
+}
+.messageAdmin>button:hover{
+    border: 2px solid #00ffcc;
+}
+.closeSupportChat{
+    cursor: pointer;
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    margin: 5px;
+    right: 0;
+    top: 0;
+}
+.closeSupportChat>img{
+    width: 100%;
+}
 /* RESPONSIVIDADE: */
 @media (min-width:1024px){
     .links>a{margin: 10px;}
