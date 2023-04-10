@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$('#phoneNumber_SignUp').mask('(00)00000-0000');
 	$('#license_SignUp').mask('AAA AAAA');
     // IMPEDE ESPAÇOS NOS INPUTS:
-    $(".inputSignIn").on({
+    $(".spaceNotAllowed").on({
         keydown: function(e) {
           if (e.which === 32)
             return false;

@@ -13,23 +13,33 @@
             <img class="profilePic pointer" src="'.base_url('assets/pictures/'.$DeliverymanColumn->entregador_foto).'">';
             else echo '<img class="profilePic pointer" src="'.base_url('assets/icons/user-colored.png').'">';
           echo '
-            <div id="overlay"><button class="changePic">a</div>
           </label>
           <br>
           <input id="picChange" type="file" name="pic" accept="image/*" class="form-control">
           <div align="center">
-            <button type="submit" id="sendPicture" class="btnBlue">Enviar imagem</button>
           </div>
-        </form>
-        <div class="statusDeliveryman pointer">';
-        if($DeliverymanColumn->usuario_status == 'SUSPENSO') echo 's';
-        else echo 'a';
-        echo '</div>
+          <button type="submit" id="sendPicture" class="statusDeliveryman pointer">
+          <img src="'.base_url('assets/icons/photo-colored.png').'">
+          </button>
+          </form>';
+          // <button type="submit" id="sendPicture" class="btnBlue">Enviar imagem</button>
+          // <div id="overlay"><button class="changePic">a</div>
+        // if($DeliverymanColumn->usuario_status == 'SUSPENSO') echo 's';
+        // else echo 'a';
+        echo '
       </div>
       <div class="deliverymanStats flex-row">
-        <div class="stat" id="deliveries">Deliveries</div>
-        <div class="stat" id="rating">rate</div>
-        <div class="stat" id="serviceTime">'.number_format($idadeConta->format("%a")/365, 1, ",", ".").' anos</div>
+        <div class="stat" id="deliveries">
+        <img src="'.base_url('assets/icons/moto.png').'" alt="">
+        2</div>
+        <div class="stat" id="rating">
+          <img src="'.base_url('assets/icons/star-colored.png').'" alt="">
+          4.8/5.0
+        </div>
+        <div class="stat" id="serviceTime">
+          <img src="'.base_url('assets/icons/time-colored.png').'" alt="">
+          '.number_format($idadeConta->format("%a")/365, 1, ",", ".").' anos
+        </div>
       </div>
       <div class="profileID flex-row">
         <div class="flex-column profileInfo" style="width:70%">
@@ -38,14 +48,17 @@
           <span class="accFullname">'.$DeliverymanColumn->usuario_nome.'</span>
         </div>
         <div class="flex-row editProfileInfo">
-          <button class="btnEditProfileInfo">EDITAR</button><br>
+          <button class="btnEditProfileInfo">
+            <img src="'.base_url('assets/icons/edit-colored.png').'">
+          </button><br>
         </div>
       </div>
-      <div class="ganhos valorCaixa">VALOR EM CAIXA: ';foreach ($valorCaixa as $value) {
-        foreach ($value as $value2) {
-            echo "R$". $value2;
-        }
-      }
+      <div class="ganhos valorCaixa">GANHOS: R$32,50';
+      // foreach ($valorCaixa as $value) {
+      //   foreach ($value as $value2) {
+      //       echo "R$". $value2;
+      //   }
+      // }
         echo '</div>
       <div class="achievements">
         <!--  -->
@@ -197,7 +210,6 @@
  
     move_uploaded_file($_FILES['pic']['tmp_name'], $dir.$new_name); //Fazer upload do arquivo
     
-    echo 'tem ponto?'.$_FILES['pic']['name'].str_contains($_FILES['pic']['name'], '.');
     // echo '<div class="alert alert-success" role="alert" align="center">
     //       <img src="'.base_url('assets/pictures/' . $new_name).'" class="img img-responsive img-thumbnail" width="200"> 
     //       <br>

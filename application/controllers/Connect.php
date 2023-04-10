@@ -74,15 +74,15 @@ class Connect extends CI_Controller {
 			$mail->isSMTP();
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
-			$mail->Username = '0000821648@senaimgaluno.com.br';
-			$mail->Password = '';
+			$mail->Username = '0000501299@senaimgaluno.com.br';
+			$mail->Password = '98senai.mg21';
 			$mail->Port = 587;
 		
-			$mail->setFrom('0000821648@senaimgaluno.com.br');
+			$mail->setFrom('0000501299@senaimgaluno.com.br');
 			$mail->addAddress($email_client);
 		
 			$mail->isHTML(true);
-			$mail->Subject = 'Equipe Speed Log';
+			$mail->Subject = 'Equipe SpeedLog';
 			$mail->Body = '<strong> Obrigado por Assinar nosso portal de noticias, vamos manter você sincronizado com nossas novidades!!  </strong>';
 			$mail->AltBody = 'Atenciosamente equipe Speed Log ';
 		

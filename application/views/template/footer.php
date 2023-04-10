@@ -1,5 +1,5 @@
 <footer class="computerView">
-    <div class="links flex-row spaced-around wrap">
+    <div class="links flex-row">
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Termos e condições</a>
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Privacidade</a>
         <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Sobre nós</a>
@@ -22,12 +22,33 @@
 </footer>
 
 <footer class="tabletView">
-    <h1>aa</h1>
-    </footer>
+    <div class="linksMedia flex-column">
+        <div class="links flex-row spaced-around wrap">
+            <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Termos e condições</a>
+            <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Privacidade</a>
+            <a href="<?php echo base_url('');?>" target="_blank" rel="noopener noreferrer">Sobre nós</a>
+        </div>  
+        <div class="socialMedia flex-row">
+            <a class="btnSocialMedia btnTwitter" target="_blank" rel="noopener noreferrer" href="http://twitter.com">
+                <img src="<?php echo base_url('assets/icons/twitter-white.png');?>" alt="Link Twitter">
+            </a>
+            <a class="btnSocialMedia btnFacebook" target="_blank" rel="noopener noreferrer" href="http://facebook.com">
+                <img src="<?php echo base_url('assets/icons/facebook-white.png');?>" alt="Link Facebook">
+            </a>
+            <a class="btnSocialMedia btnInstagram" target="_blank" rel="noopener noreferrer" href="http://instagram.com">
+                <img src="<?php echo base_url('assets/icons/instagram-white.png');?>" alt="Link Instagram">
+            </a>
+        </div>
+    </div>
+    <div class="brand flex-column text-centered">
+        <img src="<?php echo base_url('assets/img/logo.png');?>" alt="">
+        <span>© 2023 SpeedLog</span>
+    </div>
+</footer>
 
 <?php if($this->session->userdata('tipo')!=''){ echo '
 <footer class="mobileView">
-    <button class="btnMobile btnProfile"><img src="'.base_url("assets/icons/user-colored.png").'" alt=""></button>';
+    <button class="btnMobile btnProfile selectedMobile"><img src="'.base_url("assets/icons/user-colored.png").'" alt=""></button>';
     if($this->session->userdata('tipo') == 'ENTREGADOR') echo'
     <button class="btnMobile btnOrders"><img src="'.base_url("assets/icons/moto.png").'" alt=""></button>';
     else if($this->session->userdata('tipo') == 'CLIENTE') echo '
@@ -38,29 +59,29 @@
 </footer>';
 }
 else{ echo '
-<footer class="mobileView2">
-<div class="links flex-column">
-    <a href="'.base_url('').'" target="_blank" rel="noopener noreferrer">Termos e condições</a>
-    <a href="'.base_url('').'" target="_blank" rel="noopener noreferrer">Privacidade</a>
-    <a href="'.base_url('').'" target="_blank" rel="noopener noreferrer">Sobre nós</a>
-</div>
-<div>
-<div class="brand flex-column text-centered">
-    <img src="'.base_url('assets/img/logo.png').'" alt="">
-    <span>© 2023 SpeedLog</span>
-</div>
-<div class="socialMedia flex-row">
-    <a class="btnSocialMedia btnTwitter" target="_blank" rel="noopener noreferrer" href="http://twitter.com">
-        <img src="'.base_url('assets/icons/twitter-white.png').'" alt="Link Twitter">
-    </a>
-    <a class="btnSocialMedia btnFacebook" target="_blank" rel="noopener noreferrer" href="http://facebook.com">
-        <img src="'.base_url('assets/icons/facebook-white.png').'" alt="Link Facebook">
-    </a>
-    <a class="btnSocialMedia btnInstagram" target="_blank" rel="noopener noreferrer" href="http://instagram.com">
-        <img src="'.base_url('assets/icons/instagram-white.png').'" alt="Link Instagram">
-    </a>
-</div>
-</div>
+<footer class="mobileView2 ">
+    <div class="links flex-column">
+        <a href="'.base_url('').'" target="_blank" rel="noopener noreferrer">Termos e condições</a>
+        <a href="'.base_url('').'" target="_blank" rel="noopener noreferrer">Privacidade</a>
+        <a href="'.base_url('').'" target="_blank" rel="noopener noreferrer">Sobre nós</a>
+    </div>
+    <div class="brandMedia">
+        <div class="brand flex-column text-centered">
+            <img src="'.base_url('assets/img/logo.png').'" alt="">
+            <span>© 2023 SpeedLog</span>
+        </div>
+        <div class="socialMedia flex-row">
+            <a class="btnSocialMedia btnTwitter" target="_blank" rel="noopener noreferrer" href="http://twitter.com">
+                <img src="'.base_url('assets/icons/twitter-white.png').'" alt="Link Twitter">
+            </a>
+            <a class="btnSocialMedia btnFacebook" target="_blank" rel="noopener noreferrer" href="http://facebook.com">
+                <img src="'.base_url('assets/icons/facebook-white.png').'" alt="Link Facebook">
+            </a>
+            <a class="btnSocialMedia btnInstagram" target="_blank" rel="noopener noreferrer" href="http://instagram.com">
+                <img src="'.base_url('assets/icons/instagram-white.png').'" alt="Link Instagram">
+            </a>
+        </div>
+    </div>
 </footer>';
 }
 ?>
