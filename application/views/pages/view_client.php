@@ -45,8 +45,8 @@
 					</div>
 					<div class="mb-3">
 						<label for="exampleInputText1" class="form-label">Rua Retirada</label>
-						<input type="Text"  class="form-control" name="ruaRetirada"
-							id="ruaRetirada" placeholder="Digite o cep de entrega da sua mercadoria"
+						<input type="Text"  class="form-control" name="ruaEntrega"
+							id="ruaEntrega" placeholder="Digite o cep de entrega da sua mercadoria"
 							aria-describedby="TextHelp">
 					</div>
 				</div>
@@ -60,8 +60,8 @@
 					</div>
 					<div class="mb-3">
 						<label for="exampleInputText1" class="form-label">Rua Entrega</label>
-						<input type="Text"  class="form-control" name="ruaEntrega"
-							id="ruaEntrega" placeholder="Digite o cep de entrega da sua mercadoria"
+						<input type="Text"  class="form-control" name="ruaRetirada"
+							id="ruaRetirada" placeholder="Digite o cep de entrega da sua mercadoria"
 							aria-describedby="TextHelp">
 					</div>
 				</div>
@@ -83,6 +83,7 @@
 							<div class="mb-3">
 								<label for="cupom" class="form-label">Cupom</label>
 								<input type="text" class="form-control" id="cupom" placeholder="">
+								<button type="button" class="btn btn-primary btnCupom" >Aplicar</button>
 							</div>
 						</div>
 						<div class="total">
@@ -207,38 +208,38 @@
 					<div class="invoiceDeliveryData">
 						<strong>Pacote</strong>
 						<div class="flex-row spaced-between">
-							Peso: <span><span id="packageWeight">0</span></span>
+							Peso: <span><span id="packageWeight">0</span>kg</span>
 						</div>
 						<div class="flex-row spaced-between">
-							Medidas: <span><span id="packageWidth">0</span>x<span id="packageHeight">0</span></span>
+							Medidas: <span><span id="packageWidth">0</span> x <span id="packageHeight">0</span>m</span>
 						</div>
 					</div>
 					<hr/>
 					<div class="invoiceAddress">
 					<strong>Trajeto</strong>
 					<div class="flex-row spaced-between">
-						Origem:<span>CEP <span class="invoiceOriginCEP"></span>11111-222</span>
+						Origem:<span>CEP <span class="invoiceOriginCEP"></span></span>
 					</div>
 					<div class="flex-row spaced-between">
-						<span class="invoiceOriginAddress">Rua Américo Lobo</span>
+						<span class="invoiceOriginAddress"></span>
 					</div>
 					<div class="flex-row spaced-between">
-						Destino:<span>CEP <span class="invoiceDestinationCEP"></span>36035-210</span>
+						Destino:<span>CEP <span class="invoiceDestinationCEP"></span></span>
 					</div>
 					<div class="flex-row spaced-between">
-						<span class="invoiceDestinationAddress">Avenida dos Andradas</span>
+						<span class="invoiceDestinationAddress"></span>
 					</div>
 					<hr/>
 					<div class="invoiceValues">
 						<strong>Valores</strong>
-						<div class="flex-row spaced-between">Subtotal:<span>R$<span class="invoiceSubtotal">0,00</span></span>
+						<div class="flex-row spaced-between">Subtotal:<span>R$<span class="invoiceSubtotal">16,50</span></span>
 						</div>
-						<div class="flex-row spaced-between">Cupom: <span>-R$<span class="invoiceVoucher">0,00</span></div>
-						<div class="flex-row spaced-between">Total: <span>R$<span class="invoiceTotal">0,00</span></span></div>
+						<div class="flex-row spaced-between">Cupom: PASCOA <span>-R$<span class="invoiceVoucher">2,00</span></div>
+						<div class="flex-row spaced-between">Total: <span>R$<span class="invoiceTotal">14,50</span></span></div>
 					</div>
 					<div class="invoicePayment flex-column">
 						<strong>Pagamento</strong>
-						<span class="invoicePaymentMethod">Nenhum</span>
+						<span class="invoicePaymentMethod">Cartão de crédito</span>
 					</div>
 					<button align="center" class="btn btn-primary">Enviar por Email</button>
 				</div>

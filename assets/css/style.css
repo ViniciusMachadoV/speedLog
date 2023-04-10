@@ -4,11 +4,12 @@ font-family: 'Racing Sans One', cursive;
 font-family: 'Righteous', cursive; */
 body{
     background: #080808;
+    position: relative;
+    color: #DDDDDD;
     width: 100%;
     margin: 0;
-    position: relative;
     min-height: 100vh;
-    color: #DDDDDD;
+    /* height: fit-content; */
 }
 body::-webkit-scrollbar{
     display: none;
@@ -54,6 +55,8 @@ input:hover{
     width: 100%;
     justify-content: right;
     align-items: center;
+    display: flex;
+    flex-flow: row;
 }
 .homeHeader>img{
     position: absolute;
@@ -133,7 +136,7 @@ input:hover{
 #nicknameHelp,#emailHelp,#dataHelp{
     color: #DDDDDD;
 }
-#dataHelp>a{
+#dataHelp>a,.forgotPass{
     color: #00ffcc;
 }
 .formInput{
@@ -187,14 +190,19 @@ input:hover{
     align-items: center;
     justify-content: center;
     height: 70px;
+    margin: 10px;
 }
-.feature>h5{
+.feature>h6{
     height: 130px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: justify;
+    text-align:center;
     margin: 15px;
+}
+.service{
+    display: flex;
+    flex-direction: row;
 }
 .service>div{
     width: 50%;
@@ -213,8 +221,17 @@ input:hover{
     align-items: center;
     margin: 30px;
 }
-#newsletter{
-    width: 350px;
+.newsletterForm{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+.btnNewsletter{
+    margin: 5px;
+    border: 3px solid #DDDDDD;
+    background: #DDDDDD;
+    border-radius: 20px;
+    transition-duration: .5s;
 }
 .serviceDescription>button{
     width: 80px;
@@ -273,18 +290,14 @@ input:hover{
     border-radius: 20px;
     transition-duration: .5s;
 }
-.btnNewsletter{
-    border: 3px solid #DDDDDD;
-    background: #DDDDDD;
-    border-radius: 20px;
-    transition-duration: .5s;
-}
 .btnService:hover,.btnNewsletter:hover{
     background: #121212;
     color: #DDDDDD;
 }
 /* RODAPÉ: */
-.computerView,.tabletView,.mobileView,.mobileView2{
+.computerView,.tabletView,.mobileView{
+    position: absolute;
+    /* bottom: 0; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -292,8 +305,6 @@ input:hover{
     width: 100%;
 }
 .computerView{
-    position: absolute;
-    bottom: 0;
     align-items: center;
     padding: 0px 40px;
     background: rgba(0, 0, 0, 0.5);
@@ -302,12 +313,31 @@ input:hover{
     width: 100%;
     align-items: top;
     background: orange;
+    background: rgba(37, 37, 37, 0.5);
 }
-.links,.brand,.socialMedia{
-    min-width: 200px;
-    width: 33%;
+.mobileView2{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+.mobileView2>.links{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.mobileView2>.brandMedia{
+    width: 50%;
+    justify-content: center;
+}
+.links,.socialMedia{
+    width: 40%;
+}
+.brand{
+    width: 20%;
 }
 .links>a{
+    width: auto;
     margin: 5px;
     text-decoration: none;
     color: #DDDDDD;
@@ -340,8 +370,15 @@ input:hover{
     cursor: pointer;
     transition: 0.7s;
 }
-.btnSocialMedia:hover,.btnEditProfileInfo:hover{
+.btnSocialMedia:hover{
     background: rgba(0, 255, 204, 0.6);
+}
+.btnEditProfileInfo:hover{
+    background: rgb(49, 49, 49);
+    border: 1px solid #ddd;
+}
+.btnEditProfileInfo>img{
+    width: 100%;
 }
 .btnSocialMedia>img{
     padding: 5px;
@@ -461,21 +498,35 @@ input:hover{
     border: 4px solid white;
 }
 .statusDeliveryman{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     color: white;
     background:  #121212;
     position: relative ;
     bottom: 30px;
     left: 100px;
+    border: 3px solid transparent;
+    transition: .7s;
+}
+.statusDeliveryman:hover{
+    background:  #080808;
+    border: 3px solid #ddd;
+}
+#sendPicture>img{
+    width: 100%;
 }
 .stat{
     background: rgba(25,25,25,1);
     margin: 5px;
     color: wheat;
-    width: 100px;
+    width: 120px;
     height: 40px;
+    border-radius: 5px;
+}
+.stat>img{
+    height: 100%;
+    padding: 5px;
 }
 .profileID{
     width: 300px;
@@ -500,24 +551,23 @@ input:hover{
 }
 /* RESPONSIVIDADE: */
 @media (min-width:1024px){
+    .links>a{margin: 10px;}
     .computerView{visibility: visible;}
     .tabletView{visibility: hidden;}
+    .mobileLogo{visibility: hidden;}
     .mobileView{visibility: hidden;}
     .mobileView2{visibility: hidden;}
-    /* .homeHeader{
-        background: yellow;
-    } */
 }
 @media (max-width:1023px){
-    .userNavbar{
-        display: none;
-    }
+    .userNavbar{display: none;}
     .features{
         flex-direction: column;
         align-items: center;
     }
 }
 @media (min-width:768px) and (max-width:1023px){
+    .links>a{margin: 10px;}
+    .mobileLogo{visibility: hidden;}
     .computerView{visibility: hidden;}
     .tabletView{visibility: visible;}
     .mobileView{visibility: hidden;}
@@ -525,15 +575,36 @@ input:hover{
     .homeHeader>img{
         left: 20%;
     }
+    .linksMedia{
+        margin: 10px;
+    }
+    .links,.socialMedia{
+        width: 100%;
+    }
+    .brand{
+        width: 25%;
+    }
+    .features{
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .feature{
+        width:230px;
+        margin: 10px;
+    }
 }
 .btnMobile{
-    background: #9e9e9e;
+    background: #424242;
     margin-top: -25px;
     color: #121212;
     width: 50px;
     height  : 50px;
     border-radius: 50%;
     border: 2px solid transparent;
+}
+.selectedMobile{
+    background: #1b1b1b;
+    border: 2px solid #ddd;
 }
 .btnMobile>img{
     width: 100%;
@@ -545,10 +616,44 @@ input:hover{
     border: 2px solid #9e9e9e;
 }
 @media (max-width:767px){
+    .mobileLogo{visibility: visible;}
+    .largerLogo{visibility: hidden;}
+    .homeHeader>img{
+        width: 100px;
+        left: 15%;
+    }
+    .signOptions{
+        margin-left: 120px;
+    }
+    .service{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        margin-bottom: 50px;
+    }
+    .serviceDescription{
+        position: absolute;
+        max-height: 300px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .serviceImage{
+        filter: brightness(40%);
+        min-height: 350px;
+        width: 100vw;
+    }
+    .newsletterForm{
+        flex-direction: column;
+        align-items: center;
+    }
+    .links{
+        align-items: center;
+    }
+    .links,.brand,.socialMedia{
+        width: 100%;
+    }
     .computerView{visibility: hidden;}
     .tabletView{visibility: hidden;}
     .mobileView{visibility: visible;}
-    .homeHeader{
-        background: blue;
-    }
 }

@@ -1,14 +1,13 @@
 $(document).ready(function () {
-	// $(".informacaoPagamento").hide();
-	// $("#valor").hide();
-	$("#tempoEstimado").hide();
 	$("#numeroCartao").mask("0000 0000 0000 0000");
 	$("#dataValidade").mask("00/00");
-	$("#cvv").mask("000");
 	$('#cepretirada').mask('00000-000');
 	$('#cepentrega').mask('00000-000');
-	$('#altura').mask('0.00');
 	$('#largura').mask('0.00');
+	$('#altura').mask('0.00');
+	$("#cvv").mask("000");
+	
+	$("#tempoEstimado").hide();
 	$("#valor_entrega").hide();
 	$("#form_client").show();
 	$("#acompanhar").hide();
@@ -57,35 +56,39 @@ function pegarid(aq) {
 	});
 }
 $("#peso").keyup(function() {
+	if ($(this).val()>=12) {
+		$(this).val('12');
+		$(this).addClass('invalidInput');
+	}
 	var peso = $("#peso").val();
-	$("#packageWeight").html(peso + "Kg");
-
-  });
+	$("#packageWeight").html(peso);
+});
+$("#peso").click(function() {
+	$(this).removeClass('invalidInput');
+});
 $("#largura").keyup(function() {
 	var largura = $("#largura").val();
-	$("#packageWidth").html(largura + "cm");
-
-  });
+	$("#packageWidth").html(largura);
+});
 $("#altura").keyup(function() {
 	var altura = $("#altura").val();
-	$("#packageHeight").html(altura + "cm");
-
-  });
+	$("#packageHeight").html(altura);
+});
+$("#cepentrega").keyup(function() {
+	var originCEP = $(this).val();
+	$(".invoiceOriginCEP").html(originCEP);
+});
+$("#cepretirada").keyup(function() {
+	var DestinationCEP = $(this).val();
+	$(".invoiceDestinationCEP").html(DestinationCEP);
+});
 function verificar_peso() {
 	var peso = $("#peso").val();
-	$("#peso").css('background', 'red');
-
 	parseInt(peso);
 	if (peso>12) {
 	$("#divPeso").html("Não é permitido cargas com esse porte.");
 	$("#divPeso").show();
-
-
-	}else{
-	$("#peso").css('background', 'white');
-	$("#divPeso").hide();
-
-	}
+	}else $("#divPeso").hide();
 }
 // calculo de valor do pedido
 function teste() {
@@ -93,23 +96,15 @@ function teste() {
 	var cep2 = $("#cepretirada").val();
 	var peso = $("#peso").val();
 	parseInt(peso);
-	if (peso>12) {
-		console.log("peso dms");
-		
-	}
 	if (cep != "") {
 		//USO DE API DE DISTANCIA
 		$.get("https://api.distancematrix.ai/maps/api/distancematrix/json?origins=" + cep2 + "&destinations=" + cep + "&key=EcQvMZeILr23cq8aw6nausfBMUMl5", function (data) {
 			console.log(data);
 			if (data != "") {
-				
 				var distancia = data['rows'][0]['elements'][0]['distance']['text'];
 				var tempo = data['rows'][0]['elements'][0]['duration']['text'];
-				console.log(data);
-				
 				var numsStr = tempo.replace(/[^0-9]/g, '');
 				$("#tempoEstimado").val(numsStr);
-
 				$.post("client/calculo", {
 					distancia_cal: distancia,
 					tempo_cal: numsStr,
@@ -123,44 +118,29 @@ function teste() {
 		});
 		// USO DE API DE LOCALIZAÇÃO
 		var cepmeu=cep;
-
 		$.get( "https://viacep.com.br/ws/"+ cepmeu +"/json/?data=?", function( data2 ) {
-		    $("#ruaEntrega").val(data2['logradouro']);
-		    // console.log("data2");
-			
+		    $("#ruaRetirada").val(data2['logradouro']);
+			$('.invoiceDestinationAddress').html(data2['logradouro']);
 		});
-
-		
 	}
-	if (cep2 || cep == "") {
-		$("#divcep").html("digite um cep valido!");
-	}
-
+	if (cep2 || cep == "") $("#divcep").html("digite um cep valido!");
 }
 function preencherCep1() {
 	var cepmeu2 = $("#cepretirada").val();
-
 	$.get( "https://viacep.com.br/ws/"+ cepmeu2 +"/json/?data=?", function( data3 ) {
-		    $("#ruaRetirada").val(data3['logradouro']);
-		    // console.log("data2");
-			
+		    $("#ruaEntrega").val(data3['logradouro']);
+			$('.invoiceOriginAddress').html(data3['logradouro']);
 		});
 }
 $('#btnMessage').click(function(){
   var message = $("#txtMessage").val();
   $.post("client/adicionarMensagem",{msgAdd:message});
   $("#txtMessage").val('');
-  
 });
 $('.btn_avaliar').click(function(){
 	$('#exampleModal').modal('show');
-  
 });
 $('.closeModal').click(function(){
 	$('#exampleModal').modal('hide');
-  
 });
-
-
-
  

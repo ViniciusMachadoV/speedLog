@@ -1,17 +1,16 @@
 <title>Admin - SpeedLog</title>
 <div class="container viewAdmin">
-    <a class="btnLogout">Logout</a>
     <!-- ?php  print_r(date_create(date('Y-m-d', time())))?> -->
     <!-- PEGAR DIA DA SEMANA (DOMINGO = 0): ?php echo date('w')?> -->
     <!-- ?php print_r($this->session->userdata('tipo'))?> -->
     <!-- ?php print_r($this->session->userdata('usuario'))?> -->
 
-    <button type="button" class="btn btn-primary tabBtn btnListDeliveryman">entregadores</button>
-    <button type="button" class="btn btn-primary tabBtn btnListDeliveries">entregas</button>
-    <button type="button" class="btn btn-primary tabBtn btnListClients">clientes</button>
-    <button type="button" class="btn btn-primary tabBtn btnRegisterAdmins">cadastro de adms</button>
+    <button type="button" class="btn btn-primary tabBtn btnListDeliveryman">Entregadores</button>
+    <button type="button" class="btn btn-primary tabBtn btnListClients">Clientes</button>
+    <button type="button" class="btn btn-primary tabBtn btnListDeliveries">Entregas</button>
+    <button type="button" class="btn btn-primary tabBtn btnRegisterAdmins">Cadastro</button>
     <button type="button" class="btn btn-primary tabBtn btnAdjustVariables">Valores de frete</button>
-    <button type="button" class="btn btn-primary tabBtn btnReports">Denuncias</button>
+    <button type="button" class="btn btn-primary tabBtn btnReports">Denúncias</button>
     <button type="button" class="btn btn-primary tabBtn btnVouchers">Criar cupom</button>
     <div id="valorCaixa"> VALOR EM CAIXA: <?php foreach ($valorCaixa as $value) {
         foreach ($value as $value2) {
@@ -118,21 +117,25 @@
     </table>
     <!-- CHANGE AND ADAPT TO REGISTER USERS: -->
     <div class="tabAdmin registerAdmins">
-        <div class="mb-3">
-            <label for="nomeCompleto" class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" id="nomeCompleto" >
-        </div>
-        <div class="mb-3">
+        <div class="mb-3 row">
+            <div class="col">
+                <label for="nomeCompleto" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="nomeCompleto" >
+            </div>
+            <div class="col">
             <label for="emailAdmin" class="form-label">Email</label>
             <input type="email" class="form-control" id="emailAdmin">
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 row">
+            <div class="col">
             <label for="cpfAdmin" class="form-label">CPF</label>
             <input type="text" class="form-control" id="cpfAdmin">
-        </div>
-        <div class="mb-3">
+            </div>
+            <div class="col">
             <label for="apelidoAdmin" class="form-label">Apelido</label>
             <input type="text" class="form-control" id="apelidoAdmin">
+            </div>
         </div>
         <div class="mb-3">
             <label for="telefoneAdmin" class="form-label">Telefone</label>
@@ -250,31 +253,37 @@
         </table>
     </div>
     <div class="tabAdmin addVoucher">
-        <div class="mb-3">
-            <label for="nomeCompleto" class="form-label">Código</label>
+        <div class="mb-3 row">
+            <div class="col">
+            <label for="codVoucher" class="form-label">Código</label>
             <input type="text" class="form-control" id="codeVoucher" >
-        </div>
-        <div class="mb-3">
+            </div>
+            <div class="col">
             <label for="emailAdmin" class="form-label">Desconto</label>
             <input type="email" class="form-control" id="discountVoucher">
             <label for="cpfAdmin" class="form-label">É percentual?</label>
             <input type="checkbox" class="form-check-input" id="isPercentual">
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 row">
+            <div class="col">
             <label for="apelidoAdmin" class="form-label">Início(opcional)</label>
             <input type="date" class="form-control" id="startVoucher">
-        </div>
-        <div class="mb-3">
+            </div>
+            <div class="col">
             <label for="telefoneAdmin" class="form-label">Término(opcional)</label>
             <input type="date" class="form-control" id="endVoucher">
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="senhaAdmin" class="form-label">Quantidade</label>
-            <input type="text" class="form-control" id="quantityVoucher">
-        </div>
-        <div class="mb-3">
+        <div class="mb-3 row">
+            <div class="col">
+                <label for="senhaAdmin" class="form-label">Quantidade</label>
+                <input type="text" class="form-control" id="quantityVoucher">
+            </div>
+            <div class="col-10">
             <label for="ConfSenhaAdmin" class="form-label">Descrição</label>
             <input type="text" class="form-control" id="descriptionVoucher">
+            </div>
         </div>
         <button type="submit" id="btnAddVoucher" class="btn btn-primary">Adicionar</button>
     </div>

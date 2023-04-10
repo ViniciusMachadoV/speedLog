@@ -6,29 +6,31 @@
         <div class="feature">
             <img src="<?php echo base_url('assets/icons/friends-colored.png');?>" alt="">
             <h3><span>Mais que parceiros, amigos</span></h3>
-            <h5>Seja nosso entregador e você terá controle total do seu tempo de trabalho e receberá dados que podem melhorar seus ganhos com entregas</h5>
+            <h6>Seja nosso entregador e você terá controle total do seu tempo de trabalho e receberá dados que podem melhorar seus ganhos com entregas</h6>
         </div>
         <div class="feature">
             <img src="<?php echo base_url('assets/icons/heart-colored.png');?>" alt="">
             <h3><span>Benefício atrás de benefício</span></h3>
-            <h5>Clientes e entregadores possuem proteção contra danos, cupons promocionais, suporte 24 horas e muito mais!</h5>
+            <h6>Clientes e entregadores possuem proteção contra danos, cupons promocionais, suporte 24 horas e muito mais!</h6>
         </div>
         <div class="feature">
             <img src="<?php echo base_url('assets/icons/hourglass-colored.png');?>" alt="">
             <h3><span>Pediu, chegou</span></h3>
-            <h5>Nossas rotas são otimizadas para completar os pedidos tão rapidamente que você não precisar se preocupar com o tempo de entrega</h5>
+            <h6>Nossas rotas são otimizadas para completar os pedidos tão rapidamente que você não precisar se preocupar com o tempo de entrega</h6>
         </div>
     </section>
     <section class="services flex-column">
-        <div class="service flex-row">
+        <div class="service">
             <div class="serviceDescription flex-column">
                 <span>
                     Fique por dentro das promoções, notícias e receba cupons no seu e-mail. Não vai perder nenhuma oportunidade assinando nossa <i>newsletter</i>:
                 </span>
                 <div>
-                    <form action="<?php echo base_url()?>index.php/connect/sub_email" method="post">
-                        <label for="emailNewsletter">E-mail:</label>
-                        <input type="text" name="emailNewsletter" id="newsletter">
+                    <form class="newsletterForm"action="<?php echo base_url()?>index.php/connect/sub_email" method="post">
+                        <div>
+                            <label for="emailNewsletter">E-mail:</label>
+                            <input type="text" name="emailNewsletter" id="newsletter">
+                        </div>
                         <button class="btnNewsletter">Assinar</button>
                     </form>
                     

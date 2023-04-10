@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02-Abr-2023 às 00:47
+-- Tempo de geração: 07-Abr-2023 às 02:26
 -- Versão do servidor: 5.6.34
 -- versão do PHP: 8.1.7
 
@@ -115,7 +115,7 @@ CREATE TABLE `denuncias` (
   `denuncia_idDenunciante` int(11) NOT NULL,
   `denuncia_entrega` int(11) DEFAULT NULL,
   `denuncia_descricao` varchar(254) NOT NULL,
-  `denuncia_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `denuncia_data` datetime DEFAULT CURRENT_TIMESTAMP,
   `denuncia_status` varchar(10) NOT NULL COMMENT 'PENDENTE, EM ANÁLISE, FECHADA'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -158,7 +158,7 @@ CREATE TABLE `entregadores` (
 
 INSERT INTO `entregadores` (`entregador_id`, `entregador_placaMoto`, `entregador_foto`, `entregador_status`) VALUES
 (2, 'AAA1111', 'rogerin.jpg', 'LIVRE'),
-(3, 'DAY 8090', '', 'LIVRE'),
+(3, 'DAY 8090', 'klebin.jpg', 'LIVRE'),
 (18, 'BBB 2222', NULL, 'LIVRE');
 
 -- --------------------------------------------------------
@@ -171,8 +171,8 @@ CREATE TABLE `entregas` (
   `entrega_id` int(11) NOT NULL,
   `entrega_enderecoOrigem` varchar(254) NOT NULL,
   `entrega_enderecoDestino` varchar(254) NOT NULL,
-  `entrega_cepOrigem` varchar(8) NOT NULL,
-  `entrega_cepDestino` varchar(8) NOT NULL,
+  `entrega_cepOrigem` varchar(9) NOT NULL,
+  `entrega_cepDestino` varchar(9) NOT NULL,
   `entrega_peso` float NOT NULL,
   `entrega_status` varchar(10) NOT NULL COMMENT 'PENDENTE, EM ANDAMENTO OU FINALIZADA',
   `entrega_dataPedido` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -195,7 +195,10 @@ CREATE TABLE `entregas` (
 INSERT INTO `entregas` (`entrega_id`, `entrega_enderecoOrigem`, `entrega_enderecoDestino`, `entrega_cepOrigem`, `entrega_cepDestino`, `entrega_peso`, `entrega_status`, `entrega_dataPedido`, `entrega_dataTransporte`, `entrega_dataEntrega`, `tempoEstimado`, `entrega_cliente`, `entrega_clienteID`, `entrega_responsavel`, `entrega_valor`, `entrega_gorjeta`, `entrega_cupom`, `entrega_observacao`) VALUES
 (29, 'Rua Américo Lobo', 'Avenida dos Andradas', '36050-00', '36036-00', 12, 'FINALIZADO', '2023-04-01 21:03:42', '2023-04-01 21:03:42', '2023-04-01 21:03:42', '21:16', '1', 17, 18, '0', NULL, NULL, ''),
 (30, 'Rua Américo Lobo', 'Avenida dos Andradas', '36050-00', '36036-00', 12, 'FINALIZADO', '2023-04-01 21:09:44', '2023-04-01 21:09:44', '2023-04-01 21:09:44', '21:00', '1', 17, 18, '0', NULL, NULL, ''),
-(31, 'Rua Américo Lobo', 'Avenida dos Andradas', '36050-00', '36036-00', 12, 'PENDENTE', '2023-04-01 21:12:14', '2023-04-01 21:12:14', '2023-04-01 21:12:14', '', '1', 17, NULL, '0', NULL, NULL, '');
+(31, 'Rua Américo Lobo', 'Avenida dos Andradas', '36050-00', '36036-00', 12, 'PENDENTE', '2023-04-01 21:12:14', '2023-04-01 21:12:14', '2023-04-01 21:12:14', '', '1', 17, NULL, '0', NULL, NULL, ''),
+(32, '', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-04-04 08:50:29', '2023-04-04 08:50:29', '2023-04-04 08:50:29', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(33, '', '', '36050-00', '36036-00', 12, 'PENDENTE', '2023-04-05 08:45:11', '2023-04-05 08:45:11', '2023-04-05 08:45:11', '', 'carlinha', 4, NULL, '0', NULL, NULL, ''),
+(34, 'Rua Américo Lobo', 'Avenida dos Andradas', '36050-00', '36036-00', 0, 'PENDENTE', '2023-04-06 17:00:33', '2023-04-06 17:00:33', '2023-04-06 17:00:33', '', 'carlinha', 4, NULL, '0', NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -238,7 +241,7 @@ INSERT INTO `frete` (`frete_id`, `frete_tipo`, `valor_km`, `valor_minuto`, `valo
 
 CREATE TABLE `log` (
   `log_id` int(11) NOT NULL,
-  `log_tipo` varchar(15) NOT NULL,
+  `log_tipo` varchar(15) NOT NULL COMMENT 'AVALIACAO, CONQUISTA, CUPOM, DENUNCIA, ELOGIO, ENTREGA, NOTIFICAÇÃO, STATUS',
   `log_usuario` int(11) NOT NULL,
   `log_desc` varchar(254) NOT NULL,
   `log_data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -306,11 +309,9 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_email`, `usuario_
 (1, 'ADMINISTRADOR', 'admin@mail.com', '000.000.000-00', 'admin', '1', 'ADMINISTRADOR', NULL, 'ATIVO', '2020-01-10 09:00:00'),
 (2, 'ROGÉRIO ULISSES', 'rogerin@mail.com', '123.456.789-10', 'rogerin', '1', 'ENTREGADOR', '(32)9999-9999', 'ATIVO', '2016-04-07 10:20:00'),
 (3, 'KLEBER FALAMANSA', 'klebinho@mail.com', '121.121.121-38', 'klebin', '1', 'ENTREGADOR', '9 9999-9998', 'ATIVO', '2022-06-10 18:33:00'),
-(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', '2', 'CLIENTE', '9 88888888', 'ATIVO', '2020-12-23 17:03:00'),
+(4, 'CARLA PIRES E BULE', 'carlinha@mail.com', '789.456.123-89', 'carlinha', 'a', 'CLIENTE', '9 88888888', 'ATIVO', '2020-12-23 17:03:00'),
 (5, 'VINÍCIUS MACHADO VIANNA', 'vini@mail.com', '444.444.444-44', 'vini', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-16 20:33:30'),
-(8, 'RAFAELA DE FARIA BILHEIROS', 'rafa@mail.com', '222.222.222-22', 'rafa', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-25 19:05:01'),
-(17, '1', '1', '111.111.111-11', '1', '1', 'CLIENTE', '(1', 'ATIVO', '2023-04-01 21:03:05'),
-(18, '1', '1234', '111.111.111-15', '18', '1', 'ENTREGADOR', '(1', 'ATIVO', '2023-04-01 21:05:47');
+(8, 'RAFAELA DE FARIA BILHEIROS', 'rafa@mail.com', '222.222.222-22', 'rafa', '1', 'CLIENTE', '(32)99999-9999', 'ATIVO', '2023-03-25 19:05:01');
 
 --
 -- Índices para tabelas despejadas
@@ -426,7 +427,7 @@ ALTER TABLE `elogios`
 -- AUTO_INCREMENT de tabela `entregas`
 --
 ALTER TABLE `entregas`
-  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `entrega_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `frete`
@@ -456,7 +457,7 @@ ALTER TABLE `notificacoes`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
