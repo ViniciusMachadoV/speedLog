@@ -69,16 +69,16 @@ class Connect extends CI_Controller {
 		$mail = new PHPMailer(true);
 		
 		try {
-
 			$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 			$mail->isSMTP();
 			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
-			$mail->Username = '0000501299@senaimgaluno.com.br';
-			$mail->Password = '98senai.mg21';
+			// SET EMAIL 
+			$mail->Username = '';
+			$mail->Password = '';
 			$mail->Port = 587;
-		
-			$mail->setFrom('0000501299@senaimgaluno.com.br');
+			// SET EMAIL 
+			$mail->setFrom('');
 			$mail->addAddress($email_client);
 		
 			$mail->isHTML(true);
